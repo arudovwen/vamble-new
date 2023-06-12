@@ -1,19 +1,13 @@
 <template>
-  <main class="bg-white">
-    <router-view />
-  </main>
+  <router-view />
 </template>
 
 <style lang="scss" scoped>
 #app {
-  font-family: "Playfair Display", serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-.zendaya {
-  font-family: "Zeyada", cursive;
-}
 </style>
-F
