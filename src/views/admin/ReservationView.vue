@@ -1,11 +1,11 @@
 <template>
   <AdminLayout>
     <template #content>
-      <DashboardComponent />
+      <ReservationComponent />
     </template>
   </AdminLayout>
 </template>
 <script setup>
 import AdminLayout from "@/components/layouts/adminLayout.vue";
-import DashboardComponent from "@/components/admin/DashboardComponent";
+import ReservationComponent from "@/components/admin/ReservationComponent";
 </script>

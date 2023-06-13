@@ -152,22 +152,158 @@ const routes = [
   // admin route
   {
     path: "/admin",
-    name: "admin",
+    name: "Dashboard",
 
     component: () =>
       import(
         /* webpackChunkName: "admindashboard" */ "../views/admin/DashboardView.vue"
       ),
     meta: {
-      title: "Admin - Vamble Apartments & Suites",
+      title: "Dashboard - Vamble Apartments & Suites",
       metaTags: [
         {
           name: "description",
-          content: "You Are Offline",
+          content: "Dashboard",
         },
         {
           property: "og:description",
-          content: "You Are Offline",
+          content: "Dashboard",
+        },
+      ],
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/transactions",
+    name: "Transactions",
+
+    component: () =>
+      import(
+        /* webpackChunkName: "admindtransactionashboard" */ "../views/admin/TransactionView.vue"
+      ),
+    meta: {
+      title: "Transaction - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content: "Transaction - Vamble Apartments & Suites",
+        },
+        {
+          property: "og:description",
+          content: "Transaction - Vamble Apartments & Suites",
+        },
+      ],
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/reservations",
+    name: "reservations",
+
+    component: () =>
+      import(
+        /* webpackChunkName: "admindasreservationshboard" */ "../views/admin/ReservationView.vue"
+      ),
+    meta: {
+      title: "Reservations - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content: "Reservations",
+        },
+        {
+          property: "og:description",
+          content: "Reservations",
+        },
+      ],
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/calendar",
+    name: "Calendar",
+
+    component: () =>
+      import(
+        /* webpackChunkName: "Calendar" */ "../views/admin/CalendarView.vue"
+      ),
+    meta: {
+      title: "Calendar - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content: "Calendar",
+        },
+        {
+          property: "og:description",
+          content: "Calendar",
+        },
+      ],
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/coupons",
+    name: "Coupons",
+
+    component: () =>
+      import(/* webpackChunkName: "Coupon" */ "../views/admin/CouponView.vue"),
+    meta: {
+      title: "Coupons - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content: "Coupons",
+        },
+        {
+          property: "og:description",
+          content: "Coupons",
+        },
+      ],
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/rooms",
+    name: "Rooms & apartment",
+
+    component: () =>
+      import(
+        /* webpackChunkName: "admindashroomsboard" */ "../views/admin/RoomsView.vue"
+      ),
+    meta: {
+      title: "Rooms & Apartment - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content: "Rooms & Apartment",
+        },
+        {
+          property: "og:description",
+          content: "Rooms & Apartment",
+        },
+      ],
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/user-management",
+    name: "User Management",
+
+    component: () =>
+      import(
+        /* webpackChunkName: "adminUserdashboard" */ "../views/admin/UserView.vue"
+      ),
+    meta: {
+      title: "User Management - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content: "User Management",
+        },
+        {
+          property: "og:description",
+          content: "User Management",
         },
       ],
       isAdmin: true,

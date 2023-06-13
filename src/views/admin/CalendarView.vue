@@ -1,11 +1,11 @@
 <template>
   <AdminLayout>
     <template #content>
-      <DashboardComponent />
+      <CalendarComponent />
     </template>
   </AdminLayout>
 </template>
 <script setup>
 import AdminLayout from "@/components/layouts/adminLayout.vue";
-import DashboardComponent from "@/components/admin/DashboardComponent";
+import CalendarComponent from "@/components/admin/CalendarComponent";
 </script>

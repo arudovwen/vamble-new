@@ -1,11 +1,11 @@
 <template>
   <AdminLayout>
     <template #content>
-      <DashboardComponent />
+      <CouponComponent />
     </template>
   </AdminLayout>
 </template>
 <script setup>
 import AdminLayout from "@/components/layouts/adminLayout.vue";
-import DashboardComponent from "@/components/admin/DashboardComponent";
+import CouponComponent from "@/components/admin/CouponComponent";
 </script>
