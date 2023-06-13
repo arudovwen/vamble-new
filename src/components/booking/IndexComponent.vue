@@ -27,47 +27,116 @@
       </div>
     </div>
     <div
-      class="w-full lg:w-[800px] lg:border border-[#a18463]/20 p-6 sm:p-8 mx-auto rounded-lg mb-10"
+      class="w-full lg:w-[900px] lg:border border-[#a18463]/20 p-6 sm:p-8 mx-auto rounded-lg mb-10"
     >
-      <h2
-        class="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 text-left zendaya text-shadow-drop-center"
-      >
-        Feel free to write to us
-      </h2>
-
       <form>
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">Full name</label>
-          <input
-            class="border px-3 py-3 rounded-lg w-full"
-            placeholder="Provide your full name"
-          />
-        </div>
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">E-mail</label>
-          <input
-            class="border px-3 py-3 rounded-lg w-full"
-            placeholder="Provide your email address"
-          />
-        </div>
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">Message</label>
-          <textarea
-            rows="4"
-            class="border px-3 py-3 rounded-lg w-full"
-            placeholder="Provide your full name"
-          ></textarea>
-        </div>
-        <div>
-          <button
-            type="button"
-            class="gap-x-1 bg-[#2d5c1f] text-white px-10 w-full font-medium hover:opacity-80 rounded-lg active:scale-95 py-3 text-sm sm:text-base"
+        <div class="grid grid-cols-4 gap-x-2 sm:gap-x-4 mb-12">
+          <div
+            v-for="n in stages"
+            :key="n.id"
+            :class="` transition-all flex items-center justify-center duration-500 px-2 py-4 rounded-full capitalize border border-[#2c3e50] text-xs sm:text-[15px] zendaya font-bold leading-none relative ${
+              stage >= n.id ? 'bg-[#2c3e50]  text-white' : ''
+            } after:content-[''] after:absolute after:-right-[10px] sm:after:-right-[18px] after:border-b 
+            after:h-[2px] after:-mt-[1px]
+            after:w-[10px] sm:after:w-[18px] after:border-[#2c3e50] after:top-[50%] after:last:content-none`"
           >
-            Send message
+            {{ n.text }}
+          </div>
+        </div>
+        <div class="max-w-[400px] sm:max-w-[700px] xl:max-w-[900px] mx-auto">
+          <StageOne v-if="stage === 1" />
+          <StageTwo v-if="stage === 2" />
+          <StageThree v-if="stage === 3" />
+          <StageFour v-if="stage === 4" />
+        </div>
+
+        <div
+          class="flex flex-col lg:flex-row gap-5 items-center justify-between mt-10 max-w-[400px] mx-auto"
+        >
+          <button
+            @click="stage--"
+            v-if="stage !== 4"
+            type="button"
+            :disabled="stage === 1"
+            class="capitalize bg-transparent border border-gray-300 text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 disabled:active:scale-100 rounded-lg disabled:cursor-not-allowed"
+          >
+            Back
           </button>
+          <button
+            @click="stage++"
+            v-if="stage < 3"
+            type="button"
+            class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 rounded-lg disabled:cursor-not-allowed"
+          >
+            Next
+          </button>
+          <div
+            v-if="stage === 3"
+            class="flex flex-col lg:flex-row gap-5 w-full"
+          >
+            <button
+              @click="stage++"
+              type="button"
+              class="capitalize bg-[#2c3e50] text-white text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 rounded-lg disabled:cursor-not-allowed"
+            >
+              Pay at hotel
+            </button>
+            <button
+              v-if="stage === 3"
+              @click="stage++"
+              type="button"
+              class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full lg:w-[200px] hover:opacity-80 active:scale-95 rounded-lg disabled:cursor-not-allowed"
+            >
+              Complete payment
+            </button>
+          </div>
         </div>
       </form>
     </div>
   </section>
 </template>
-<script setup></script>
+<script setup>
+import StageOne from "./StageOne.vue";
+import StageTwo from "./StageTwo.vue";
+import StageThree from "./StageThree.vue";
+import StageFour from "./StageFour.vue";
+import { ref, reactive, provide } from "vue";
+
+const formData = reactive({
+  checkin: "",
+  checkout: "",
+  category: "",
+  type: "",
+  no_of_rooms: "",
+  no_of_guests: "",
+  fullName: "",
+  email: "",
+  phone: "",
+  gender: "",
+  nationality: "",
+  address: "",
+  coupon: "",
+});
+const stage = ref(1);
+const stages = [
+  {
+    id: 1,
+    text: "reservation",
+  },
+  {
+    id: 2,
+    text: "guest details",
+  },
+  {
+    id: 3,
+    text: "complete reservation",
+  },
+  {
+    id: 4,
+    text: "summary",
+  },
+];
+
+provide("formData", formData);
+provide("stage", stage);
+</script>
