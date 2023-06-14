@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white rounded-lg border shadow text-left overflow-hidden">
-    <div class="flex justify-between items-center bg-gray-100 px-6 py-3 mb-5">
+    <div class="flex justify-between items-center bg-gray-100 px-6 py-4 mb-5">
       <div>
         <input
           placeholder="Search full name and email"
@@ -28,22 +28,22 @@
         </thead>
         <tbody>
           <tr v-for="(td, tid) in tbody" :key="tid" class="border-b">
-            <td class="px-6 py-3 text-sm font-normal capitalize">
+            <td class="px-6 py-4 text-sm font-normal capitalize">
               {{ td.name }}
             </td>
-            <td class="px-6 py-3 text-sm font-normal capitalize">
+            <td class="px-6 py-4 text-sm font-normal capitalize">
               {{ td.email }}
             </td>
-            <td class="px-6 py-3 text-sm font-normal capitalize">
+            <td class="px-6 py-4 text-sm font-normal capitalize">
               {{ td.phone }}
             </td>
-            <td class="px-6 py-3 text-sm font-normal capitalize">
+            <td class="px-6 py-4 text-sm font-normal capitalize">
               {{ td.address }}
             </td>
-            <td class="px-6 py-3 text-sm font-normal capitalize">
+            <td class="px-6 py-4 text-sm font-normal capitalize">
               {{ td.gender }}
             </td>
-            <td class="px-6 py-3 text-sm font-normal capitalize">
+            <td class="px-6 py-4 text-sm font-normal capitalize">
               {{ td.nationality }}
             </td>
           </tr>

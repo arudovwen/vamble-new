@@ -6,7 +6,7 @@
       >
         <div class="mb-4">
           <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-shadow-drop-center text-5xl xl:text-7xl font-bold"
+            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
           >
             About Vamble Apartments & Suites.
           </h1>
@@ -23,9 +23,7 @@
     </div>
     <div class="lg:flex">
       <div class="lg:w-1/2 p-6 sm:p-8 lg:p-16 border-b border-[#a18463]/20">
-        <h2
-          class="text-5xl lg:text-7xl font-semibold mb-6 text-left zendaya text-shadow-drop-center"
-        >
+        <h2 class="text-5xl lg:text-7xl font-semibold mb-6 text-left zendaya">
           Our Story
         </h2>
         <p class="text-base xl:text-2xl text-left">
@@ -38,7 +36,7 @@
       </div>
       <div class="lg:w-1/2 flex items-center justify-center">
         <span
-          class="text-[#2d5c1f] zendaya text-shadow-drop-center text-4xl lg:text-7xl max-w-[400px] mx-auto"
+          class="text-[#2d5c1f] zendaya text-4xl lg:text-7xl max-w-[400px] mx-auto"
         >
           A HOME AWAY FROM HOME</span
         >
@@ -60,9 +58,7 @@
       <div
         class="lg:w-1/2 p-6 sm:p-8 lg:p-16 lg:ml-auto border-l border-[#a18463]/20"
       >
-        <h2
-          class="text-5xl lg:text-7xl font-semibold mb-6 text-left zendaya text-shadow-drop-center"
-        >
+        <h2 class="text-5xl lg:text-7xl font-semibold mb-6 text-left zendaya">
           Our Location
         </h2>
         <p class="text-base xl:text-2xl text-left">

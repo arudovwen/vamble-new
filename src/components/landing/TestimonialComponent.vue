@@ -14,7 +14,7 @@
       </div>
 
       <span
-        class="bg-[#f6f3e9] px-4 py-1 lg:absolute font-bold -top-4 -left-4 text-3xl lg:text-3xl zendaya text-shadow-drop-center"
+        class="bg-[#f6f3e9] px-4 py-1 lg:absolute font-bold -top-4 -left-4 text-3xl lg:text-3xl zendaya"
         >TESTIMONIALS</span
       >
     </div>

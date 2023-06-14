@@ -6,7 +6,7 @@
       >
         <div class="mb-4">
           <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-shadow-drop-center text-5xl xl:text-7xl font-bold"
+            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
           >
             Services we offer
           </h1>
@@ -31,7 +31,7 @@
         class="lg:w-1/2 px-6 pt-6 pb-0 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16 flex items-start justify-start"
       >
         <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya text-shadow-drop-center"
+          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya"
         >
           Excellent & Secure Environment
         </h2>
@@ -55,7 +55,7 @@
         class="lg:w-1/2 px-6 pt-6 pb-0 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16 flex items-start justify-start"
       >
         <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya text-shadow-drop-center"
+          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya"
         >
           Well Furnished Apartments
         </h2>
@@ -77,7 +77,7 @@
         class="lg:w-1/2 px-6 pt-6 pb-0 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16 flex items-start justify-start"
       >
         <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya text-shadow-drop-center"
+          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya"
         >
           Grande Bedrooms
         </h2>
@@ -95,7 +95,7 @@
         class="lg:w-1/2 px-6 pt-6 pb-0 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16 flex items-start justify-start"
       >
         <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya text-shadow-drop-center"
+          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya"
         >
           Fully Equipped Kitchen
         </h2>
@@ -114,7 +114,7 @@
         class="lg:w-1/2 px-6 pt-6 pb-0 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16 flex items-start justify-start"
       >
         <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya text-shadow-drop-center"
+          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya"
         >
           Other Wonderful features
         </h2>

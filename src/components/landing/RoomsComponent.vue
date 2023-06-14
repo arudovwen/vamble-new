@@ -7,9 +7,7 @@
       v-animate-onscroll="'scale-in-center'"
     >
       <div class="mb-6 flex items-center justify-between">
-        <h2
-          class="text-6xl zendaya font-bold max-w-[250px] text-shadow-drop-center"
-        >
+        <h2 class="text-6xl zendaya font-bold max-w-[250px]">
           Rooms & Apartments
         </h2>
         <div class="flex items-center gap-x-4">

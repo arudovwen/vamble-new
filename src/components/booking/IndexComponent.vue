@@ -6,7 +6,7 @@
       >
         <div class="mb-4">
           <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-shadow-drop-center text-5xl xl:text-7xl font-bold"
+            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
           >
             Reserve your stay
           </h1>
@@ -51,7 +51,7 @@
         </div>
 
         <div
-          class="flex flex-col lg:flex-row gap-5 items-center justify-between mt-10 max-w-[400px] mx-auto"
+          class="flex flex-col lg:flex-row gap-5 items-center justify-between mt-10 max-w-[400px] sm:max-w-none mx-auto"
         >
           <button
             @click="stage--"

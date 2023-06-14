@@ -6,7 +6,7 @@
       >
         <div class="mb-4">
           <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-shadow-drop-center text-5xl xl:text-7xl font-bold"
+            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
           >
             Contact us today
           </h1>
@@ -49,7 +49,7 @@
       class="w-full lg:w-[500px] lg:border border-[#a18463]/20 p-6 sm:p-8 mx-auto rounded-lg mb-10"
     >
       <h2
-        class="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 text-left zendaya text-shadow-drop-center"
+        class="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 text-left zendaya"
       >
         Feel free to write to us
       </h2>
@@ -90,7 +90,7 @@
     <div class="">
       <div class="p-6 sm:p-8 lg:p-16 flex items-center justify-center flex-col">
         <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya text-shadow-drop-center"
+          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-6 text-left zendaya"
         >
           Social Connect
         </h2>

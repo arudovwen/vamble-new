@@ -6,7 +6,7 @@
       class="sm:px-16 sm:py-16 sm:border-r sm:border-[#a18463]/20 sm:w-[38%] text-left lg:flex items-center"
     >
       <h2
-        class="text-6xl font-bold max-w-[400px] mb-6 sm:mb-0 zendaya text-shadow-drop-center"
+        class="text-6xl font-bold max-w-[400px] mb-6 sm:mb-0 zendaya"
         v-animate-onscroll="'fade-in-bottom'"
       >
         A Bit About Us

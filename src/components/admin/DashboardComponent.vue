@@ -34,12 +34,17 @@
         </div>
       </div>
       <div class="bg-white rounded-lg p-6 border shadow text-left">
-        <h3 class="text-sm mb-6 font-bold">Quick actions</h3>
+        <h3 class="text-sm mb-8 font-bold">Quick actions</h3>
         <div class="flex flex-col gap-y-5 text-left">
           <button
             class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
           >
             Add room <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </button>
+          <button
+            class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
+          >
+            Add coupon <i class="fa fa-arrow-right" aria-hidden="true"></i>
           </button>
           <button
             class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
@@ -64,6 +69,7 @@
   </div>
 </template>
 <script setup>
+// eslint-disable-next-line no-unused-vars
 import { inject, computed } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import moment from "moment";
@@ -72,20 +78,25 @@ const apexchart = VueApexCharts;
 const series = computed(() => {
   return [
     {
-      name: "This year",
+      name: "Count",
       data: [3, 22, 25, 85, 3, 22, 25, 85, 36, 45, 76, 18],
     },
   ];
 });
-const currencyFormat = inject("currencyFormat");
+// const currencyFormat = inject("currencyFormat");
 const chartOptions = computed(() => {
   return {
     colors: ["#2d5c1f"],
     yaxis: {
-      show: false,
+      show: true,
     },
     legend: {
       show: false,
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 4,
+      },
     },
     chart: {
       toolbar: {
@@ -93,7 +104,7 @@ const chartOptions = computed(() => {
       },
     },
     grid: {
-      show: false,
+      show: true,
     },
 
     dataLabels: {
@@ -109,7 +120,7 @@ const chartOptions = computed(() => {
     tooltip: {
       y: {
         format: "MM dd",
-        formatter: (value) => currencyFormat(value),
+        formatter: (value) => value,
       },
     },
   };
