@@ -8,7 +8,7 @@ import VCalendar from "v-calendar";
 import VueAnimateOnScroll from "vue3-animate-onscroll";
 import "vue-toast-notification/dist/theme-sugar.css";
 import "v-calendar/style.css";
-
+import "qalendar/dist/style.css";
 import "./assets/tailwind.css";
 
 createApp(App)

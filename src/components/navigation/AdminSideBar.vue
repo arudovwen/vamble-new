@@ -18,7 +18,7 @@
           :to="item.url"
         >
           <li
-            class="transition-all duration-500 px-6 py-2 text-[15px] hover:text-[#2d5c1f] relative group font-semibold"
+            class="transition-all duration-500 px-6 py-2 text-[15px] hover:text-[#2d5c1f] relative group font-medium"
           >
             <span class="flex gap-x-4 items-center">
               <i :class="`fa ${item.icon}`" aria-hidden="true"></i>
@@ -31,7 +31,7 @@
     <div class="px-6 text-left py-6">
       <ul>
         <li
-          class="transition-all duration-500 px-2 text-[15px] hover:text-[#2d5c1f] relative group font-semibold"
+          class="transition-all duration-500 px-2 text-[15px] hover:text-[#2d5c1f] relative group font-medium"
         >
           <span class="flex gap-x-4 items-center"
             ><i class="fas fa-sign-out-alt"></i> Logout</span
