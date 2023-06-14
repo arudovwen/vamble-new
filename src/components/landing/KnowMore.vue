@@ -2,7 +2,7 @@
   <section
     class="px-6 sm:px-8 xl:px-16 py-20 border-b border-[#a18463]/20 text-center"
   >
-    <div class="w-full h-[250px] sm:h-[500px] mb-10 grid grid-cols-3">
+    <div class="w-full h-[600px] md:h-[500px] mb-10 grid md:grid-cols-3">
       <div
         v-for="(item, idx) in content"
         :key="idx"
@@ -13,11 +13,12 @@
           v-animate-onscroll="'scale-in-center'"
         >
           <div
-            class="w-full h-full flex justify-start items-end bg-gray-500/20 backdrop-brightness-50 p-8 font-bold"
+            class="w-full h-full flex justify-start items-end bg-gray-500/20 backdrop-brightness-50 p-6 md:p-8 font-bold"
           >
-            <span class="text-4xl fomt-bold text-[#ecf7e9] zendaya">{{
-              item.text
-            }}</span>
+            <span
+              class="text-3xl xl:text-4xl fomt-bold text-[#ecf7e9] zendaya"
+              >{{ item.text }}</span
+            >
           </div>
         </div>
       </div>
