@@ -1,14 +1,19 @@
 const urls = {
   //Auth urls
-  LOGIN_USER: "v1/account/login",
-  REGISTER: "/v1/register",
-  RESEND_VERIFICATION: "/v1/register/resendverification",
-  REGISTER_INVITED_USER: "/v1/account/registerbusinessuser",
-  FORGOT_PASSWORD: "v1/account/forgot-password",
-  RESET_PASSWORD: "v1/account/reset-password",
-  CONFIRM_EMAIL: "v1/account/confirm-email",
-  SET_ACCOUNT_TYPE: "v1/onboarding/setaccounttype",
-  SOCIAL_REGISTER: "v1/register/social",
-  SOCIAL_LOGIN: "v1/account/sociallogin",
+  LOGIN_USER: "/api/login",
+  FORGOT_PASSWORD: "/api/forgot-password",
+  RESET_PASSWORD: "/api/reset-password",
+  SEND_MESSAGE: "/api/enquire",
+
+  // Room
+  GET_ROOM_TYPES: "/api/room/types",
+  GET_ROOM_CATEGORIES: "/api/room/categories",
+  CHECK_AVAILABILITY: "/api/check-availability",
+  CHECK_COUPON: "/api/check-coupon",
+  HANDLE_RESERVE: "/api/reserve",
+  POST_TRANSACTION: "/api/transactions/add",
+
+  FIND_BOOKING: "/api/find/booking",
+  FIND_BOOKINGS: "/api/find/bookings",
 };
 export default urls;

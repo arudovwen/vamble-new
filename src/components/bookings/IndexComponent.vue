@@ -1,6 +1,6 @@
 <template>
-  <section class="relative pb-16">
-    <div class="flex z-[2] w-full border-b border-[#a18463]/20 mb-10 sm:mb-20">
+  <section class="relative pb-16 flex-1">
+    <div class="flex z-[2] w-full border-[#a18463]/20 mb-10 sm:mb-20">
       <div
         class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-10 text-left px-6 sm:px-8 lg:px-16"
       >
@@ -25,39 +25,60 @@
       </div>
     </div>
     <div class="flex px-6 sm:px-8 lg:px-16 gap-x-16">
-      <div
-        class="w-full lg:w-[900px] lg:border border-[#a18463]/20 mx-auto rounded-lg mb-10"
-      >
-        <table class="w-full">
-          <thead>
-            <tr>
-              <th class="px-6 py-2 text-[15px] capitalize border-b">
-                Booking no
-              </th>
-              <th class="px-6 py-2 text-[15px] capitalize border-b">Date</th>
-              <th class="pr-6 py-2 text-[15px] font-bold border-b">
-                Full name
-              </th>
-              <th class="px-6 py-2 text-[15px] capitalize border-b">Email</th>
-              <th class="px-6 py-2 text-[15px] capitalize border-b">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="pr-6 py-2 text-[15px] font-bold"></td>
-              <td class="px-6 py-2 text-[15px] capitalize"></td>
-              <td class="pr-6 py-2 text-[15px] font-bold"></td>
-              <td class="px-6 py-2 text-[15px] capitalize"></td>
-              <td class="px-6 py-2 text-[15px] capitalize">
-                <button class="text-sm" type="button" @click="isOpen = true">
-                  View
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div v-if="userInfo">
+        <div
+          class="w-full lg:w-[900px] lg:border border-[#a18463]/20 mx-auto rounded-lg mb-10"
+        >
+          <table class="w-full">
+            <thead>
+              <tr class="text-left border-b">
+                <th class="px-6 py-3 text-sm capitalize">Date</th>
+                <th class="px-6 py-3 text-sm capitalize">Booking no</th>
+
+                <th class="px-6 py-3 text-sm font-bold">Full name</th>
+
+                <th class="px-6 py-3 text-sm capitalize"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="text-left border-b"
+                v-for="item in bookings"
+                :key="item.id"
+              >
+                <td class="px-6 py-3 text-[15px] capitalize">
+                  {{ moment(item.created_at).format("ll") }}
+                </td>
+                <td class="px-6 py-3 text-[15px] font-bold">
+                  {{ item.booking_no }}
+                </td>
+                <td class="px-6 py-3 text-[15px] capitalize">
+                  {{ item.user.name }}
+                </td>
+
+                <td class="px-6 py-3 text-[15px]">
+                  <button
+                    class="text-sm"
+                    type="button"
+                    @click="
+                      () => {
+                        booking = item;
+                        isOpen = true;
+                      }
+                    "
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pb-5">
+            <PaginationComponent />
+          </div>
+        </div>
       </div>
-      <div class="flex-1">
+      <div class="flex-1 max-w-sm mx-auto">
         <SearchBooking />
       </div>
     </div>
@@ -99,13 +120,13 @@
                 class="text-base font-semibold leading-6 text-gray-900"
                 >Booking information</DialogTitle
               >
-              <ViewBooking />
+              <ViewBooking :booking="booking" v-if="isOpen" />
               <div
                 class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
               >
                 <button
                   type="button"
-                  class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                  class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
                   @click="isOpen = false"
                   ref="cancelButtonRef"
                 >
@@ -120,6 +141,8 @@
   </TransitionRoot>
 </template>
 <script setup>
+import moment from "moment";
+import PaginationComponent from "@/components/PaginationComponent.vue";
 import {
   Dialog,
   DialogPanel,
@@ -129,9 +152,45 @@ import {
 } from "@headlessui/vue";
 import SearchBooking from "./SearchBooking.vue";
 import ViewBooking from "./ViewBooking.vue";
+import { findBookings } from "@/services/roomservice";
+import store from "@/store";
+import { ref, computed, reactive, onMounted, provide, watch } from "vue";
+import { useToast } from "vue-toast-notification";
 
-import { ref } from "vue";
-
+const toast = useToast();
 const isOpen = ref(false);
-// const bookings = ref(1);
+const bookings = ref([]);
+const booking = ref(null);
+const queryParams = reactive({
+  pageNumber: 1,
+  pageSize: 10,
+  pageCount: 0,
+  total: 0,
+});
+const userInfo = computed(() => store.getters.userInfo);
+const isLoading = ref(false);
+onMounted(() => {
+  getBookings();
+});
+function getBookings() {
+  findBookings(queryParams)
+    .then((res) => {
+      if (res.status === 200) {
+        bookings.value = res.data.data;
+        queryParams.total = res.data.total;
+        isLoading.value = false;
+      }
+    })
+    .catch((err) => {
+      toast.error(err.response.data.message);
+      isLoading.value = false;
+    });
+}
+watch(
+  () => [queryParams.pageNumber],
+  () => {
+    getBookings(queryParams);
+  }
+);
+provide("queryParams", queryParams);
 </script>

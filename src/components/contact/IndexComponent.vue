@@ -53,35 +53,48 @@
       >
         Feel free to write to us
       </h2>
-      <form>
+      <form @submit.prevent="handleSubmit">
         <div class="text-left mb-6">
           <label class="block mb-2 text-xs">Full name</label>
           <input
-            class="border px-3 py-3 rounded-lg w-full"
+            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
             placeholder="Provide your full name"
+            v-model="form.name"
+            required
           />
         </div>
         <div class="text-left mb-6">
           <label class="block mb-2 text-xs">E-mail</label>
           <input
-            class="border px-3 py-3 rounded-lg w-full"
+            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
             placeholder="Provide your email address"
+            v-model="form.email"
+            required
+            type="email"
           />
         </div>
         <div class="text-left mb-6">
           <label class="block mb-2 text-xs">Message</label>
           <textarea
+            v-model="form.body"
             rows="4"
-            class="border px-3 py-3 rounded-lg w-full"
+            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
             placeholder="Provide your full name"
+            required
           ></textarea>
         </div>
         <div>
           <button
-            type="button"
-            class="gap-x-1 bg-[#2d5c1f] text-white px-10 w-full font-medium hover:opacity-80 rounded-lg active:scale-95 py-3 text-sm sm:text-base"
+            :disabled="isLoading"
+            type="submit"
+            class="gap-x-1 bg-[#2d5c1f] disabled:opacity-60 text-white px-10 w-full font-medium hover:opacity-80 rounded-lg active:scale-95 py-3 text-sm sm:text-base"
           >
             Send message
+            <i
+              class="fa fa-refresh fa-spin"
+              v-if="isLoading"
+              aria-hidden="true"
+            ></i>
           </button>
         </div>
       </form>
@@ -128,4 +141,32 @@
     </div>
   </section>
 </template>
-<script setup></script>
+<script setup>
+import { reactive, ref } from "vue";
+import { sendMessage } from "@/services/authservices";
+import { useToast } from "vue-toast-notification";
+
+const toast = useToast();
+const form = reactive({
+  name: "",
+  email: "",
+  body: "",
+});
+
+const isLoading = ref(false);
+async function handleSubmit() {
+  isLoading.value = true;
+  sendMessage(form)
+    .then((res) => {
+      if (res.status === 200) {
+        toast.success("Message sent!");
+        form.name = form.email = form.body = "";
+        isLoading.value = false;
+      }
+    })
+    .catch((err) => {
+      toast.error(err.response.data.message);
+      isLoading.value = false;
+    });
+}
+</script>

@@ -9,7 +9,9 @@
         style="width: 150px; height: 150px"
       />
 
-      <h4 class="text-2xl font-bold mb-2">Booking No: #495959995</h4>
+      <h4 class="text-2xl font-bold mb-2">
+        Booking No: #{{ formData.bookingNo }}
+      </h4>
       <p>
         Your booking has been made, and your reservation is being processed.
       </p>
@@ -34,18 +36,25 @@ const stage = inject("stage");
 
 function refresh() {
   stage.value = 1;
-  formData.checkin = "";
-  formData.checkout = "";
+  formData.checkin = new Date();
   formData.category = "";
   formData.type = "";
-  formData.no_of_rooms = "";
-  formData.no_of_guests = "";
-  formData.fullName = "";
+  formData.no_of_rooms = 1;
+  formData.no_of_guests = 1;
+  formData.name = "";
   formData.email = "";
   formData.phone = "";
   formData.gender = "";
   formData.nationality = "";
   formData.address = "";
   formData.coupon = "";
+  formData.flats = [];
+  formData.bookingNo = null;
+  formData.total_price = 0;
+  formData.payment_type = "";
+  formData.payment_status = "";
+  formData.status = "";
+  formData.price_per_night = "";
+  formData.room_id = "";
 }
 </script>

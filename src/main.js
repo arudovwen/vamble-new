@@ -4,8 +4,8 @@ import AdminApp from "./AdminApp.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-import VCalendar from "v-calendar";
 import VueAnimateOnScroll from "vue3-animate-onscroll";
+import currencyFormat from "@/utils/formatCurrency";
 import "vue-toast-notification/dist/theme-sugar.css";
 import "v-calendar/style.css";
 import "qalendar/dist/style.css";
@@ -15,10 +15,10 @@ createApp(App)
   .use(store)
   .use(router)
   .use(VueAnimateOnScroll)
-  .use(VCalendar, {})
+  .provide("currencyFormat", currencyFormat)
   .mount("#app");
 createApp(AdminApp)
   .use(store)
   .use(router)
-  .use(VCalendar, {})
+  .provide("currencyFormat", currencyFormat)
   .mount("#adminapp");

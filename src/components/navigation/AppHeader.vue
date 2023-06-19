@@ -30,7 +30,7 @@
         </router-link>
       </ul>
     </div>
-    <div class="sm:pr-8 xl:pr-16 hidden lg:block">
+    <div class="sm:pr-8 xl:pr-16 hidden lg:flex gap-x-5">
       <router-link to="/booking" v-if="route.name !== 'booking'">
         <button
           type="button"
@@ -47,6 +47,39 @@
           View bookings
         </button>
       </router-link>
+      <router-link to="/login" v-if="!userInfo && !userInfo.name">
+        <button
+          type="button"
+          class="text-white px-8 py-3 rounded-sm text-sm uppercase border-2 font-semibold border-white hover:opacity-85 active:scale-95"
+        >
+          Login
+        </button>
+      </router-link>
+
+      <Menu as="div" v-else class="relative inline-block text-left">
+        <MenuButton
+          class="relative text-white px-3 py-2 rounded-sm flex items-center gap-x-3 text-sm uppercase border-2 font-semibold border-white hover:opacity-85 active:scale-95"
+        >
+          <i class="fa fa-user-circle-o text-xl" aria-hidden="true"></i>
+          {{ userInfo.name }}</MenuButton
+        >
+        <transition
+          enter-active-class="transition duration-100 ease-out"
+          enter-from-class="transform scale-95 opacity-0"
+          enter-to-class="transform scale-100 opacity-100"
+          leave-active-class="transition duration-75 ease-in"
+          leave-from-class="transform scale-100 opacity-100"
+          leave-to-class="transform scale-95 opacity-0"
+        >
+          <MenuItems
+            class="absolute bg-white right-0 mt-2 w-full rounded-lg shadow-lg origin-top-right divide-y divide-gray-100 p-4"
+          >
+            <MenuItem @click="logOut" as="div"
+              >Logout <i class="fas fa-sign-in-alt"></i>
+            </MenuItem>
+          </MenuItems>
+        </transition>
+      </Menu>
     </div>
     <div
       class="bg-[#f6f3e9] p-1 rounded-sm mr-6 sm:mr-8 lg:hidden"
@@ -192,7 +225,10 @@ import {
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 import { Bars3BottomRightIcon } from "@heroicons/vue/24/outline";
 import { useRoute } from "vue-router";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import store from "@/store";
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { logOut } from "@/services/authservices";
 
 const isOpen = ref(false);
 const route = useRoute();
@@ -236,6 +272,8 @@ const mobileNavigations = [
     url: "/enquiries",
   },
 ];
+
+const userInfo = computed(() => store.getters.userInfo);
 </script>
 
 <style lang="scss" scoped>

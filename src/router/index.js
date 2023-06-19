@@ -24,6 +24,78 @@ const routes = [
     },
   },
   {
+    path: "/login",
+    name: "login",
+    component: () =>
+      import(
+        /* webpackChunkName: "login" */ "@/components/auth/LoginComponent"
+      ),
+    meta: {
+      title: "Login - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content:
+            "Vamble Apartments and Suites is a sweet spot to relax and enjoy the splendor and exquisite feeling of a home away from home. It's perculiarity is second to none.",
+        },
+        {
+          property: "og:description",
+          content:
+            "Vamble Apartments and Suites is a sweet spot to relax and enjoy the splendor and exquisite feeling of a home away from home. It's perculiarity is second to none.",
+        },
+      ],
+      isClient: true,
+    },
+  },
+  {
+    path: "/forgot-password",
+    name: "Forgot password",
+    component: () =>
+      import(
+        /* webpackChunkName: "forgotpassword" */ "@/components/auth/ForgotComponent"
+      ),
+    meta: {
+      title: "Forgot password - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content:
+            "Vamble Apartments and Suites is a sweet spot to relax and enjoy the splendor and exquisite feeling of a home away from home. It's perculiarity is second to none.",
+        },
+        {
+          property: "og:description",
+          content:
+            "Vamble Apartments and Suites is a sweet spot to relax and enjoy the splendor and exquisite feeling of a home away from home. It's perculiarity is second to none.",
+        },
+      ],
+      isClient: true,
+    },
+  },
+  {
+    path: "/reset-password/:code",
+    name: "Reset password",
+    component: () =>
+      import(
+        /* webpackChunkName: "resetpassword" */ "@/components/auth/ResetComponent"
+      ),
+    meta: {
+      title: "Reset password - Vamble Apartments & Suites",
+      metaTags: [
+        {
+          name: "description",
+          content:
+            "Vamble Apartments and Suites is a sweet spot to relax and enjoy the splendor and exquisite feeling of a home away from home. It's perculiarity is second to none.",
+        },
+        {
+          property: "og:description",
+          content:
+            "Vamble Apartments and Suites is a sweet spot to relax and enjoy the splendor and exquisite feeling of a home away from home. It's perculiarity is second to none.",
+        },
+      ],
+      isClient: true,
+    },
+  },
+  {
     path: "/about",
     name: "about",
     component: () =>

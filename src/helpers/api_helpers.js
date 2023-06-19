@@ -17,10 +17,11 @@ const axiosApi = axios.create({
 });
 
 axiosApi.defaults.withCredentials = true;
-
-axiosApi.defaults.headers.common[
-  "Authorization"
-] = `Bearer ${store.getters.accessToken}`;
+if (store.getters.token) {
+  axiosApi.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${store.getters.token}`;
+}
 
 axiosApi.interceptors.response.use(
   (response) => response,
@@ -28,11 +29,11 @@ axiosApi.interceptors.response.use(
   (error) => {
     console.log(error);
     if (
-      error.response.status === 401 &&
-      error.code === "ERR_BAD_REQUEST" &&
-      error.response.data.includes("Microsoft.IdentityModel.Tokens")
+      error?.response?.status === 401 &&
+      error?.code === "ERR_BAD_REQUEST" &&
+      error?.response.data.message.toLowerCase() === "token expired"
     ) {
-      if (localStorage.getItem("loggedUser")) {
+      if (store.getters.token) {
         toast.info("Your session as expired", {
           position: "bottom",
         });

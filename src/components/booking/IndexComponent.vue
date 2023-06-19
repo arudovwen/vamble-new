@@ -1,5 +1,5 @@
 <template>
-  <section class="relative pb-16">
+  <section class="relative pb-16 flex-1">
     <div class="flex z-[2] w-full border-b border-[#a18463]/20 mb-10 sm:mb-20">
       <div
         class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-10 text-left px-6 sm:px-8 lg:px-16"
@@ -50,7 +50,7 @@
           <StageFour v-if="stage === 4" />
         </div>
 
-        <div
+        <!-- <div
           class="flex flex-col lg:flex-row gap-5 items-center justify-between mt-10 max-w-[400px] sm:max-w-none mx-auto"
         >
           <button
@@ -66,7 +66,8 @@
             @click="stage++"
             v-if="stage < 3"
             type="button"
-            class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 rounded-lg disabled:cursor-not-allowed"
+            :disabled="!canProceed"
+            class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 rounded-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
             Next
           </button>
@@ -90,7 +91,7 @@
               Complete payment
             </button>
           </div>
-        </div>
+        </div> -->
       </form>
     </div>
   </section>
@@ -100,23 +101,42 @@ import StageOne from "./StageOne.vue";
 import StageTwo from "./StageTwo.vue";
 import StageThree from "./StageThree.vue";
 import StageFour from "./StageFour.vue";
-import { ref, reactive, provide } from "vue";
+import { ref, reactive, provide, onMounted, computed } from "vue";
+import store from "@/store";
+import moment from "moment";
+import { useRoute } from "vue-router";
+import { getRoomCategories, getRoomTypes } from "@/services/roomservice";
 
+const route = useRoute();
+const userInfo = computed(() => store.getters.userInfo);
 const formData = reactive({
-  checkin: "",
-  checkout: "",
-  category: "",
-  type: "",
-  no_of_rooms: "",
-  no_of_guests: "",
-  fullName: "",
-  email: "",
-  phone: "",
-  gender: "",
-  nationality: "",
-  address: "",
+  checkin: route.query.checkin ? new Date(route.query.checkin) : new Date(),
+  checkout: route.query.checkout
+    ? new Date(route.query.checkout)
+    : new Date(moment(moment(new Date())).add(1, "days")),
+  category: route.query.category || "",
+  type: route.query.type || "",
+  no_of_rooms: route.query.no_of_rooms || 1,
+  no_of_guests: route.query.no_of_guests || 1,
+  name: userInfo.value.name || "",
+  email: userInfo.value.email || "",
+  phone: userInfo.value.phone || "",
+  gender: userInfo.value.gender || "",
+  nationality: userInfo.value.nationality || "",
+  address: userInfo.value.address || "",
   coupon: "",
+  total_price: 0,
+  payment_type: "",
+  payment_status: "",
+  status: "",
+  price_per_night: "",
+  room_id: "",
+  flats: [],
+  bookingNo: null,
+  response: null,
 });
+const categories = ref([]);
+const types = ref([]);
 const stage = ref(1);
 const stages = [
   {
@@ -136,7 +156,26 @@ const stages = [
     text: "summary",
   },
 ];
+const totalNights = computed(() => {
+  return moment(formData.checkout).diff(moment(formData.checkin), "days");
+});
+onMounted(() => {
+  getRoomCategories().then((res) => {
+    if (res.status === 200) {
+      categories.value = res.data;
+    }
+  });
+  getRoomTypes().then((res) => {
+    if (res.status === 200) {
+      types.value = res.data;
+    }
+  });
+});
 
 provide("formData", formData);
 provide("stage", stage);
+provide("categories", categories);
+provide("types", types);
+provide("totalNights", totalNights);
 </script>
+,

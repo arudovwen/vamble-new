@@ -7,21 +7,23 @@
         >Arrival date</span
       >
 
-      <input
+      <datepicker
         v-model="formData.checkin"
         class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20"
-        type="date"
+        inputFormat="yyyy-MM-dd"
       />
     </div>
 
     <div class="text-left">
       <span class="text-xs font-semibold text-[#2d5c1f] block mb-2"
-        >Arrival date</span
+        >Departure date</span
       >
-      <input
+      <datepicker
         v-model="formData.checkout"
         class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20"
-        type="date"
+        inputFormat="yyyy-MM-dd"
+        :lowerLimit="lowerLimit"
+        :upperLimit="compEndDate"
       />
     </div>
 
@@ -31,10 +33,10 @@
       >
       <select
         v-model="formData.category"
-        class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20 capitalize"
+        class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20 capitalize"
       >
-        <option value="" disabled>Choose</option>
-        <option v-for="cat in category" :key="cat" :value="cat">
+        <option value="" disabled>Choose category</option>
+        <option v-for="cat in categories" :key="cat" :value="cat">
           {{ cat }}
         </option>
       </select>
@@ -45,11 +47,16 @@
       >
       <select
         v-model="formData.type"
-        class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20 capitalize"
+        class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20 capitalize"
       >
-        <option value="" disabled>Choose</option>
-        <option v-for="cat in compType" :key="cat.text" :value="cat.text">
-          {{ cat.text }}
+        <option value="" disabled>Choose type</option>
+        <option
+          v-for="cat in compType"
+          :key="cat.flat_type"
+          :value="cat.flat_type"
+        >
+          {{ cat.flat_type }} -
+          {{ currencyFormat(cat.price) }}
         </option>
       </select>
     </div>
@@ -60,10 +67,10 @@
           >Rooms</span
         >
         <select
-          v-model="formData.no_of_guests"
-          class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20"
+          v-model="formData.no_of_rooms"
+          class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20"
         >
-          <option :value="n" v-for="n in 50" :key="n">{{ n }}</option>
+          <option :value="n" v-for="n in 20" :key="n">{{ n }}</option>
         </select>
       </div>
 
@@ -73,70 +80,72 @@
         >
         <select
           v-model="formData.no_of_guests"
-          class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20"
+          class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20"
         >
-          <option :value="n" v-for="n in 50" :key="n">{{ n }}</option>
+          <option :value="n" v-for="n in 20" :key="n">{{ n }}</option>
         </select>
       </div>
     </div>
     <div>
-      <button
-        type="button"
-        class="capitalize bg-[#2d5c1f]/90 text-white text-sm px-6 py-2 font-semibold rounded-sm hover:opacity-80 active:scale-95"
+      <router-link
+        :to="
+          encodeURI(
+            `/booking?checkin=${formData.checkin}&checkout=${formData.checkout}&category=${formData.category}&type=${formData.type}&guests=${formData.no_of_guests}&rooms=${formData.no_of_rooms}`
+          )
+        "
       >
-        Check Availability
-      </button>
+        <button
+          type="button"
+          class="capitalize bg-[#2d5c1f]/90 text-white text-sm px-6 py-2 font-semibold rounded-sm hover:opacity-80 active:scale-95"
+        >
+          Check Availability
+        </button>
+      </router-link>
     </div>
   </div>
 </template>
 <script setup>
-import { computed, reactive } from "vue";
-const category = ["room", "apartment"];
-const type = [
-  {
-    type: "room",
-    text: "Standard room",
-    price: "₦30,000.00 per night ",
-  },
-  {
-    type: "room",
-    text: "Executive room",
-    price: "₦45,000.00 per night ",
-  },
-  {
-    type: "apartment",
-    text: "Standard apartment",
-    price: "₦110,000.00 per night ",
-  },
-  {
-    type: "apartment",
-    text: "Executive apartment",
-    price: "₦120,000.00 per night ",
-  },
-  {
-    type: "apartment",
-    text: "Platinum apartment",
-    price: "₦150,000.00 per night ",
-  },
-];
+import { getRoomCategories, getRoomTypes } from "@/services/roomservice";
+import { computed, reactive, onMounted, ref, inject, watch } from "vue";
+import Datepicker from "vue3-datepicker";
+import moment from "moment";
+
+const currencyFormat = inject("currencyFormat");
+const categories = ref([]);
+const types = ref([]);
 const formData = reactive({
-  checkin: "",
-  checkout: "",
+  checkin: new Date(),
+  checkout: new Date(moment(moment(new Date())).add(1, "days")),
   category: "",
   type: "",
-  no_of_rooms: "",
-  no_of_guests: "",
-  fullName: "",
-  email: "",
-  phone: "",
-  gender: "",
-  nationality: "",
-  address: "",
-  coupon: "",
+  no_of_rooms: 1,
+  no_of_guests: 1,
 });
 const compType = computed(() =>
-  type.filter((i) => i.type === formData.category)
+  types.value.filter((i) => i.flat_name === formData.category)
 );
+
+onMounted(() => {
+  getRoomCategories().then((res) => {
+    if (res.status === 200) {
+      categories.value = res.data;
+    }
+  });
+  getRoomTypes().then((res) => {
+    if (res.status === 200) {
+      types.value = res.data;
+    }
+  });
+});
+const compEndDate = computed(() => {
+  return new Date(moment(moment(formData.checkin)).add(4, "months"));
+});
+const lowerLimit = computed(() => {
+  return new Date(moment(moment(formData.checkin)).add(1, "days"));
+});
+watch(lowerLimit, () => {
+  formData.checkout = lowerLimit.value;
+});
 </script>
 
 <style>
