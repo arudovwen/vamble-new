@@ -92,18 +92,19 @@ async function handleSubmit() {
   const result = await v$.value.$validate();
   if (!result) return;
   isLoading.value = true;
-  loginUser(form).then((res) => {
-    if (res.status === 200) {
-      store.commit("SET_TOKEN", res.data.token);
-      store.commit("SET_USERINFO", res.data.user);
-      toast.success("Login successful");
-      window.location.replace("/");
+  loginUser(form)
+    .then((res) => {
+      if (res.status === 200) {
+        store.commit("SET_TOKEN", res.data.token);
+        store.commit("SET_USERINFO", res.data.user);
+        toast.success("Login successful");
+        window.location.replace("/");
+        isLoading.value = false;
+      }
+    })
+    .catch((err) => {
+      toast.error(err.response.data.message);
       isLoading.value = false;
-    }
-  });
-  // .catch((err) => {
-  //   toast.error(err.response.data.message);
-  //   isLoading.value = false;
-  // });
+    });
 }
 </script>

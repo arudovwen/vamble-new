@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between items-center h-full">
+  <div class="flex justify-between items-center h-full py-4">
     <span class="block text-xl capitalize font-bold">{{ route.name }}</span>
 
     <div class="flex gap-x-10 items-center">
@@ -9,7 +9,7 @@
       <div class="text-left flex gap-x-2 items-center">
         <i class="fa fa-user-circle text-3xl" aria-hidden="true"></i>
         <span>
-          <span class="block text-sm capitalize">John Snow</span>
+          <span class="block text-sm capitalize">{{ userInfo.name }}</span>
           <span class="block text-xs">Admin</span>
         </span>
       </div>
@@ -75,7 +75,7 @@
                 >
                   <div class="px-4 sm:px-6">
                     <DialogTitle
-                      class="text-base font-semibold leading-6 text-gray-900"
+                      class="text-base font-semibold leading-6 text-gray-900 text-left"
                     >
                       Notifications</DialogTitle
                     >
@@ -86,16 +86,17 @@
                         <ul class="text-left mb-8" v-if="notifications.length">
                           <li
                             v-for="item in notifications"
-                            :key="item.title"
-                            class="transition-all duration-500 px-2 text-xl text-[#2c3e50]/80 hover:text-gray-700 relative text-left group -mb-1 font-semibold"
+                            :key="item.id"
+                            @click="handleNotify(item.id)"
+                            class="transition-all duration-500 px-2 text-sm py-2 bg-gray-50 text-[#2c3e50]/80 hover:text-gray-700 relative text-left group mb-2 font-semibold"
                           >
-                            <span class="block"> {{ item.title }}</span>
-                            <span
-                              class="block mx-auto w-1 h-1 rounded-full bg-gray-700 opacity-0 group-hover:opacity-100"
-                            ></span>
+                            <span class="block"> {{ item.data.body }}</span>
                           </li>
                         </ul>
-                        <div class="text-center p-4 text-sm text-gray-500">
+                        <div
+                          v-else
+                          class="text-center p-4 text-sm text-gray-500"
+                        >
                           No new notificaton
                         </div>
                       </div>
@@ -119,10 +120,37 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
-import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { ref, computed, reactive, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import store from "@/store";
+import { getNotifications, markNotification } from "@/services/userservices";
 
+const router = useRouter();
+const userInfo = computed(() => store.getters.userInfo);
 const isOpen = ref(false);
 const route = useRoute();
 const notifications = ref([]);
+const queryParams = reactive({
+  pageNumber: 1,
+  pageSize: 20,
+  pageCount: 0,
+  total: 0,
+  search: "",
+});
+
+onMounted(() => {
+  getNotifications(queryParams).then((res) => {
+    if (res.status === 200) {
+      notifications.value = res.data.data;
+    }
+  });
+});
+
+function handleNotify(id) {
+  markNotification(id).then((res) => {
+    if (res.status === 200) {
+      router.push("/admin/reservations");
+    }
+  });
+}
 </script>

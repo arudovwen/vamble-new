@@ -1,13 +1,20 @@
 import urls from "../helpers/url_helpers";
 import { post, get } from "../helpers/api_helpers";
+import store from "../store";
 
 //Authentication
 export async function loginUser(user, config = {}) {
   return await post(urls.LOGIN_USER, user, config);
 }
 export async function logOut() {
-  localStorage.clear();
-  window.location.href = "/";
+  await get(urls.LOGOUT, {
+    headers: { Authorization: `Bearer ${store.getters.token}` },
+  }).then((res) => {
+    if (res.status === 200) {
+      localStorage.clear();
+      window.location.href = "/";
+    }
+  });
 }
 
 export async function forgotPassword(user, config = {}) {

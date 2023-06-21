@@ -1,8 +1,9 @@
 <template>
   <div class="bg-white rounded-lg border shadow text-left overflow-hidden">
-    <div class="flex justify-between items-center bg-gray-100 px-6 py-4 mb-5">
+    <div class="flex justify-between items-center bg-gray-100 px-6 py-6 mb-5">
       <div>
         <input
+          v-model="queryParams.search"
           placeholder="Search full name and email"
           class="border text-sm px-3 py-2 rounded-lg outline-none focus:border-[#2c3e50]/20 w-[300px]"
         />
@@ -28,22 +29,22 @@
         </thead>
         <tbody>
           <tr v-for="(td, tid) in tbody" :key="tid" class="border-b">
-            <td class="px-6 py-4 text-sm font-normal capitalize">
+            <td class="px-6 py-6 text-sm font-normal capitalize">
               {{ td.name }}
             </td>
-            <td class="px-6 py-4 text-sm font-normal capitalize">
+            <td class="px-6 py-6 text-sm font-normal capitalize">
               {{ td.email }}
             </td>
-            <td class="px-6 py-4 text-sm font-normal capitalize">
+            <td class="px-6 py-6 text-sm font-normal capitalize">
               {{ td.phone }}
             </td>
-            <td class="px-6 py-4 text-sm font-normal capitalize">
+            <td class="px-6 py-6 text-sm font-normal capitalize">
               {{ td.address }}
             </td>
-            <td class="px-6 py-4 text-sm font-normal capitalize">
+            <td class="px-6 py-6 text-sm font-normal capitalize">
               {{ td.gender }}
             </td>
-            <td class="px-6 py-4 text-sm font-normal capitalize">
+            <td class="px-6 py-6 text-sm font-normal capitalize">
               {{ td.nationality }}
             </td>
           </tr>
@@ -56,88 +57,48 @@
   </div>
 </template>
 <script setup>
-import { reactive, provide } from "vue";
+import { reactive, provide, onMounted, ref, watch } from "vue";
 import PaginationComponent from "@/components/PaginationComponent.vue";
+import { getUsers } from "@/services/userservices";
+import debounce from "lodash/debounce";
+
 const queryParams = reactive({
   pageNumber: 1,
-  pageSize: 15,
+  pageSize: 10,
   pageCount: 0,
   total: 0,
+  search: "",
 });
+
 provide("queryParams", queryParams);
 const thead = ["name", "email", "phone", "address", "gender", "nationality"];
-const tbody = [
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-  {
-    name: "John doe",
-    email: "jdoe@email.com",
-    phone: "08160724663",
-    address: "Lagos",
-    gender: "Male",
-    nationality: "Nigerian",
-  },
-];
+const tbody = ref([]);
+
+onMounted(() => {
+  getData();
+});
+
+function getData() {
+  getUsers(queryParams).then((res) => {
+    if (res.status === 200) {
+      tbody.value = res.data.data;
+      queryParams.total = res.data.total;
+    }
+  });
+}
+const debounceSearch = debounce(() => {
+  getData();
+}, 1500);
+watch(
+  () => queryParams.search,
+  () => {
+    debounceSearch();
+  }
+);
+watch(
+  () => [queryParams.pageNumber],
+  () => {
+    getData();
+  }
+);
 </script>

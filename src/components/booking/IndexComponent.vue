@@ -159,6 +159,7 @@ const stages = [
 const totalNights = computed(() => {
   return moment(formData.checkout).diff(moment(formData.checkin), "days");
 });
+
 onMounted(() => {
   getRoomCategories().then((res) => {
     if (res.status === 200) {

@@ -74,9 +74,12 @@
           <MenuItems
             class="absolute bg-white right-0 mt-2 w-full rounded-lg shadow-lg origin-top-right divide-y divide-gray-100 p-4"
           >
-            <MenuItem @click="logOut" as="div"
-              >Logout <i class="fas fa-sign-in-alt"></i>
+            <MenuItem v-if="userInfo.role_id === 1" as="div" class="mb-2"
+              ><router-link to="/admin/dashboard">
+                <span>Dashboard </span>
+              </router-link>
             </MenuItem>
+            <MenuItem @click="logOut" as="div">Logout </MenuItem>
           </MenuItems>
         </transition>
       </Menu>

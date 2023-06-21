@@ -36,33 +36,41 @@
       <div class="bg-white rounded-lg p-6 border shadow text-left">
         <h3 class="text-sm mb-8 font-bold">Quick actions</h3>
         <div class="flex flex-col gap-y-5 text-left">
-          <button
-            class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
-          >
-            Add room <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </button>
-          <button
-            class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
-          >
-            Add coupon <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </button>
-          <button
-            class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
-          >
-            Make reservation
-            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </button>
-          <button
-            class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
-          >
-            Search bookings <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </button>
-          <button
-            class="flex items-center justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
-          >
-            View transactions
-            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-          </button>
+          <router-link to="/admin/rooms" class="w-full">
+            <button
+              class="flex items-center justify-between text-[15px] rounded-lg w-full bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
+            >
+              View rooms <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </router-link>
+          <router-link to="/admin/coupons" class="w-full">
+            <button
+              class="flex items-center w-full justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
+            >
+              View coupons
+              <i class="fa fa-arrow-right" aria-hidden="true"></i></button
+          ></router-link>
+          <router-link to="/admin/reservations" class="w-full">
+            <button
+              class="flex items-center w-full justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
+            >
+              View reservations
+              <i class="fa fa-arrow-right" aria-hidden="true"></i></button
+          ></router-link>
+          <router-link to="/admin/reservations" class="w-full">
+            <button
+              class="flex items-center w-full justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
+            >
+              Search bookings
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button> </router-link
+          ><router-link to="/admin/transactions" class="w-full">
+            <button
+              class="flex items-center w-full justify-between text-[15px] rounded-lg bg-[#2c3e50] border border-[#2c3e50] text-white px-5 py-3 hover:opacity-90 active:scale-95"
+            >
+              View transactions
+              <i class="fa fa-arrow-right" aria-hidden="true"></i></button
+          ></router-link>
         </div>
       </div>
     </div>
@@ -70,16 +78,17 @@
 </template>
 <script setup>
 // eslint-disable-next-line no-unused-vars
-import { inject, computed } from "vue";
+import { onMounted, computed, ref } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import moment from "moment";
+import { getMetrics } from "@/services/dashboardservices";
 
 const apexchart = VueApexCharts;
 const series = computed(() => {
   return [
     {
-      name: "Count",
-      data: [3, 22, 25, 85, 3, 22, 25, 85, 36, 45, 76, 18],
+      name: "Total reservations",
+      data: reservations.value,
     },
   ];
 });
@@ -125,35 +134,20 @@ const chartOptions = computed(() => {
     },
   };
 });
-const metrics = [
-  {
-    text: "Total customers",
-    count: "3",
-    icon: "fa-users",
-    border: "border-l-4 border-green-700",
-    iconClass: "text-green-700 bg-green-50",
-  },
-  {
-    text: "Total rooms",
-    count: "5",
-    icon: "fa-bed",
-    border: "border-l-4 border-blue-700",
-    iconClass: "text-blue-700 bg-blue-50",
-  },
-
-  {
-    text: "Total Reservations",
-    count: "89",
-    icon: "fa-calendar-plus",
-    border: "border-l-4 border-red-700",
-    iconClass: "text-red-700 bg-red-50",
-  },
-  {
-    text: "Todays Check-ins",
-    count: "8",
-    icon: "fa-user-check",
-    border: "border-l-4 border-yellow-700",
-    iconClass: "text-yellow-700 bg-yellow-50",
-  },
-];
+const metrics = ref(null);
+const reservations = ref([]);
+onMounted(() => {
+  getMetrics().then((res) => {
+    if (res.status === 200) {
+      metrics.value = res.data.data;
+      moment.monthsShort().forEach((item) => {
+        reservations.value.push(
+          res.data.reservations.filter(
+            (v) => moment(v).format("MMM").toLowerCase() === item.toLowerCase()
+          ).length
+        );
+      });
+    }
+  });
+});
 </script>

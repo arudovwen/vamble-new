@@ -31,6 +31,7 @@
     <div class="px-6 text-left py-6">
       <ul>
         <li
+          @click="handleLogout"
           class="transition-all duration-500 px-2 text-[15px] hover:text-[#2d5c1f] relative group font-medium"
         >
           <span class="flex gap-x-4 items-center"
@@ -176,12 +177,13 @@ import {
 } from "@headlessui/vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 import { ref } from "vue";
+import { logOut } from "@/services/authservices";
 
 const isOpen = ref(false);
 const navigations = [
   {
     title: "Dashboard",
-    url: "/admin",
+    url: "/admin/dashboard",
     icon: "fa-tachometer-alt",
   },
   {
@@ -215,6 +217,9 @@ const navigations = [
     icon: "fa-tags",
   },
 ];
+function handleLogout() {
+  logOut();
+}
 </script>
 <style lang="scss" scoped>
 nav {
