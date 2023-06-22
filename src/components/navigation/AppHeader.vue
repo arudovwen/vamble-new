@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-transparent absolute w-full top-0 z-[3] h-[85px] flex justify-between items-center"
+    class="bg-transparent absolute w-full top-0 z-20 h-[85px] flex justify-between items-center"
   >
     <div
       class="flex sm:gap-x-12 justify-between items-center border-b-2 border-[#a18463]/20 px-6 sm:px-8 lg:px-16 py-4 w-[80%] sm:w-[70%] lg:w-[600px]"
@@ -24,7 +24,7 @@
           >
             <span class="block"> {{ item.title }}</span>
             <span
-              class="block mx-auto w-1 h-1 rounded-full bg-gray-700 opacity-0 group-hover:opacity-100"
+              class="block mx-auto w-1 h-1 rounded-full bg-gray-700 opacity-0 group-hover:opacity-100 dot"
             ></span>
           </li>
         </router-link>
@@ -283,6 +283,10 @@ const userInfo = computed(() => store.getters.userInfo);
 nav {
   .router-link-exact-active li {
     color: #2d5c1f !important;
+    .dot {
+      opacity: 1;
+      background: #2d5c1f !important;
+    }
   }
 }
 </style>

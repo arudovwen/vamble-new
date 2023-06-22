@@ -17,7 +17,7 @@
       </div>
 
       <div
-        class="flex-1 overflow-hidden bg-[url('@/assets/images/testv.jpeg')] bg-cover bg-center"
+        class="flex-1 overflow-hidden bg-[url('@/assets/images/rooms/sitting8.jpg')] bg-cover bg-center"
       >
         <div
           class="w-full h-full flex justify-start items-center bg-gray-500/20 backdrop-brightness-50"
@@ -173,6 +173,7 @@ onMounted(() => {
   getBookings();
 });
 function getBookings() {
+  if (!userInfo.value) return;
   findBookings(queryParams)
     .then((res) => {
       if (res.status === 200) {

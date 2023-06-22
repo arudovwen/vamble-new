@@ -1,6 +1,8 @@
 <template>
   <footer>
-    <div class="flex-1 overflow-hidden bg-cover bg-center">
+    <div
+      class="flex-1 overflow-hidden bg-[url('@/assets/images/rooms/nigh.jpg')] bg-cover bg-center"
+    >
       <div
         class="pt-10 w-full h-full flex justify-center items-center bg-[#3d3126]/80 backdrop-brightness-50"
       >
@@ -48,17 +50,25 @@ const navigations = [
 
   {
     title: "About",
-    url: "/",
+    url: "/about",
   },
 
   {
     title: "Services",
-    url: "/",
+    url: "/services",
+  },
+  {
+    title: "Booking",
+    url: "/booking",
+  },
+  {
+    title: "Rooms",
+    url: "/rooms",
   },
 
   {
     title: "Enquiries",
-    url: "/",
+    url: "/enquiries",
   },
 ];
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <section class="relative border-b border-[#a18463]/20">
+  <section class="relative border-b border-[#a18463]/20 pb-10">
     <div class="flex z-[2] w-full border-b border-[#a18463]/20">
       <div
         class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-20 lg:pb-40 text-left px-6 sm:px-8 lg:px-16"
@@ -12,9 +12,8 @@
           </h1>
         </div>
       </div>
-
       <div
-        class="flex-1 overflow-hidden bg-[url('@/assets/images/testv.jpeg')] bg-cover bg-center"
+        class="flex-1 overflow-hidden bg-[url('@/assets/images/rooms/sitting7.jpg')] bg-cover bg-center"
       >
         <div
           class="w-full h-full flex justify-center items-center bg-gray-500/20 backdrop-brightness-50"
@@ -36,7 +35,7 @@
       </div>
       <div class="lg:w-1/2 flex items-center justify-center">
         <span
-          class="text-[#2d5c1f] zendaya text-4xl lg:text-7xl max-w-[400px] mx-auto"
+          class="text-[#2d5c1f] zendaya text-4xl lg:text-8xl max-w-[500px] mx-auto font-extrabold"
         >
           A HOME AWAY FROM HOME</span
         >

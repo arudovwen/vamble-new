@@ -40,15 +40,24 @@
         </div>
       </div>
 
-      <div
-        class="flex-1 overflow-hidden bg-[url('@/assets/images/testv.jpeg')] bg-cover bg-center"
-      >
+      <div class="flex-1 overflow-hidden relative">
+        <video
+          autoplay
+          poster="@/assets/images/testv.jpeg"
+          class="w-full h-full max-h-[700px] object-cover"
+          loop
+          muted
+        >
+          <source src="@/assets/videos/6.mp4" type="video/mp4" />
+        </video>
         <div
-          class="w-full h-full flex justify-center items-center bg-gray-500/20 backdrop-brightness-50"
+          class="absolute z-10 top-0 left-0 w-full h-full flex justify-center items-center bg-gray-500/50"
         ></div>
       </div>
     </div>
-    <div class="absolute bottom-[50px] lg:bottom-[70px] px-6 sm:px-8 lg:px-16">
+    <div
+      class="absolute bottom-[50px] lg:bottom-[70px] px-6 sm:px-8 lg:px-16 z-20"
+    >
       <BookingComponent />
     </div>
   </section>

@@ -2,18 +2,19 @@
   <section
     class="px-6 sm:px-8 xl:px-16 py-20 border-b border-[#a18463]/20 text-center"
   >
-    <div class="w-full h-[600px] md:h-[500px] mb-10 grid md:grid-cols-3">
+    <div class="w-full h-[600px] md:h-[300px] mb-10 grid md:grid-cols-3">
       <div
         v-for="(item, idx) in content"
         :key="idx"
         class="group h-full overflow-hidden"
       >
         <div
-          class="flex-1 overflow-hidden bg-[url('@/assets/images/testv.jpeg')] bg-cover bg-center transition-all duration-1000 hover:scale-105 h-full"
+          :class="`flex-1 overflow-hidden relative bg-cover bg-center transition-all duration-1000 hover:scale-105 h-full`"
           v-animate-onscroll="'scale-in-center'"
         >
+          <img :src="item.img" class="w-full h-full object-cover" />
           <div
-            class="w-full h-full flex justify-start items-end bg-gray-500/20 backdrop-brightness-50 p-6 md:p-8 font-bold"
+            class="absolute top-0 right-0 w-full h-full flex justify-start items-end bg-gray-900/50 p-6 md:p-8 font-bold"
           >
             <span
               class="text-3xl xl:text-4xl fomt-bold text-[#ecf7e9] zendaya"
@@ -48,15 +49,15 @@
 <script setup>
 const content = [
   {
-    img: "",
+    img: require("@/assets/images/rooms/sitting13.jpg"),
     text: "World Class Sitting Room",
   },
   {
-    img: "",
+    img: require("@/assets/images/rooms/bed5.jpg"),
     text: "Executive Bedrooms",
   },
   {
-    img: "",
+    img: require("@/assets/images/rooms/kitchen.jpg"),
     text: "Fully Equipped Kitchen",
   },
 ];
