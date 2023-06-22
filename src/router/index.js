@@ -391,6 +391,9 @@ const routes = [
         },
       },
     ],
+    meta: {
+      isAdmin: true,
+    },
   },
 
   {

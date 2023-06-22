@@ -9,6 +9,7 @@ import currencyFormat from "@/utils/formatCurrency";
 import "vue-toast-notification/dist/theme-sugar.css";
 import "v-calendar/style.css";
 import "qalendar/dist/style.css";
+import "vue3-carousel/dist/carousel.css";
 import "./assets/tailwind.css";
 
 createApp(App)

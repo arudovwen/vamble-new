@@ -103,8 +103,8 @@ async function handleSubmit() {
       }
     })
     .catch((err) => {
-      toast.error(err.response.data.message);
       isLoading.value = false;
+      toast.error(err.response.data.message);
     });
 }
 </script>

@@ -28,12 +28,14 @@
             Book now and get the best prices
           </p>
           <div class="lg:hidden mt-6 max-w-sm w-full">
-            <button
-              type="button"
-              class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full hover:opacity-80 active:scale-95"
-            >
-              Book a stay
-            </button>
+            <router-link to="/booking">
+              <button
+                type="button"
+                class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full hover:opacity-80 active:scale-95"
+              >
+                Book a stay
+              </button>
+            </router-link>
           </div>
         </div>
       </div>

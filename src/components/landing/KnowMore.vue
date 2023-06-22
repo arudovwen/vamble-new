@@ -33,13 +33,15 @@
         system, Well equipped and mannered security guards, 24 hours power
         supply as well as uninterrupted internet connection.
       </p>
-      <button
-        type="button"
-        v-animate-onscroll="'fade-in-bottom'"
-        class="bg-[#2d5c1f]/90 text-white px-10 font-medium hover:opacity-80 active:scale-95 py-3 text-sm sm:text-base"
-      >
-        Know more
-      </button>
+      <router-link to="/about">
+        <button
+          type="button"
+          v-animate-onscroll="'fade-in-bottom'"
+          class="bg-[#2d5c1f]/90 text-white px-10 font-medium hover:opacity-80 active:scale-95 py-3 text-sm sm:text-base"
+        >
+          Know more
+        </button>
+      </router-link>
     </div>
   </section>
 </template>
