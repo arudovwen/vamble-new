@@ -2,10 +2,10 @@
   <AuthLayout>
     <template #content>
       <div
-        class="text-left p-8 w-[380px] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 bg-black shadow-[rgba(0,0,0,0.35)_0px_5px_15px]"
+        class="text-left p-8 w-[95%] sm:w-[380px] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 bg-black shadow-[rgba(0,0,0,0.35)_0px_5px_15px]"
       >
         <form @submit.prevent="handleSubmit">
-          <legend class="text-2xl mb-7 font-semibold text-white">
+          <legend class="text-lg lg:text-2xl mb-7 font-semibold text-white">
             Login into your account
           </legend>
           <div class="text-left mb-6">
@@ -13,7 +13,7 @@
             <input
               v-model="v$.email.$model"
               type="email"
-              class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
+              class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 text-sm"
               placeholder="Provide your password"
             />
             <div
@@ -53,7 +53,7 @@
             <button
               :disabled="isLoading"
               type="submit"
-              class="uppercase bg-[#2d5c1f] text-white text-base font-semibold px-6 py-3 w-full rounded-lg hover:opacity-80 active:scale-95 disabled:opacity-60"
+              class="uppercase bg-[#2d5c1f] text-white text-sm font-medium px-6 py-3 w-full rounded-lg hover:opacity-80 active:scale-95 disabled:opacity-60"
             >
               Login
               <i
