@@ -120,6 +120,12 @@ const testimonials = [
     img: require("@/assets/images/testi.jpg"),
     date: "Sept 18",
   },
+  {
+    title: "Courtney Uche",
+    text: "My bridal shower was absolutely fantastic. From the moment we arrived, the staff went above and beyond to ensure our comfort and satisfaction. The elegant decor, impeccable service, and delightful amenities provided an unforgettable experience for everyone in attendance.",
+    img: require("@/assets/images/testi2.jpg"),
+    date: "Nov 04",
+  },
 ];
 function handleNext() {
   mainSlide.value.next();

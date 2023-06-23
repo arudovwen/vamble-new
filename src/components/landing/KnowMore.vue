@@ -14,7 +14,7 @@
         >
           <img :src="item.img" class="w-full h-full object-cover" />
           <div
-            class="absolute top-0 right-0 w-full h-full flex justify-start items-end bg-gray-900/50 p-6 md:p-8 font-bold"
+            class="absolute top-0 right-0 w-full h-full flex justify-start items-end bg-gray-900/50 p-6 md:p-8 font-bold text-center"
           >
             <span
               class="text-3xl xl:text-4xl fomt-bold text-[#ecf7e9] zendaya"
