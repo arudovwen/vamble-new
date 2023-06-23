@@ -109,7 +109,7 @@
       </button>
 
       <div v-if="stage === 3" class="flex flex-col lg:flex-row gap-5">
-        <button
+        <!-- <button
           @click="handleHotelPayment"
           type="button"
           :disabled="isLoading"
@@ -121,7 +121,7 @@
             v-if="isLoading && payType == 'hotel'"
             aria-hidden="true"
           ></i>
-        </button>
+        </button> -->
         <button
           v-if="stage === 3"
           @click="handleOnlinePayment"
@@ -203,29 +203,29 @@ watch(
 );
 const isLoading = ref(false);
 const payType = ref("");
-function handleHotelPayment() {
-  isLoading.value = false;
-  payType.value = "hotel";
-  isLoading.value = true;
-  formData.total_price = totalDiscountedPrice.value;
-  formData.payment_type = "pay at hotel";
-  formData.payment_status = "pending";
-  formData.status = "reserved";
-  formData.price_per_night = selectedRoom.value.price;
-  formData.room_id = selectedRoom.value.id;
+// function handleHotelPayment() {
+//   isLoading.value = false;
+//   payType.value = "hotel";
+//   isLoading.value = true;
+//   formData.total_price = totalDiscountedPrice.value;
+//   formData.payment_type = "pay at hotel";
+//   formData.payment_status = "pending";
+//   formData.status = "reserved";
+//   formData.price_per_night = selectedRoom.value.price;
+//   formData.room_id = selectedRoom.value.id;
 
-  payAtHotel(formData)
-    .then((res) => {
-      if (res.status == 201) {
-        formData.bookingNo = res.data.booking_no;
-        stage.value++;
-        isLoading.value = false;
-      }
-    })
-    .catch(() => {
-      isLoading.value = false;
-    });
-}
+//   payAtHotel(formData)
+//     .then((res) => {
+//       if (res.status == 201) {
+//         formData.bookingNo = res.data.booking_no;
+//         stage.value++;
+//         isLoading.value = false;
+//       }
+//     })
+//     .catch(() => {
+//       isLoading.value = false;
+//     });
+// }
 
 function handleOnlinePayment() {
   isLoading.value = false;
