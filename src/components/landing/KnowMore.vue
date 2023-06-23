@@ -2,7 +2,9 @@
   <section
     class="px-6 sm:px-8 xl:px-16 py-20 border-b border-[#a18463]/20 text-center"
   >
-    <div class="w-full h-[600px] md:h-[300px] mb-10 grid md:grid-cols-3">
+    <div
+      class="w-full h-[600px] md:h-[300px] mb-10 grid md:grid-cols-3 gap-[2px]"
+    >
       <div
         v-for="(item, idx) in content"
         :key="idx"
@@ -57,7 +59,7 @@ const content = [
     text: "Executive Bedrooms",
   },
   {
-    img: require("@/assets/images/rooms/kitchen.jpg"),
+    img: require("@/assets/images/rooms/kitchen2.jpg"),
     text: "Fully Equipped Kitchen",
   },
 ];
