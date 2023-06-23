@@ -7,6 +7,7 @@
           v-model="v$.checkin.$model"
           class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
           type="date"
+          :lowerLimit="new Date()"
         />
         <div
           class="text-red-500 mt-1"

@@ -11,6 +11,7 @@
         v-model="formData.checkin"
         class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20"
         inputFormat="yyyy-MM-dd"
+        :lowerLimit="new Date()"
       />
     </div>
 
