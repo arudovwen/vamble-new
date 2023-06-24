@@ -48,6 +48,7 @@
         :items-to-show="1"
         :autoplay="3000"
         ref="sideSlide"
+        wrapAround
       >
         <slide class="justify-start" v-for="(slide, idx) in rooms" :key="idx">
           <div class="lg:py-16 text-left relative">

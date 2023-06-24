@@ -9,6 +9,7 @@
           :modelValue="slideIndex"
           :items-to-show="1"
           ref="mainSlide"
+          wrapAround
         >
           <slide
             class="flex flex-col text-left items-start"
@@ -41,6 +42,7 @@
           :modelValue="slideIndex"
           :items-to-show="1"
           ref="sideSlide"
+          wrapAround
         >
           <slide
             class="justify-start"

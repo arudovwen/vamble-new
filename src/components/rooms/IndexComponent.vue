@@ -37,7 +37,7 @@
           {{ room.title }}
         </h2>
         <div>
-          <carousel :items-to-show="1">
+          <carousel :items-to-show="1" wrapAround>
             <slide v-for="slide in room.images" :key="slide">
               <img
                 :src="slide"
