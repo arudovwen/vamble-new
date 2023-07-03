@@ -158,7 +158,6 @@ const routes = [
       isClient: true,
     },
   },
-
   {
     path: "/rooms",
     name: "rooms",

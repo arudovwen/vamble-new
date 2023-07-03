@@ -149,6 +149,7 @@ import {
 import { inject, computed, watch, ref } from "vue";
 import moment from "moment";
 import { useToast } from "vue-toast-notification";
+// eslint-disable-next-line no-unused-vars
 import paystackPayment from "@/plugins/paystack";
 
 const toast = useToast();
@@ -237,8 +238,8 @@ function handleOnlinePayment() {
   formData.status = "reserved";
   formData.price_per_night = selectedRoom.value.price;
   formData.room_id = selectedRoom.value.id;
-
-  paystackPayment(formData, handelOnComplete, onClose);
+  handelOnComplete();
+  // paystackPayment(formData, handelOnComplete, onClose);
 }
 function handelOnComplete(response) {
   formData.payment_status = "paid";
@@ -259,6 +260,7 @@ function handelOnComplete(response) {
       isLoading.value = false;
     });
 }
+// eslint-disable-next-line no-unused-vars
 function onClose() {
   isLoading.value = false;
 }

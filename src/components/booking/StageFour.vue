@@ -32,29 +32,9 @@
 import { inject } from "vue";
 
 const formData = inject("formData");
-const stage = inject("stage");
+// const stage = inject("stage");
 
 function refresh() {
-  stage.value = 1;
-  formData.checkin = new Date();
-  formData.category = "";
-  formData.type = "";
-  formData.no_of_rooms = 1;
-  formData.no_of_guests = 1;
-  formData.name = "";
-  formData.email = "";
-  formData.phone = "";
-  formData.gender = "";
-  formData.nationality = "";
-  formData.address = "";
-  formData.coupon = "";
-  formData.flats = [];
-  formData.bookingNo = null;
-  formData.total_price = 0;
-  formData.payment_type = "";
-  formData.payment_status = "";
-  formData.status = "";
-  formData.price_per_night = "";
-  formData.room_id = "";
+  window.location.reload();
 }
 </script>
