@@ -4,6 +4,15 @@
   </main>
 </template>
 
+<script setup>
+import { onMounted } from "vue";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+onMounted(() => {
+  AOS.init();
+});
+</script>
 <style lang="scss" scoped>
 #app {
   font-family: "Playfair Display", serif;

@@ -52,23 +52,35 @@
             <div class="text-left z-[2] relative">
               <p
                 class="text-sm lg:text-xl font-semibold mb-6"
-                v-animate-onscroll="'fade-in-bottom'"
+                data-aos="zoom-in"
+                data-aos-once="true"
+                data-aos-easing="linear"
+                data-aos-duration="500"
               >
                 {{ slide.text }}
               </p>
               <p
                 class="text-sm lg:text-lg font-medium"
-                v-animate-onscroll="'fade-in-bottom'"
+                data-aos="zoom-in"
+                data-aos-once="true"
+                data-aos-easing="linear"
+                data-aos-duration="500"
               >
                 {{ slide.title }}
               </p>
               <div
                 class="w-[100px] my-1 sm:my-2 border"
-                v-animate-onscroll="'fade-in-bottom'"
+                data-aos="zoom-in"
+                data-aos-once="true"
+                data-aos-easing="linear"
+                data-aos-duration="500"
               />
               <p
                 class="text-xs lg:text-sm text-green-700 font-medium"
-                v-animate-onscroll="'fade-in-bottom'"
+                data-aos="zoom-in"
+                data-aos-once="true"
+                data-aos-easing="linear"
+                data-aos-duration="500"
               >
                 {{ slide.date }}
               </p>

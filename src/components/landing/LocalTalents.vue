@@ -7,7 +7,10 @@
     >
       <h2
         class="text-6xl font-bold max-w-[400px] mb-6 sm:mb-0 zendaya"
-        v-animate-onscroll="'fade-in-bottom'"
+        data-aos="zoom-in"
+        data-aos-once="true"
+        data-aos-easing="linear"
+        data-aos-duration="500"
       >
         A Bit About Us
       </h2>
@@ -15,7 +18,10 @@
     <div class="sm:px-16 sm:py-16 flex-1 text-left sm:text-right">
       <p
         class="text-base sm:text-lg sm:max-w-md ml-auto"
-        v-animate-onscroll="'fade-in-bottom'"
+        data-aos="zoom-in"
+        data-aos-once="true"
+        data-aos-easing="linear"
+        data-aos-duration="500"
       >
         <span class="font-semibold"> Vamble Apartments and Suites</span> Limited
         is a collection of the finest independent

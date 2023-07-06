@@ -12,7 +12,10 @@
       >
         <div
           :class="`flex-1 overflow-hidden relative bg-cover bg-center transition-all duration-1000 hover:scale-105 h-full`"
-          v-animate-onscroll="'scale-in-center'"
+          data-aos="zoom-in"
+          data-aos-once="true"
+          data-aos-easing="linear"
+          data-aos-duration="500"
         >
           <img :src="item.img" class="w-full h-full object-cover" />
           <div
@@ -30,7 +33,10 @@
     <div>
       <p
         class="max-w-lg mb-6 mx-auto text-base sm:text-xl"
-        v-animate-onscroll="'fade-in-bottom'"
+        data-aos="fade-up"
+        data-aos-once="true"
+        data-aos-easing="linear"
+        data-aos-duration="500"
       >
         Located in a Serene and Hospitable environment, with 24 hours security
         system, Well equipped and mannered security guards, 24 hours power
@@ -39,7 +45,10 @@
       <router-link to="/about">
         <button
           type="button"
-          v-animate-onscroll="'fade-in-bottom'"
+          data-aos="fade-up"
+          data-aos-once="true"
+          data-aos-easing="linear"
+          data-aos-duration="500"
           class="bg-[#2d5c1f]/90 text-white px-10 font-medium hover:opacity-80 active:scale-95 py-3 text-sm sm:text-base"
         >
           Know more

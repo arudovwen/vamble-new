@@ -238,8 +238,8 @@ function handleOnlinePayment() {
   formData.status = "reserved";
   formData.price_per_night = selectedRoom.value.price;
   formData.room_id = selectedRoom.value.id;
-  handelOnComplete();
-  // paystackPayment(formData, handelOnComplete, onClose);
+  // handelOnComplete();
+  paystackPayment(formData, handelOnComplete, onClose);
 }
 function handelOnComplete(response) {
   formData.payment_status = "paid";

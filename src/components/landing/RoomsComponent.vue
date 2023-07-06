@@ -36,7 +36,6 @@
           class="w-full h-full transition-all duration-1000 hover:scale-105 rounded-lg object-cover"
         />
       </div>
-
       <span
         class="bg-[#f6f3e9] px-4 py-1 absolute top-32 -right-[90px] rotate-90 text-xs hidden lg:inline"
         >Vamble Apartment & Suites</span
@@ -70,15 +69,22 @@
               </p>
               <p
                 class="text-base mb-6 lg:text-xl"
-                v-animate-onscroll="'fade-in-bottom'"
+                data-aos="zoom-in"
+                data-aos-once="true"
+                data-aos-easing="linear"
+                data-aos-duration="500"
               >
                 {{ slide.description }}
               </p>
+
               <router-link to="/rooms">
                 <button
                   type="button"
                   class="bg-[#2d5c1f] text-white px-10 py-3 text-sm sm:text-[15px] hover:opacity-80 active:scale-95"
-                  v-animate-onscroll="'fade-in-bottom'"
+                  data-aos="zoom-in"
+                  data-aos-once="true"
+                  data-aos-easing="linear"
+                  data-aos-duration="500"
                 >
                   View Rooms
                 </button>

@@ -16,6 +16,7 @@
     "@vue-hero-icons/solid": "^1.7.2",
     "@vuelidate/core": "^2.0.2",
     "@vuelidate/validators": "^2.0.2",
+    "aos": "^2.3.4",
     "apexcharts": "^3.41.0",
     "autoprefixer": "^10",
     "axios": "^1.4.0",

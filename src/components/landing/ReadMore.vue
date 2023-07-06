@@ -8,10 +8,22 @@
       class="px-6 sm:px-8 lg:px-16 py-36 w-full h-full flex justify-center items-center bg-[#3d3126]/70 backdrop-brightness-50"
     >
       <div class="max-w-[650px] mx-auto">
-        <h2 class="text-white text-4xl lg:text-8xl font-semibold mb-4 zendaya">
+        <h2
+          class="text-white text-4xl lg:text-8xl font-semibold mb-4 zendaya"
+          data-aos="zoom-in"
+          data-aos-once="true"
+          data-aos-easing="linear"
+          data-aos-duration="500"
+        >
           What we are about
         </h2>
-        <p class="text-white mb-8 lg:text-xl">
+        <p
+          class="text-white mb-8 lg:text-xl"
+          data-aos="zoom-in"
+          data-aos-once="true"
+          data-aos-easing="linear"
+          data-aos-duration="500"
+        >
           We at Vamble Apartments & Suites are dedicated to making your every
           stay a wonderful experience. We offer state of the art facilities,
           world class interiors, comfortable and well furnished rooms. Our aim
@@ -22,6 +34,10 @@
           <button
             type="button"
             class="bg-[#2d5c1f] text-white px-10 py-3 text-[15px] font-medium hover:opacity-80 active:scale-95"
+            data-aos="zoom-in"
+            data-aos-once="true"
+            data-aos-easing="linear"
+            data-aos-duration="500"
           >
             Read more
           </button>
