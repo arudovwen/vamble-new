@@ -131,7 +131,7 @@
         >
           Complete payment
           <i
-            class="fa fa-spinner ml-2"
+            class="fa fa-spinner fa-spin ml-2"
             v-if="isLoading && payType == 'online'"
             aria-hidden="true"
           ></i>
@@ -204,29 +204,6 @@ watch(
 );
 const isLoading = ref(false);
 const payType = ref("");
-// function handleHotelPayment() {
-//   isLoading.value = false;
-//   payType.value = "hotel";
-//   isLoading.value = true;
-//   formData.total_price = totalDiscountedPrice.value;
-//   formData.payment_type = "pay at hotel";
-//   formData.payment_status = "pending";
-//   formData.status = "reserved";
-//   formData.price_per_night = selectedRoom.value.price;
-//   formData.room_id = selectedRoom.value.id;
-
-//   payAtHotel(formData)
-//     .then((res) => {
-//       if (res.status == 201) {
-//         formData.bookingNo = res.data.booking_no;
-//         stage.value++;
-//         isLoading.value = false;
-//       }
-//     })
-//     .catch(() => {
-//       isLoading.value = false;
-//     });
-// }
 
 function handleOnlinePayment() {
   isLoading.value = false;
@@ -260,6 +237,7 @@ function handelOnComplete(response) {
       isLoading.value = false;
     });
 }
+
 // eslint-disable-next-line no-unused-vars
 function onClose() {
   isLoading.value = false;
