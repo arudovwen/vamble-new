@@ -8,7 +8,7 @@
     >
       <div class="mb-6 flex items-center justify-between">
         <h2 class="text-6xl zendaya font-bold max-w-[250px]">
-          Rooms & Apartments
+          Rooms & <span class="text-[#2d5c1f]">Apartments</span>
         </h2>
         <div class="flex items-center gap-x-4">
           <button
@@ -61,7 +61,9 @@
               </div>
             </div>
             <div class="xl:max-w-[600px]">
-              <h5 class="text-lg font-bold lg:text-xl text-left mb-2">
+              <h5
+                class="text-lg font-bold lg:text-xl text-left mb-2 text-[#2d5c1f]"
+              >
                 {{ slide.title }}
               </h5>
               <p class="font-bold text-xl lg:text-3xl mb-3 text-left">

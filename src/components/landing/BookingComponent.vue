@@ -1,6 +1,6 @@
 <template>
   <div
-    class="shadow-ex bg-white px-5 py-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 items-center gap-6 hidden lg:grid"
+    class="shadow-ex bg-white px-5 py-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 items-center gap-2 hidden lg:grid"
   >
     <div class="text-left">
       <span class="text-xs font-semibold text-[#2d5c1f] block mb-2"
@@ -9,7 +9,7 @@
 
       <datepicker
         v-model="formData.checkin"
-        class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20"
+        class="pr-3 py-2 rounded-lg text-base w-full outline-none focus:border-[#2c3e50]/20"
         inputFormat="yyyy-MM-dd"
         :lowerLimit="new Date()"
       />
@@ -21,7 +21,7 @@
       >
       <datepicker
         v-model="formData.checkout"
-        class="border px-3 py-2 rounded-lg text-sm w-full outline-none focus:border-[#2c3e50]/20"
+        class="pr-3 py-2 rounded-lg text-base w-full outline-none focus:border-[#2c3e50]/20"
         inputFormat="yyyy-MM-dd"
         :lowerLimit="lowerLimit"
         :upperLimit="compEndDate"
@@ -34,7 +34,7 @@
       >
       <select
         v-model="formData.category"
-        class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20 capitalize"
+        class="appearance-none pr-3 py-2 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 capitalize text-base"
       >
         <option value="" disabled>Choose category</option>
         <option v-for="cat in categories" :key="cat" :value="cat">
@@ -48,7 +48,7 @@
       >
       <select
         v-model="formData.type"
-        class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20 capitalize"
+        class="appearance-none pr-3 py-2 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 capitalize text-base"
       >
         <option value="" disabled>Choose type</option>
         <option
@@ -62,31 +62,6 @@
       </select>
     </div>
 
-    <div class="flex gap-x-2">
-      <div class="text-left">
-        <span class="text-xs font-semibold text-[#2d5c1f] block mb-2"
-          >Rooms</span
-        >
-        <select
-          v-model="formData.no_of_rooms"
-          class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20"
-        >
-          <option :value="n" v-for="n in 20" :key="n">{{ n }}</option>
-        </select>
-      </div>
-
-      <div class="text-left">
-        <span class="text-xs font-semibold text-[#2d5c1f] block mb-2"
-          >Guests</span
-        >
-        <select
-          v-model="formData.no_of_guests"
-          class="border px-3 py-2 rounded-lg text-[13px] w-full outline-none focus:border-[#2c3e50]/20"
-        >
-          <option :value="n" v-for="n in 20" :key="n">{{ n }}</option>
-        </select>
-      </div>
-    </div>
     <div>
       <router-link
         :to="
@@ -97,7 +72,7 @@
       >
         <button
           type="button"
-          class="capitalize bg-[#2d5c1f]/90 text-white text-sm px-6 py-2 font-semibold rounded-sm hover:opacity-80 active:scale-95"
+          class="capitalize bg-[#2d5c1f]/90 text-white text-base px-6 py-2 font-semibold rounded-sm hover:opacity-80 active:scale-95"
         >
           Check Availability
         </button>

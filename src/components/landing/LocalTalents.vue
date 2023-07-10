@@ -12,7 +12,7 @@
         data-aos-easing="linear"
         data-aos-duration="500"
       >
-        A Bit About Us
+        A Bit <span class="text-[#2d5c1f]">About Us</span>
       </h2>
     </div>
     <div class="sm:px-16 sm:py-16 flex-1 text-left sm:text-right">

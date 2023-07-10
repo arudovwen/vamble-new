@@ -9,7 +9,7 @@
     >
       <div class="max-w-[650px] mx-auto">
         <h2
-          class="text-white text-4xl lg:text-8xl font-semibold mb-4 zendaya"
+          class="text-[#d4dfd1] text-4xl lg:text-8xl font-semibold mb-4 zendaya"
           data-aos="zoom-in"
           data-aos-once="true"
           data-aos-easing="linear"

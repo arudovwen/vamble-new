@@ -11,7 +11,7 @@
         class="group h-full overflow-hidden"
       >
         <div
-          :class="`flex-1 overflow-hidden relative bg-cover bg-center transition-all duration-1000 hover:scale-105 h-full`"
+          :class="`flex-1 overflow-hidden relative bg-cover bg-center h-full`"
           data-aos="zoom-in"
           data-aos-once="true"
           data-aos-easing="linear"
@@ -19,12 +19,17 @@
         >
           <img :src="item.img" class="w-full h-full object-cover" />
           <div
-            class="absolute top-0 right-0 w-full h-full flex justify-start items-end bg-gray-900/50 p-6 md:p-8 font-bold text-center"
+            class="absolute bottom-0 right-0 w-full transition-all ease-in-out duration-500 h-[85px] group-hover:h-full flex justify-start items-start bg-gray-900/60 p-6 md:p-6 font-bold text-center"
           >
-            <span
-              class="text-3xl xl:text-4xl fomt-bold text-[#ecf7e9] zendaya"
-              >{{ item.text }}</span
-            >
+            <div>
+              <span
+                class="mb-6 w-full text-left block border-b pb-2 text-lg xl:text-2xl font-bold text-[#f2f7f0] border-[#d0decd]"
+                >{{ item.text }}</span
+              >
+              <p class="text-[13px] text-white text-left font-normal">
+                {{ item.desc }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -62,14 +67,17 @@ const content = [
   {
     img: require("@/assets/images/rooms/sitting13.jpg"),
     text: "World Class Sitting Room",
+    desc: "Experience the pinnacle of luxury in the World Class Sitting Room. Immerse yourself in opulence and elegance, where every detail exudes sophistication. Relax on plush sofas, indulge in state-of-the-art entertainment, and bask in the exquisite ambiance of this extraordinary space.",
   },
   {
     img: require("@/assets/images/rooms/bed5.jpg"),
     text: "Executive Bedrooms",
+    desc: "Experience the epitome of luxury with our executive bedrooms. Immerse yourself in refined elegance, state-of-the-art technology, and a tranquil ambiance. Enjoy exclusive access to our executive lounge and personalized service. Indulge in a haven of opulence during your stay with us.",
   },
   {
     img: require("@/assets/images/rooms/kitchen2.jpg"),
     text: "Fully Equipped Kitchen",
+    desc: "Welcome to our fully equipped kitchen, where culinary possibilities are endless! With top-of-the-line appliances, a comprehensive selection of cookware, and ample counter space, you'll have everything you need to unleash your culinary creativity and prepare delicious meals. Happy cooking!",
   },
 ];
 </script>
