@@ -66,7 +66,7 @@
       <router-link
         :to="
           encodeURI(
-            `/booking?checkin=${formData.checkin}&checkout=${formData.checkout}&category=${formData.category}&type=${formData.type}&guests=${formData.no_of_guests}&rooms=${formData.no_of_rooms}`
+            `/booking?checkin=${formData.checkin}&checkout=${formData.checkout}&category=${formData.category}&type=${formData.type}`
           )
         "
       >
