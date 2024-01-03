@@ -4,7 +4,7 @@
       class="flex-1 overflow-hidden bg-[url('@/assets/images/rooms/nigh.jpg')] bg-cover bg-center"
     >
       <div
-        class="pt-10 w-full h-full flex justify-center items-center bg-[#3d3126]/80 backdrop-brightness-50"
+        class="pt-10 w-full h-full flex justify-center items-center bg-black/90"
       >
         <div class="w-full">
           <router-link to="/" class="mx-auto">
