@@ -10,19 +10,15 @@
       <div class="max-w-[650px] mx-auto">
         <h2
           class="text-[#d4dfd1] text-4xl lg:text-8xl font-semibold mb-4 zendaya"
-          data-aos="zoom-in"
+          data-aos="fade-up"
           data-aos-once="true"
-          data-aos-easing="linear"
-          data-aos-duration="500"
         >
           What we are about
         </h2>
         <p
           class="text-white mb-8 lg:text-xl"
-          data-aos="zoom-in"
+          data-aos="fade-up"
           data-aos-once="true"
-          data-aos-easing="linear"
-          data-aos-duration="500"
         >
           We at Vamble Apartments & Suites are dedicated to making your every
           stay a wonderful experience. We offer state of the art facilities,
@@ -34,10 +30,8 @@
           <button
             type="button"
             class="bg-[#2d5c1f] text-white px-10 py-3 text-[15px] font-medium hover:opacity-80 active:scale-95"
-            data-aos="zoom-in"
+            data-aos="fade-up"
             data-aos-once="true"
-            data-aos-easing="linear"
-            data-aos-duration="500"
           >
             Read more
           </button>

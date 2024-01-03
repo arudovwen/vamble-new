@@ -1,5 +1,5 @@
 <template>
-  <section class="2xl:container relative h-screen flex adminbody">
+  <section class="relative h-screen flex adminbody">
     <aside class="w-[240px] h-full bg-[#f6f3e9]"><AdminSideBar /></aside>
     <main class="flex-1 h-full overflow-auto flex flex-col bg-gray-50">
       <div class="h-[70px] px-8 border-b"><AdminTopBar /></div>

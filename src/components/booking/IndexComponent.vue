@@ -5,12 +5,10 @@
         class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-10 text-left px-6 sm:px-8 lg:px-16"
       >
         <div class="mb-4">
-          <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
-          >
+          <h1 class="text-[#2d5c1f] mb-3 lg:mb-4 zendaya text-5xl font-bold">
             Reserve your stay
           </h1>
-          <p class="text-base xl:text-2xl text-left">
+          <p class="text-base xl:text-lg text-left">
             You don't need to be physically present before you book an apartment
             with us, just use our booking engine to reserve your stay with ease
             today.
@@ -27,7 +25,7 @@
       </div>
     </div>
     <div
-      class="w-full lg:w-[900px] lg:border border-[#a18463]/20 p-6 sm:p-8 mx-auto rounded-lg mb-10"
+      class="w-full lg:w-[900px] lg:border border-[#a18463]/20 p-6 sm:p-8 mx-auto rounded-lg mb-10 bg-white shadow"
     >
       <form>
         <div class="grid grid-cols-4 gap-x-2 sm:gap-x-4 mb-12">

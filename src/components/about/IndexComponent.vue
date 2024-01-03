@@ -2,12 +2,10 @@
   <section class="relative border-b border-[#a18463]/20 pb-10">
     <div class="flex z-[2] w-full border-b border-[#a18463]/20">
       <div
-        class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-20 lg:pb-40 text-left px-6 sm:px-8 lg:px-16"
+        class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-10 text-left px-6 sm:px-8 lg:px-16"
       >
-        <div class="mb-4">
-          <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
-          >
+        <div class="">
+          <h1 class="text-[#2d5c1f] lg:mb-6 zendaya text-5xl font-bold">
             About Vamble Apartments & Suites.
           </h1>
         </div>
@@ -22,10 +20,8 @@
     </div>
     <div class="lg:flex">
       <div class="lg:w-1/2 p-6 sm:p-8 lg:p-16 border-b border-[#a18463]/20">
-        <h2 class="text-5xl lg:text-7xl font-semibold mb-6 text-left zendaya">
-          Our Story
-        </h2>
-        <p class="text-base xl:text-2xl text-left">
+        <h2 class="text-5xl font-semibold mb-6 text-left zendaya">Our Story</h2>
+        <p class="text-base xl:text-lg text-left">
           Vamble Apartment & Suites Limited is a renowned lodging facility built
           just like a home to ensure a wonderful and comfortable experience. The
           Standard, Executive and Platinum Apartments are fully furnished with
@@ -33,9 +29,9 @@
           have every homely feel during your stay.
         </p>
       </div>
-      <div class="lg:w-1/2 flex items-center justify-center">
+      <div class="lg:w-1/2 flex items-center justify-center border-l">
         <span
-          class="text-[#2d5c1f] zendaya text-4xl lg:text-8xl max-w-[500px] mx-auto font-extrabold"
+          class="text-[#2d5c1f] zendaya text-4xl lg:text-6xl max-w-[500px] mx-auto font-bold"
         >
           A HOME AWAY FROM HOME</span
         >
@@ -57,10 +53,10 @@
       <div
         class="lg:w-1/2 p-6 sm:p-8 lg:p-16 lg:ml-auto border-l border-[#a18463]/20"
       >
-        <h2 class="text-5xl lg:text-7xl font-semibold mb-6 text-left zendaya">
+        <h2 class="text-5xl font-semibold mb-6 text-left zendaya">
           Our Location
         </h2>
-        <p class="text-base xl:text-2xl text-left">
+        <p class="text-base xl:text-lg text-left">
           It is situated at
           <a
             class="text-[#2d5c1f] hover:underline"

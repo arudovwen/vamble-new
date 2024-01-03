@@ -2,15 +2,13 @@
   <section class="relative pb-16">
     <div class="flex z-[2] w-full border-b border-[#a18463]/20">
       <div
-        class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-20 lg:pb-40 text-left px-6 sm:px-8 lg:px-16"
+        class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-10 text-left px-6 sm:px-8 lg:px-16"
       >
         <div class="mb-4">
-          <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
-          >
+          <h1 class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl font-bold">
             Rooms & Apartments
           </h1>
-          <p class="text-base xl:text-2xl text-left">
+          <p class="text-base xl:text-lg text-left">
             A look at our rooms, apartments, sitting rooms and so much more, so
             you will havea clue of what to expect
           </p>
@@ -57,7 +55,7 @@
         class="lg:w-1/2 px-6 pt-6 pb-0 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16 flex flex-col justify-center"
       >
         <p class="font-bold text-lg mb-3 text-left">{{ room.price }}</p>
-        <p class="text-base xl:text-2xl text-left mb-8">
+        <p class="text-base xl:text-lg text-left mb-8">
           {{ room.description }}
         </p>
         <div class="flex gap-x-4 gap-y-2 flex-wrap">

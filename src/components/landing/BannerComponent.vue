@@ -48,7 +48,10 @@
           loop
           muted
         >
-          <source src="@/assets/videos/6.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/arudovwen-me/video/upload/f_auto:video,q_auto/x3yqwfsqlr9jhg5lbhq2"
+            type="video/mp4"
+          />
         </video>
         <div
           class="absolute z-10 top-0 left-0 w-full h-full flex justify-center items-center bg-gray-500/50"

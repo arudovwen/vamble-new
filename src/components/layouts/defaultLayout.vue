@@ -1,5 +1,7 @@
 <template>
-  <div class="2xl:container relative min-h-screen">
+  <div
+    class="2xl:container relative min-h-screen border-l border-r border-[#a18463]/20"
+  >
     <!-- Page here -->
     <div
       class="content bg-[#f6f3e9] relative h-full min-h-screen flex flex-col"

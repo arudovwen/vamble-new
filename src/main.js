@@ -6,6 +6,7 @@ import router from "./router";
 import store from "./store";
 import VueAnimateOnScroll from "vue3-animate-onscroll";
 import currencyFormat from "@/utils/formatCurrency";
+import { tooltip } from "@ionited/tooltip-vue";
 import "vue-toast-notification/dist/theme-sugar.css";
 import "v-calendar/style.css";
 import "qalendar/dist/style.css";
@@ -16,6 +17,7 @@ createApp(App)
   .use(store)
   .use(router)
   .use(VueAnimateOnScroll)
+  .directive("tooltip", tooltip)
   .provide("currencyFormat", currencyFormat)
   .mount("#app");
 createApp(AdminApp)

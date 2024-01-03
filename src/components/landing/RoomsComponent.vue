@@ -29,7 +29,7 @@
       </div>
 
       <div
-        class="w-full h-[500px] mb-10 hidden lg:inline-block overflow-hidden"
+        class="w-full h-[400px] mb-10 hidden lg:inline-block overflow-hidden"
       >
         <img
           src="@/assets/images/rooms/nigh1.jpg"
@@ -45,52 +45,53 @@
       <carousel
         :modelValue="slideIndex"
         :items-to-show="1"
-        :autoplay="3000"
         ref="sideSlide"
         wrapAround
       >
         <slide class="justify-start" v-for="(slide, idx) in rooms" :key="idx">
-          <div class="lg:py-16 text-left relative">
-            <div class="w-full mb-10 grid grid-cols-2 gap-4">
-              <div v-for="n in slide.images" :key="n" class="overflow-hidden">
+          <div class="lg:pt-16 relative">
+            <div class="w-full grid grid-cols-2 gap-3 md:gap-16 mb-6 md:mb-0">
+              <div
+                v-for="n in slide.images"
+                :key="n"
+                class="overflow-hidden h-full w-full"
+              >
                 <img
                   :src="n"
                   v-animate-onscroll="'scale-in-center'"
-                  class="object-cover transition-all duration-1000 max-w-[350px] w-full hover:[kenburns-top]"
+                  class="object-cover transition-all duration-1000 h-full w-full hover:[kenburns-top] rounded"
                 />
               </div>
             </div>
-            <div class="xl:max-w-[600px]">
-              <h5
-                class="text-lg font-bold lg:text-xl text-left mb-2 text-[#2d5c1f]"
-              >
-                {{ slide.title }}
-              </h5>
-              <p class="font-bold text-xl lg:text-3xl mb-3 text-left">
-                {{ slide.price }}
-              </p>
-              <p
-                class="text-base mb-6 lg:text-xl"
-                data-aos="zoom-in"
-                data-aos-once="true"
-                data-aos-easing="linear"
-                data-aos-duration="500"
-              >
-                {{ slide.description }}
-              </p>
-
-              <router-link to="/rooms">
-                <button
-                  type="button"
-                  class="bg-[#2d5c1f] text-white px-10 py-3 text-sm sm:text-[15px] hover:opacity-80 active:scale-95"
-                  data-aos="zoom-in"
+            <div
+              class="md:w-[300px] h-[300px] md:absolute md:top-1/2 md:left-1/2 md:translate-x-[-50%] md:translate-y-[-50%] text-center bg-white md:shadow-lg p-3 md:rounded-full flex items-center justify-center"
+            >
+              <div>
+                <h5 class="font-bold text-lg text-[#2d5c1f]">
+                  {{ slide.title }}
+                </h5>
+                <p class="font-bold text-sm lg:text-xl mb-3">
+                  {{ slide.price }}
+                </p>
+                <p
+                  class="text-base mb-6 lg:text-xs"
+                  data-aos="fade-up"
                   data-aos-once="true"
-                  data-aos-easing="linear"
-                  data-aos-duration="500"
                 >
-                  View Rooms
-                </button>
-              </router-link>
+                  {{ slide.description }}
+                </p>
+
+                <router-link to="/rooms">
+                  <button
+                    type="button"
+                    class="bg-[#2d5c1f] text-white px-4 py-2 text-sm rounded hover:opacity-80 active:scale-95 shadow"
+                    data-aos="fade-up"
+                    data-aos-once="true"
+                  >
+                    View Rooms
+                  </button>
+                </router-link>
+              </div>
             </div>
           </div>
         </slide>
@@ -145,7 +146,7 @@ const rooms = [
     title: "Executive Room",
     price: "₦45,000 per night",
     description:
-      "We strive to provide a hospitable surrounding with our executive masters bedroom. You get free wifi, TV, a refrigerator, massive bedroom space, a shared grand sitting room and so much more to accommodate you wholesomely. Let Vamble Apartments and Suites be your home away from home.",
+      "We strive to provide a hospitable surrounding with our executive masters bedroom. You get free wifi, TV, a refrigerator, massive bedroom space, a shared grand sitting room and so much more to accommodate you wholesomely. Let Vamble Apartments and Suites be your home aw....",
 
     images: [
       require("@/assets/images/rooms/bed5.jpg"),
@@ -171,7 +172,7 @@ const rooms = [
   {
     title: "Standard Apartment",
     description:
-      "Our Standard Apartments are modern and stylish, equipped with a fully furnished air-conditioned rooms , 75inch flat-screen television, a magnificent sitting room and so many other amenities that will make your stay very pleasurable. Fully equipped with state of the art furnitures, a grand sitting room, cable tv, and free wifi.",
+      "Our Standard Apartments are modern and stylish, equipped with a fully furnished air-conditioned rooms , 75inch flat-screen television, a magnificent sitting room and so many other amenities that will make your stay very pleasurable. Fully equipped with state of the art furni...",
     price: "₦110,000 per night",
 
     images: [
@@ -199,7 +200,7 @@ const rooms = [
     title: "Executive Apartment",
     price: "₦120,000 per night",
     description:
-      "Our executive Apartment welcomes you with a gorgeously-appointed classical interior, separate bedroom and living room, extra-spacious bathroom and a balcony overlooking the fancy estate. With a classy debonair appearance to make your stay memorable. Fully equipped with state of the art furnitures, a grand sitting room, cable tv, and free wifi. Feel at home in this spacious suite.",
+      "Our executive Apartment welcomes you with a gorgeously-appointed classical interior, separate bedroom and living room, extra-spacious bathroom and a balcony overlooking the fancy estate. With a classy debonair appearance to make your stay memorable. Fully equipped with state of the ...",
 
     images: [
       require("@/assets/images/rooms/living3.jpg"),
@@ -227,7 +228,7 @@ const rooms = [
     title: "Platinum Apartment",
     price: "₦150,000 per night",
     description:
-      "Our Platinum Apartments will leave you enthralled in its grandeur and luxury. Its interior is classy and fully equipped from the grand sitting room to the magnificent bedrooms and standardized kitchen, accompanied by cable tv and free WiFi. Your stay at Vamble Apartments and Suites is nothing short of royal.",
+      "Our Platinum Apartments will leave you enthralled in its grandeur and luxury. Its interior is classy and fully equipped from the grand sitting room to the magnificent bedrooms and standardized kitchen, accompanied by cable tv and free WiFi...",
 
     images: [
       require("@/assets/images/rooms/sitting7.jpg"),

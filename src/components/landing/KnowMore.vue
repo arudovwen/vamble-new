@@ -2,22 +2,18 @@
   <section
     class="px-6 sm:px-8 xl:px-16 py-20 border-b border-[#a18463]/20 text-center"
   >
-    <div
-      class="w-full h-[600px] md:h-[300px] mb-10 grid md:grid-cols-3 gap-[2px]"
-    >
+    <div class="w-full h-[600px] md:h-[300px] mb-10 grid md:grid-cols-3 gap-3">
       <div
         v-for="(item, idx) in content"
         :key="idx"
         class="group h-full overflow-hidden"
       >
         <div
-          :class="`flex-1 overflow-hidden relative bg-cover bg-center h-full`"
-          data-aos="zoom-in"
+          :class="`flex-1 overflow-hidden relative bg-cover bg-center h-full rounded`"
+          data-aos="fade-up"
           data-aos-once="true"
-          data-aos-easing="linear"
-          data-aos-duration="500"
         >
-          <img :src="item.img" class="w-full h-full object-cover" />
+          <img :src="item.img" class="w-full h-full object-cover rounded" />
           <div
             class="absolute bottom-0 right-0 w-full transition-all ease-in-out duration-500 h-[85px] group-hover:h-full flex justify-start items-start bg-gray-900/60 p-6 md:p-6 font-bold text-center"
           >
@@ -40,8 +36,6 @@
         class="max-w-lg mb-6 mx-auto text-base sm:text-xl"
         data-aos="fade-up"
         data-aos-once="true"
-        data-aos-easing="linear"
-        data-aos-duration="500"
       >
         Located in a Serene and Hospitable environment, with 24 hours security
         system, Well equipped and mannered security guards, 24 hours power

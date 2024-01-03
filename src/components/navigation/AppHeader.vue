@@ -34,7 +34,7 @@
       <router-link to="/booking" v-if="route.name !== 'booking'">
         <button
           type="button"
-          class="text-white px-8 py-3 rounded-sm text-sm uppercase border-2 font-semibold border-white hover:opacity-85 active:scale-95"
+          class="text-white px-8 py-3 rounded-sm text-sm uppercase border-2 font-semibold border-white active:scale-95 hover:border-[#2c3e50] hover:bg-[#2c3e50] hover:text-white"
         >
           book now
         </button>
@@ -42,7 +42,7 @@
       <router-link to="/bookings" v-if="route.name === 'booking'">
         <button
           type="button"
-          class="text-white px-8 py-3 rounded-sm text-sm uppercase border-2 font-semibold border-white hover:opacity-85 active:scale-95"
+          class="text-white px-8 py-3 rounded-sm text-sm uppercase border-2 font-semibold border-white active:scale-95 hover:border-[#2c3e50] hover:bg-[#2c3e50] hover:text-white"
         >
           View bookings
         </button>
@@ -50,7 +50,7 @@
       <router-link to="/login" v-if="!userInfo && !userInfo.name">
         <button
           type="button"
-          class="text-white px-8 py-3 rounded-sm text-sm uppercase border-2 font-semibold border-white hover:opacity-85 active:scale-95"
+          class="text-white px-8 py-3 rounded-sm text-sm uppercase border-2 font-semibold border-white hover:border-[#2c3e50] hover:bg-[#2c3e50] hover:text-white active:scale-95"
         >
           Login
         </button>
@@ -58,7 +58,7 @@
 
       <Menu as="div" v-else class="relative inline-block text-left">
         <MenuButton
-          class="relative text-white px-3 py-2 rounded-sm flex items-center gap-x-3 text-sm uppercase border-2 font-semibold border-white hover:opacity-85 active:scale-95"
+          class="relative text-white px-3 py-2 rounded-sm flex items-center gap-x-3 text-sm uppercase border-2 font-semibold border-white active:scale-95"
         >
           <i class="fa fa-user-circle-o text-xl" aria-hidden="true"></i>
           {{ userInfo.name }}</MenuButton
@@ -189,7 +189,7 @@
                         >
                           <button
                             type="button"
-                            class="text-[#2c3e50] border-[#2c3e50] font-semibold rounded-lg px-8 py-3 text-base uppercase border-2 w-full hover:opacity-85 active:scale-95"
+                            class="text-[#2c3e50] border-[#2c3e50] font-semibold rounded-lg px-8 py-3 text-base uppercase border-2 w-full active:scale-95"
                           >
                             book now
                           </button>
@@ -200,7 +200,7 @@
                         >
                           <button
                             type="button"
-                            class="text-[#2c3e50] border-[#2c3e50] rounded-lg px-8 py-3 text-base uppercase border-2 w-full font-semibold hover:opacity-85 active:scale-95"
+                            class="text-[#2c3e50] border-[#2c3e50] rounded-lg px-8 py-3 text-base uppercase border-2 w-full font-semibold active:scale-95"
                           >
                             View bookings
                           </button>
