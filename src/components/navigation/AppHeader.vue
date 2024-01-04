@@ -241,6 +241,10 @@ const navigations = [
     url: "/about",
   },
   {
+    title: "Rooms",
+    url: "/rooms",
+  },
+  {
     title: "Services",
     url: "/services",
   },
