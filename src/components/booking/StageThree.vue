@@ -1,68 +1,70 @@
 <template>
   <div class="text-left">
     <table>
-      <tbody>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Full name</td>
-          <td class="px-6 py-2 text-[15px] capitalize">
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Full name</div>
+          <div class="px-6 py-2 text-[15px] capitalize">
             {{ formData.name }}
-          </td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">E-mail</td>
-          <td class="px-6 py-2 text-[15px]">{{ formData.email }}</td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Phone number</td>
-          <td class="px-6 py-2 text-[15px]">{{ formData.phone }}</td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Gender</td>
-          <td class="px-6 py-2 text-[15px] capitalize">
+          </div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">E-mail</div>
+          <div class="px-6 py-2 text-[15px]">{{ formData.email }}</div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Phone number</div>
+          <div class="px-6 py-2 text-[15px]">{{ formData.phone }}</div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Gender</div>
+          <div class="px-6 py-2 text-[15px] capitalize">
             {{ formData.gender }}
-          </td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Nationality</td>
-          <td class="px-6 py-2 text-[15px] capitalize">
+          </div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Nationality</div>
+          <div class="px-6 py-2 text-[15px] capitalize">
             {{ formData.nationality }}
-          </td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Address</td>
-          <td class="px-6 py-2 text-[15px]">{{ formData.address }}</td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Check-in Date</td>
-          <td class="px-6 py-2 text-[15px]">
+          </div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Address</div>
+          <div class="px-6 py-2 text-[15px]">{{ formData.address }}</div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Check-in Date</div>
+          <div class="px-6 py-2 text-[15px]">
             {{ moment(formData.checkin).format("ll") }}
-          </td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Check-in Date</td>
-          <td class="px-6 py-2 text-[15px]">
+          </div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Check-in Date</div>
+          <div class="px-6 py-2 text-[15px]">
             {{ moment(formData.checkout).format("ll") }}
-          </td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Room category</td>
-          <td class="px-6 py-2 text-[15px] capitalize">
+          </div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Room category</div>
+          <div class="px-6 py-2 text-[15px] capitalize">
             {{ formData.category }}
-          </td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Room type</td>
-          <td class="px-6 py-2 text-[15px] capitalize">{{ formData.type }}</td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Number of rooms</td>
-          <td class="px-6 py-2 text-[15px]">{{ formData.no_of_rooms }}</td>
-        </tr>
-        <tr>
-          <td class="pr-6 py-2 text-[15px] font-bold">Number of guests</td>
-          <td class="px-6 py-2 text-[15px]">{{ formData.no_of_guests }}</td>
-        </tr>
-      </tbody>
+          </div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Room type</div>
+          <div class="px-6 py-2 text-[15px] capitalize">
+            {{ formData.type }}
+          </div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Number of rooms</div>
+          <div class="px-6 py-2 text-[15px]">{{ formData.no_of_rooms }}</div>
+        </div>
+        <div>
+          <div class="pr-6 py-2 text-[13px] font-bold">Number of guests</div>
+          <div class="px-6 py-2 text-[15px]">{{ formData.no_of_guests }}</div>
+        </div>
+      </div>
     </table>
     <div class="text-left mb-6 mt-6 sm:max-w-[200px] ml-auto">
       <label class="block mb-2 text-xs">Enter coupon (Optional)</label>
@@ -216,8 +218,8 @@ function handleOnlinePayment() {
   formData.status = "reserved";
   formData.price_per_night = selectedRoom.value.price;
   formData.room_id = selectedRoom.value.id;
-  handelOnComplete();
-  // paystackPayment(formData, handelOnComplete, onClose);
+  // handelOnComplete();
+  paystackPayment(formData, handelOnComplete, onClose);
 }
 function handelOnComplete(response) {
   formData.payment_status = "paid";
