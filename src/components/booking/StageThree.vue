@@ -79,7 +79,7 @@
     <div class="grid grid-cols-2 gap-x-6 gap-y-2">
       <span class="text-right text-sm">Price per night</span>
       <span class="text-right text-sm">{{
-        currencyFormat(selectedRoom.price)
+        currencyFormat(selectedRoom?.price)
       }}</span>
       <span></span>
       <span class="text-right text-sm"
@@ -161,7 +161,7 @@ const formData = inject("formData");
 const currencyFormat = inject("currencyFormat");
 const types = inject("types");
 const totalPrice = computed(() => {
-  return formData.no_of_rooms * selectedRoom.value.price * totalNights.value;
+  return formData.no_of_rooms * selectedRoom.value?.price * totalNights.value;
 });
 const totalDiscountedPrice = computed(() => {
   return totalPrice.value - discount.value;
@@ -215,8 +215,8 @@ function handleOnlinePayment() {
   formData.payment_type = "online";
   formData.payment_status = "pending";
   formData.status = "reserved";
-  formData.price_per_night = selectedRoom.value.price;
-  formData.room_id = selectedRoom.value.id;
+  formData.price_per_night = selectedRoom.value?.price;
+  formData.room_id = selectedRoom.value?.id;
   // handelOnComplete();
   paystackPayment(formData, handelOnComplete, onClose);
 }
