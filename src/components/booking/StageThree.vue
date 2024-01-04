@@ -152,6 +152,7 @@ import { useToast } from "vue-toast-notification";
 // eslint-disable-next-line no-unused-vars
 import paystackPayment from "@/plugins/paystack";
 
+const totalNights = inject("totalNights");
 const toast = useToast();
 const discount = ref(0);
 const stage = inject("stage");
@@ -171,7 +172,7 @@ const selectedRoom = computed(() =>
       i.flat_type.toLowerCase() === formData.type.toLowerCase()
   )
 );
-const totalNights = inject("totalNights");
+
 function handleCoupon() {
   const data = {
     coupon: formData.coupon,
