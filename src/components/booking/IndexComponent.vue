@@ -28,7 +28,10 @@
       class="w-full lg:w-[900px] lg:border border-[#a18463]/20 p-6 sm:p-8 mx-auto rounded-lg mb-10 bg-white shadow"
     >
       <form>
-        <div class="grid grid-cols-4 gap-x-2 sm:gap-x-4 mb-12">
+        <div
+          v-if="stage !== 4"
+          class="grid grid-cols-4 gap-x-2 sm:gap-x-4 mb-12"
+        >
           <div
             v-for="n in stages"
             :key="n.id"
@@ -111,7 +114,7 @@ const formData = reactive({
   checkin: route.query.checkin ? new Date(route.query.checkin) : new Date(),
   checkout: route.query.checkout
     ? new Date(route.query.checkout)
-    : new Date(moment(moment(new Date())).add(1, "days")),
+    : new Date(moment().add(1, "days")),
   category: route.query.category || "",
   type: route.query.type || "",
   no_of_rooms: route.query.no_of_rooms || 1,
@@ -155,7 +158,9 @@ const stages = [
   },
 ];
 const totalNights = computed(() => {
-  return moment(formData.checkout).diff(moment(formData.checkin), "days");
+  return moment(formData.checkout)
+    .startOf("day")
+    .diff(moment(formData.checkin).startOf("day"), "days");
 });
 
 onMounted(() => {

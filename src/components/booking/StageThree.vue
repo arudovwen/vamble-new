@@ -76,22 +76,22 @@
       />
     </div>
     <div class="grid grid-cols-2 gap-x-6 gap-y-2">
-      <span class="text-right text-lg">Price per night</span>
-      <span class="text-right text-lg">{{
+      <span class="text-right text-sm">Price per night</span>
+      <span class="text-right text-sm">{{
         currencyFormat(selectedRoom.price)
       }}</span>
       <span></span>
-      <span class="text-right text-lg"
+      <span class="text-right text-sm"
         >{{ formData.no_of_rooms }} {{ formData.category }}(s),
         {{ totalNights }} night(s)</span
       >
-      <span class="text-right text-lg">Subtotal</span>
-      <span class="text-right text-lg">{{ currencyFormat(totalPrice) }}</span>
-      <span class="text-right text-lg">Coupon discount</span>
-      <span class="text-right text-lg">{{ currencyFormat(discount) }}</span>
+      <span class="text-right text-sm">Subtotal</span>
+      <span class="text-right text-sm">{{ currencyFormat(totalPrice) }}</span>
+      <span class="text-right text-sm">Coupon discount</span>
+      <span class="text-right text-sm">{{ currencyFormat(discount) }}</span>
 
-      <span class="text-right text-2xl form-bold">Total price</span>
-      <span class="text-right text-3xl font-bold">{{
+      <span class="text-right text-xl form-bold">Total price</span>
+      <span class="text-right text-xl font-bold">{{
         currencyFormat(totalDiscountedPrice)
       }}</span>
     </div>
@@ -216,8 +216,8 @@ function handleOnlinePayment() {
   formData.status = "reserved";
   formData.price_per_night = selectedRoom.value.price;
   formData.room_id = selectedRoom.value.id;
-  // handelOnComplete();
-  paystackPayment(formData, handelOnComplete, onClose);
+  handelOnComplete();
+  // paystackPayment(formData, handelOnComplete, onClose);
 }
 function handelOnComplete(response) {
   formData.payment_status = "paid";
