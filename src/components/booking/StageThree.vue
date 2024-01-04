@@ -1,71 +1,70 @@
 <template>
   <div class="text-left">
-    <table>
-      <div class="grid grid-cols-2 gap-6">
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Full name</div>
-          <div class="px-6 py-2 text-[15px] capitalize">
-            {{ formData.name }}
-          </div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">E-mail</div>
-          <div class="px-6 py-2 text-[15px]">{{ formData.email }}</div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Phone number</div>
-          <div class="px-6 py-2 text-[15px]">{{ formData.phone }}</div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Gender</div>
-          <div class="px-6 py-2 text-[15px] capitalize">
-            {{ formData.gender }}
-          </div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Nationality</div>
-          <div class="px-6 py-2 text-[15px] capitalize">
-            {{ formData.nationality }}
-          </div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Address</div>
-          <div class="px-6 py-2 text-[15px]">{{ formData.address }}</div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Check-in Date</div>
-          <div class="px-6 py-2 text-[15px]">
-            {{ moment(formData.checkin).format("ll") }}
-          </div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Check-in Date</div>
-          <div class="px-6 py-2 text-[15px]">
-            {{ moment(formData.checkout).format("ll") }}
-          </div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Room category</div>
-          <div class="px-6 py-2 text-[15px] capitalize">
-            {{ formData.category }}
-          </div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Room type</div>
-          <div class="px-6 py-2 text-[15px] capitalize">
-            {{ formData.type }}
-          </div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Number of rooms</div>
-          <div class="px-6 py-2 text-[15px]">{{ formData.no_of_rooms }}</div>
-        </div>
-        <div>
-          <div class="pr-6 py-2 text-[13px] font-bold">Number of guests</div>
-          <div class="px-6 py-2 text-[15px]">{{ formData.no_of_guests }}</div>
+    <div class="grid grid-cols-2 gap-6 mb-6">
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Full name</div>
+        <div class="text-[15px] capitalize">
+          {{ formData.name }}
         </div>
       </div>
-    </table>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">E-mail</div>
+        <div class="text-[15px]">{{ formData.email }}</div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Phone number</div>
+        <div class="text-[15px]">{{ formData.phone }}</div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Gender</div>
+        <div class="text-[15px] capitalize">
+          {{ formData.gender }}
+        </div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Nationality</div>
+        <div class="text-[15px] capitalize">
+          {{ formData.nationality }}
+        </div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Address</div>
+        <div class="text-[15px]">{{ formData.address }}</div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Check-in Date</div>
+        <div class="text-[15px]">
+          {{ moment(formData.checkin).format("ll") }}
+        </div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Check-in Date</div>
+        <div class="text-[15px]">
+          {{ moment(formData.checkout).format("ll") }}
+        </div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Room category</div>
+        <div class="text-[15px] capitalize">
+          {{ formData.category }}
+        </div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Room type</div>
+        <div class="text-[15px] capitalize">
+          {{ formData.type }}
+        </div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Number of rooms</div>
+        <div class="text-[15px]">{{ formData.no_of_rooms }}</div>
+      </div>
+      <div>
+        <div class="mb-2 text-[13px] font-bold">Number of guests</div>
+        <div class="text-[15px]">{{ formData.no_of_guests }}</div>
+      </div>
+    </div>
+
     <div class="text-left mb-6 mt-6 sm:max-w-[200px] ml-auto">
       <label class="block mb-2 text-xs">Enter coupon (Optional)</label>
 
