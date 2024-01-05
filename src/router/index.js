@@ -465,11 +465,13 @@ router.beforeEach((to, from, next) => {
 
       return tag;
     })
-    // Add the meta tags to the document head.
     .forEach((tag) => document.head.appendChild(tag));
 
   if (to.matched.some((record) => record.meta.isAdmin)) {
-    if (store.getters.userInfo && store.getters.userInfo.role_id === 1) {
+    if (
+      store.getters.userInfo &&
+      parseInt(store.getters.userInfo.role_id) === 1
+    ) {
       next();
       return;
     }

@@ -75,7 +75,7 @@
             class="absolute bg-white right-0 mt-2 rounded-lg shadow-lg origin-top-right divide-y divide-gray-100 p-4 w-[160px]"
           >
             <MenuItem
-              v-if="userInfo.role_id === 1"
+              v-if="parseInt(userInfo.role_id) === 1"
               as="div"
               class="mb-2 cursor-pointer"
               ><router-link to="/admin/dashboard">
