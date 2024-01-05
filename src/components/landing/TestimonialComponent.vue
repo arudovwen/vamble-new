@@ -25,16 +25,16 @@
           </slide>
         </carousel>
         <span
-          class="bg-[#f6f3e9] px-4 py-1 lg:absolute font-bold -top-4 -left-4 text-3xl lg:text-3xl zendaya"
+          class="bg-[#f6f3e9] px-4 py-1 lg:absolute font-bold -top-4 -left-4 text-4xl lg:text-3xl zendaya"
           >TESTIMONIALS</span
         >
       </div>
 
       <div class="pl-8 p-6 lg:p-10 relative flex flex-col justify-center">
-        <span class="absolute z-[1] top-4 left-6 opacity-20">
+        <span class="absolute z-[1] top-4 left-6 opacity-10">
           <i class="fa fa-quote-left fa-5x quote" aria-hidden="true"></i
         ></span>
-        <span class="absolute z-[1] bottom-4 right-6 opacity-20">
+        <span class="absolute z-[1] bottom-4 right-6 opacity-10">
           <i class="fa fa-quote-right fa-5x quote" aria-hidden="true"></i
         ></span>
         <carousel
@@ -51,7 +51,7 @@
           >
             <div class="text-left z-[2] relative">
               <p
-                class="text-sm lg:text-xl font-semibold mb-6"
+                class="text-base lg:text-xl font-semibold mb-6"
                 data-aos="fade-up"
                 data-aos-once="true"
               >

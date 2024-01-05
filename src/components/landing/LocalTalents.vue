@@ -6,7 +6,7 @@
       class="sm:px-16 sm:py-16 sm:border-r sm:border-[#a18463]/20 sm:w-[38%] text-left lg:flex items-center"
     >
       <h2
-        class="text-6xl font-bold max-w-[400px] mb-6 sm:mb-0 zendaya"
+        class="text-4xl sm:text-6xl font-bold max-w-[400px] mb-6 sm:mb-0 zendaya"
         data-aos="fade-up"
         data-aos-once="true"
       >
@@ -16,7 +16,9 @@
     <div
       class="sm:px-16 sm:py-16 flex justify-between flex-1 text-left sm:text-right"
     >
-      <div class="p-3 grid grid-cols-2 items-center justify-center gap-6">
+      <div
+        class="p-3 hidden xl:grid grid-cols-2 items-center justify-center gap-6"
+      >
         <a v-for="i in socials" :key="i.icon" :href="i.url" target="_blank">
           <div
             v-tooltip

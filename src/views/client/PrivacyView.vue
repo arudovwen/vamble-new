@@ -499,7 +499,7 @@
           </p>
           <ul>
             <li>
-              <p>By email: enquiry@vambleapartments.com</p>
+              <p>By email: reservation@vambleapartments.com</p>
             </li>
             <li>
               <p>

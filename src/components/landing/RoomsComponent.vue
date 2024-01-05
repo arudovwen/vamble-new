@@ -6,8 +6,8 @@
       class="lg:w-[38%] lg:py-16 lg:pr-10 text-left relative lg:border-r border-[#a18463]/20"
       v-animate-onscroll="'scale-in-center'"
     >
-      <div class="mb-6 flex items-center justify-between">
-        <h2 class="text-6xl zendaya font-bold max-w-[250px]">
+      <div class="mb-6 flex items-center justify-between gap-x-6">
+        <h2 class="text-4xl sm:text-6xl zendaya font-bold sm:max-w-[250px]">
           Rooms & <span class="text-[#2d5c1f]">Apartments</span>
         </h2>
         <div class="flex items-center gap-x-4">
@@ -50,7 +50,7 @@
       >
         <slide class="justify-start" v-for="(slide, idx) in rooms" :key="idx">
           <div class="lg:pt-16 relative">
-            <div class="w-full grid grid-cols-2 gap-3 md:gap-16 mb-6 md:mb-0">
+            <div class="w-full grid grid-cols-2 gap-3 md:gap-12 mb-6 md:mb-0">
               <div
                 v-for="n in slide.images"
                 :key="n"
@@ -64,7 +64,7 @@
               </div>
             </div>
             <div
-              class="md:w-[300px] h-[300px] md:absolute md:top-1/2 md:left-1/2 md:translate-x-[-50%] md:translate-y-[-50%] text-center bg-white md:shadow-lg p-3 md:rounded-full flex items-center justify-center"
+              class="md:w-[320px] h-[320px] md:absolute md:top-1/2 md:left-1/2 md:translate-x-[-50%] md:translate-y-[-50%] text-center bg-white md:shadow-lg p-3 md:rounded-full flex items-center justify-center"
             >
               <div>
                 <h5 class="font-bold text-lg text-[#2d5c1f]">

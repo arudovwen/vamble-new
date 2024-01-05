@@ -291,16 +291,16 @@
           </p>
           <ul>
             <li>
-              <p>By email: enquiry@vambleapartments.com</p>
+              <p>By email: reservation@vambleapartments.com</p>
             </li>
             <li>
               <p>
                 By visiting this page on our website:
                 <a
-                  href="https://vambleapartments.com/contact"
+                  href="https://vambleapartments.com/enquiry"
                   rel="external nofollow noopener"
                   target="_blank"
-                  >https://vambleapartments.com/contact</a
+                  >https://vambleapartments.com/enquiry</a
                 >
               </p>
             </li>

@@ -1,7 +1,7 @@
 <template>
   <DefaultLayout>
     <template #content>
-      <div class="notfound">
+      <div class="notfound py-20">
         <img
           class="notfound__image"
           width="200"

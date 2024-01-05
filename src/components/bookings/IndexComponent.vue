@@ -6,11 +6,11 @@
       >
         <div class="mb-4">
           <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-7xl font-bold"
+            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-4xl xl:text-6xl font-bold"
           >
             Manage your bookings
           </h1>
-          <p class="text-base xl:text-2xl text-left">
+          <p class="text-base xl:text-xl text-left">
             View your booking history
           </p>
         </div>

@@ -29,8 +29,8 @@
               Email :
               <a
                 class="text-[#3d3126] font-semibold"
-                href="mailto:enquiry@vambleapartments.com"
-                >enquiry@vambleapartments.com</a
+                href="mailto:reservation@vambleapartments.com"
+                >reservation@vambleapartments.com</a
               >
             </li>
           </ul>

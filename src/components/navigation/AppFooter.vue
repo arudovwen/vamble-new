@@ -19,22 +19,26 @@
           <p class="text-white mb-1 text-sm">
             Plot 790, sector center, Cadastral zone. Jahi. Abuja
           </p>
-          <p class="text-white mb-4 text-sm">enquiry@vambleapartments.com</p>
+          <p class="text-white mb-4 text-sm">
+            reservation@vambleapartments.com
+          </p>
           <div class="border-b border-t w-full mb-8">
             <ul
               class="flex gap-x-4 items-center py-2 max-w-[600px] mx-auto justify-center"
             >
-              <li
-                class="px-2 p-1 text-[13px] text-white"
+              <router-link
                 v-for="item in navigations"
                 :key="item.title"
+                :to="item.url"
               >
-                {{ item.title }}
-              </li>
+                <li class="text-xs sm:text-[13px] text-white">
+                  {{ item.title }}
+                </li>
+              </router-link>
             </ul>
           </div>
           <p class="text-sm text-white mb-8">
-            © Vamble Apartments & Suite ltd 2023
+            © Vamble Apartments & Suite ltd {{ new Date().getFullYear() }}
           </p>
         </div>
       </div>
@@ -58,8 +62,8 @@ const navigations = [
     url: "/services",
   },
   {
-    title: "Booking",
-    url: "/booking",
+    title: "Bookings",
+    url: "/bookings",
   },
   {
     title: "Rooms",
@@ -67,8 +71,8 @@ const navigations = [
   },
 
   {
-    title: "Enquiries",
-    url: "/enquiries",
+    title: "enquiry",
+    url: "/enquiry",
   },
 ];
 </script>

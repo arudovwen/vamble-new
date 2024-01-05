@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/client/LandingView.vue";
 import store from "@/store";
 
-const routes = [
+export const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
     meta: {
-      title: "Welcome - Vamble Apartments & Suites",
+      title: "Vamble Apartments & Suites - A Home away from Home",
       metaTags: [
         {
           name: "description",
@@ -139,20 +139,20 @@ const routes = [
     },
   },
   {
-    path: "/enquiries",
-    name: "enquiries",
+    path: "/enquiry",
+    name: "enquiry",
     component: () =>
-      import(/* webpackChunkName: "enquiries" */ "../views/client/ContactView"),
+      import(/* webpackChunkName: "enquiry" */ "../views/client/ContactView"),
     meta: {
-      title: "Enquiries - Vamble Apartments & Suites",
+      title: "enquiry - Vamble Apartments & Suites",
       metaTags: [
         {
           name: "description",
-          content: "Enquiries - Vamble Apartments & Suites",
+          content: "enquiry - Vamble Apartments & Suites",
         },
         {
           property: "og:description",
-          content: "Enquiries - Vamble Apartments & Suites",
+          content: "enquiry - Vamble Apartments & Suites",
         },
       ],
       isClient: true,

@@ -72,14 +72,19 @@
           leave-to-class="transform scale-95 opacity-0"
         >
           <MenuItems
-            class="absolute bg-white right-0 mt-2 w-full rounded-lg shadow-lg origin-top-right divide-y divide-gray-100 p-4"
+            class="absolute bg-white right-0 mt-2 rounded-lg shadow-lg origin-top-right divide-y divide-gray-100 p-4 w-[160px]"
           >
-            <MenuItem v-if="userInfo.role_id === 1" as="div" class="mb-2"
+            <MenuItem
+              v-if="userInfo.role_id === 1"
+              as="div"
+              class="mb-2 cursor-pointer"
               ><router-link to="/admin/dashboard">
                 <span>Dashboard </span>
               </router-link>
             </MenuItem>
-            <MenuItem @click="logOut" as="div">Logout </MenuItem>
+            <MenuItem @click="logOut" class="cursor-pointer" as="div"
+              >Logout
+            </MenuItem>
           </MenuItems>
         </transition>
       </Menu>
@@ -92,7 +97,7 @@
     </div>
   </nav>
   <TransitionRoot as="template" :show="isOpen">
-    <Dialog as="div" class="relative z-10" @close="isOpen = false">
+    <Dialog as="div" class="relative z-[999]" @close="isOpen = false">
       <TransitionChild
         as="template"
         enter="ease-in-out duration-500"
@@ -249,8 +254,8 @@ const navigations = [
     url: "/services",
   },
   {
-    title: "Enquiries",
-    url: "/enquiries",
+    title: "Enquiry",
+    url: "/enquiry",
   },
 ];
 const mobileNavigations = [
@@ -275,8 +280,8 @@ const mobileNavigations = [
     url: "/bookings",
   },
   {
-    title: "Enquiries",
-    url: "/enquiries",
+    title: "enquiry",
+    url: "/enquiry",
   },
 ];
 

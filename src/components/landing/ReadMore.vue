@@ -5,11 +5,11 @@
       class="flex-1 overflow-hidden bg-[url('@/assets/images/testv.jpeg')] bg-cover bg-center absolute top-0 right-0 w-full h-full"
     ></div>
     <div
-      class="px-6 sm:px-8 lg:px-16 py-36 w-full h-full flex justify-center items-center bg-[#3d3126]/70 backdrop-brightness-50"
+      class="px-6 sm:px-8 lg:px-16 py-36 w-full h-full flex justify-center items-center bg-[#3d3126]/80 backdrop-brightness-50"
     >
       <div class="max-w-[650px] mx-auto">
         <h2
-          class="text-[#d4dfd1] text-4xl lg:text-8xl font-semibold mb-4 zendaya"
+          class="text-[#d4dfd1] text-4xl lg:text-6xl font-semibold mb-4 zendaya"
           data-aos="fade-up"
           data-aos-once="true"
         >
