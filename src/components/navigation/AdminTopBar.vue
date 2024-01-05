@@ -10,7 +10,7 @@
         <i class="fa fa-user-circle text-3xl" aria-hidden="true"></i>
         <span>
           <span class="block text-sm capitalize">{{ userInfo.name }}</span>
-          <span class="block text-xs">Admin</span>
+          <span class="block text-xs">Administrator</span>
         </span>
       </div>
     </div>

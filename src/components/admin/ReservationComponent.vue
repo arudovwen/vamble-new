@@ -15,7 +15,7 @@
       </button> -->
     </div>
     <div class="w-full pb-6">
-      <table class="w-full">
+      <table class="w-full" v-if="!loading">
         <thead class="w-full">
           <tr class="w-full">
             <th
@@ -67,9 +67,12 @@
           </tr>
         </tbody>
       </table>
-      <div>
+      <div v-if="!loading">
         <PaginationComponent />
       </div>
+    </div>
+    <div>
+      <AppLoader v-if="loading" />
     </div>
   </div>
   <TransitionRoot as="template" :show="isOpen">
@@ -126,6 +129,7 @@ import {
 } from "@headlessui/vue";
 import ViewReservation from "./ViewReservation.vue";
 import { useToast } from "vue-toast-notification";
+import AppLoader from "@/components/AppLoader";
 
 const toast = useToast();
 const booking = ref(null);
@@ -150,19 +154,22 @@ const thead = [
   "",
 ];
 const tbody = ref([]);
-
+const loading = ref(true);
 onMounted(() => {
   getData();
 });
 
 function getData() {
+  loading.value = true;
   getReservations(queryParams).then((res) => {
     if (res.status === 200) {
       tbody.value = res.data.data;
       queryParams.total = res.data.total;
+      loading.value = false;
     }
   });
 }
+
 const debounceSearch = debounce(() => {
   getData();
 }, 1500);

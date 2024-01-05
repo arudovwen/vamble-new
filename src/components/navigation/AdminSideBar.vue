@@ -32,7 +32,7 @@
       <ul>
         <li
           @click="handleLogout"
-          class="transition-all duration-500 px-2 text-[15px] hover:text-[#2d5c1f] relative group font-medium"
+          class="transition-all duration-500 px-2 text-[15px] hover:text-[#2d5c1f] relative group font-medium cursor-pointer"
         >
           <span class="flex gap-x-4 items-center"
             ><i class="fas fa-sign-out-alt"></i> Logout</span
@@ -226,7 +226,7 @@ nav {
   .router-link-exact-active li {
     background: rgba(45 92 31 / 0.08) !important;
     color: #2d5c1f !important;
-    border-right: 1px solid #2d5c1f;
+    border-right: 2px solid #2d5c1f;
   }
 }
 </style>

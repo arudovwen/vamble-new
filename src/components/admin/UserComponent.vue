@@ -15,7 +15,7 @@
       </button>
     </div>
     <div class="w-full pb-6">
-      <table class="w-full">
+      <table class="w-full" v-if="!loading">
         <thead class="w-full">
           <tr class="w-full">
             <th
@@ -51,7 +51,10 @@
         </tbody>
       </table>
       <div>
-        <PaginationComponent />
+        <PaginationComponent v-if="!loading" />
+      </div>
+      <div>
+        <AppLoader v-if="loading" />
       </div>
     </div>
   </div>
@@ -61,6 +64,7 @@ import { reactive, provide, onMounted, ref, watch } from "vue";
 import PaginationComponent from "@/components/PaginationComponent.vue";
 import { getUsers } from "@/services/userservices";
 import debounce from "lodash/debounce";
+import AppLoader from "@/components/AppLoader";
 
 const queryParams = reactive({
   pageNumber: 1,
@@ -77,12 +81,14 @@ const tbody = ref([]);
 onMounted(() => {
   getData();
 });
-
+const loading = ref(true);
 function getData() {
+  loading.value = true;
   getUsers(queryParams).then((res) => {
     if (res.status === 200) {
       tbody.value = res.data.data;
       queryParams.total = res.data.total;
+      loading.value = false;
     }
   });
 }

@@ -144,15 +144,15 @@ export const routes = [
     component: () =>
       import(/* webpackChunkName: "enquiry" */ "../views/client/ContactView"),
     meta: {
-      title: "enquiry - Vamble Apartments & Suites",
+      title: "Enquiry - Vamble Apartments & Suites",
       metaTags: [
         {
           name: "description",
-          content: "enquiry - Vamble Apartments & Suites",
+          content: "Enquiry - Vamble Apartments & Suites",
         },
         {
           property: "og:description",
-          content: "enquiry - Vamble Apartments & Suites",
+          content: "Enquiry - Vamble Apartments & Suites",
         },
       ],
       isClient: true,

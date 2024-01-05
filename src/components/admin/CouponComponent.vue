@@ -20,7 +20,7 @@
       </button>
     </div>
     <div class="w-full pb-6">
-      <table class="w-full">
+      <table class="w-full" v-if="!loading">
         <thead class="w-full">
           <tr class="w-full">
             <th
@@ -69,8 +69,11 @@
           </tr>
         </tbody>
       </table>
-      <div>
+      <div v-if="!loading">
         <PaginationComponent />
+      </div>
+      <div>
+        <AppLoader v-if="loading" />
       </div>
     </div>
   </div>
@@ -129,6 +132,7 @@ import debounce from "lodash/debounce";
 import AddCoupon from "./coupon/AddCoupon";
 import EditCoupon from "./coupon/EditCoupon";
 import { useToast } from "vue-toast-notification";
+import AppLoader from "@/components/AppLoader";
 
 const toast = useToast();
 const detail = ref(null);
@@ -149,12 +153,14 @@ const tbody = ref([]);
 onMounted(() => {
   getData();
 });
-
+const loading = ref(true);
 function getData() {
+  loading.value = true;
   getCoupons(queryParams).then((res) => {
     if (res.status === 200) {
       tbody.value = res.data.data;
       queryParams.total = res.data.total;
+      loading.value = false;
     }
   });
 }
