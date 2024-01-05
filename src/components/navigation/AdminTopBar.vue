@@ -3,7 +3,7 @@
     <span class="block text-xl capitalize font-bold">{{ route.name }}</span>
 
     <div class="flex gap-x-10 items-center">
-      <div @click="isOpen = true">
+      <div @click="isOpen = true" class="cursor-pointer">
         <i class="fa fa-bell text-xl" aria-hidden="true"></i>
       </div>
       <div class="text-left flex gap-x-2 items-center">
@@ -82,15 +82,18 @@
                   </div>
                   <div class="relative mt-6 flex-1 px-4 sm:px-6">
                     <nav class="bg-transparent">
-                      <div class="py-4">
+                      <div class="py-4" v-if="!loading">
                         <ul class="text-left mb-8" v-if="notifications.length">
                           <li
                             v-for="item in notifications"
                             :key="item.id"
                             @click="handleNotify(item.id)"
-                            class="transition-all duration-500 px-2 text-sm py-2 bg-gray-50 text-[#2c3e50]/80 hover:text-gray-700 relative text-left group mb-2 font-semibold"
+                            class="cursor-pointer transition-all duration-500 px-2 text-sm py-2 bg-gray-50 text-[#2c3e50]/80 hover:text-gray-700 relative text-left group mb-2 font-semibold flex gap-x-5 items-end"
                           >
                             <span class="block"> {{ item.data.body }}</span>
+                            <span class="text-[10px] text-gray-400">{{
+                              formatTimeAgo(item.created_at)
+                            }}</span>
                           </li>
                         </ul>
                         <div
@@ -100,6 +103,7 @@
                           No new notificaton
                         </div>
                       </div>
+                      <AppLoader v-if="loading" />
                     </nav>
                   </div>
                 </div>
@@ -119,11 +123,13 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import moment from "moment";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 import { ref, computed, reactive, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import store from "@/store";
 import { getNotifications, markNotification } from "@/services/userservices";
+import AppLoader from "../AppLoader.vue";
 
 const router = useRouter();
 const userInfo = computed(() => store.getters.userInfo);
@@ -137,11 +143,39 @@ const queryParams = reactive({
   total: 0,
   search: "",
 });
+function formatTimeAgo(inputDate) {
+  const now = moment();
+  const diffInSeconds = now.diff(inputDate, "seconds");
+  const diffInMinutes = now.diff(inputDate, "minutes");
+  const diffInHours = now.diff(inputDate, "hours");
+  const diffInDays = now.diff(inputDate, "days");
 
+  if (diffInDays > 5) {
+    return moment(inputDate).format("l");
+  } else if (diffInDays > 1) {
+    return `${diffInDays} days ago`;
+  } else if (diffInDays === 1) {
+    return "yesterday";
+  } else if (diffInHours > 1) {
+    return `${diffInHours} hours ago`;
+  } else if (diffInHours === 1) {
+    return "an hour ago";
+  } else if (diffInMinutes > 1) {
+    return `${diffInMinutes} minutes ago`;
+  } else if (diffInMinutes === 1) {
+    return "a minute ago";
+  } else if (diffInSeconds > 1) {
+    return `${diffInSeconds} seconds ago`;
+  } else {
+    return "just now";
+  }
+}
+const loading = ref(true);
 onMounted(() => {
   getNotifications(queryParams).then((res) => {
     if (res.status === 200) {
       notifications.value = res.data.data;
+      loading.value = false;
     }
   });
 });
