@@ -217,8 +217,17 @@ function handleOnlinePayment() {
   formData.status = "reserved";
   formData.price_per_night = selectedRoom.value?.price;
   formData.room_id = selectedRoom.value?.id;
+
   // handelOnComplete();
-  paystackPayment(formData, handelOnComplete, onClose);
+  paystackPayment(
+    {
+      ...formData,
+      checkin: moment(formData.checkin).format("yyyy-MM-DD"),
+      checkout: moment(formData.checkout).format("yyyy-MM-DD"),
+    },
+    handelOnComplete,
+    onClose
+  );
 }
 function handelOnComplete(response) {
   formData.payment_status = "paid";
@@ -227,7 +236,11 @@ function handelOnComplete(response) {
       if (res.status == 201) {
         formData.bookingNo = res.data.booking_no;
         formData.response = response;
-        addTransaction(formData).then((resp) => {
+        addTransaction({
+          ...formData,
+          checkin: moment(formData.checkin).format("yyyy-MM-DD"),
+          checkout: moment(formData.checkout).format("yyyy-MM-DD"),
+        }).then((resp) => {
           if (resp.status === 201) {
             stage.value++;
             isLoading.value = false;
@@ -239,7 +252,6 @@ function handelOnComplete(response) {
       isLoading.value = false;
     });
 }
-
 // eslint-disable-next-line no-unused-vars
 function onClose() {
   isLoading.value = false;

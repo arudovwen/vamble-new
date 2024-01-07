@@ -6,7 +6,7 @@
         <datepicker
           v-model="v$.checkin.$model"
           class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-          type="date"
+          inputFormat="yyyy-MM-dd"
           :lowerLimit="new Date()"
         />
         <div
@@ -183,6 +183,7 @@ const stage = inject("stage");
 const compType = computed(() =>
   types.value.filter((i) => i.flat_name === formData.category)
 );
+
 const rules = {
   type: { required },
   category: { required },
@@ -194,10 +195,10 @@ const rules = {
 const v$ = useVuelidate(rules, formData);
 
 const compEndDate = computed(() => {
-  return new Date(moment(moment(formData.checkin)).add(4, "months"));
+  return new Date(moment(formData.checkin).add(4, "months"));
 });
 const lowerLimit = computed(() => {
-  return new Date(moment(moment(formData.checkin)).add(1, "days"));
+  return new Date(moment(formData.checkin).add(1, "days"));
 });
 watch(lowerLimit, () => {
   formData.checkout = lowerLimit.value;
@@ -214,8 +215,8 @@ async function handleAvailability() {
   detail.flat_type = formData.type;
   detail.flat_name = formData.category;
   detail.guests = formData.no_of_guests;
-  detail.checkin = formData.checkin;
-  detail.checkout = formData.checkout;
+  detail.checkin = moment(formData.checkin).format("yyyy-MM-DD");
+  detail.checkout = moment(formData.checkout).format("yyyy-MM-DD");
 
   checkAvailability(detail)
     .then((res) => {

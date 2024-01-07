@@ -88,12 +88,14 @@
                             v-for="item in notifications"
                             :key="item.id"
                             @click="handleNotify(item.id)"
-                            class="cursor-pointer transition-all duration-500 px-2 text-sm py-2 bg-gray-50 text-[#2c3e50]/80 hover:text-gray-700 relative text-left group mb-2 font-semibold flex gap-x-5 items-end"
+                            class="cursor-pointer transition-all duration-500 px-2 text-sm py-2 bg-gray-50 text-[#2c3e50]/80 hover:text-gray-700 relative text-left group mb-2 font-semibold"
                           >
-                            <span class="block"> {{ item.data.body }}</span>
-                            <span class="text-[10px] text-gray-400">{{
-                              formatTimeAgo(item.created_at)
-                            }}</span>
+                            <p class="block mb-[2px]">{{ item.data.body }}</p>
+                            <p
+                              class="block text-right text-[10px] text-gray-400"
+                            >
+                              {{ formatTimeAgo(item.created_at) }}
+                            </p>
                           </li>
                         </ul>
                         <div

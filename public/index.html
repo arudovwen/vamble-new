@@ -21,7 +21,10 @@
       content="Vamble Apartments and Suites is a sweet spot to relax and enjoy the splendor and exquisite
       feeling of a home away from home. It's perculiarity is second to none."
     />
-    <meta property="og:image" content="https://vamble.vercel.app/building.jpg" />
+    <meta
+      property="og:image"
+      content="https://vamble.vercel.app/building.jpg"
+    />
     <link
       rel="shortcut icon"
       href="<%= BASE_URL %>favicon.ico"
@@ -34,6 +37,20 @@
       crossorigin="anonymous"
       defer
     ></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-WLFPV22SEV"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-WLFPV22SEV");
+    </script>
   </head>
   <body>
     <noscript>
