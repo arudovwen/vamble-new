@@ -148,7 +148,7 @@
         >
           <!-- Left/Right: Gallery Slider / Showcase -->
           <div
-            class="lg:w-1/2 relative min-h-[340px] lg:min-h-[460px] bg-neutral-900 group"
+            class="lg:w-1/2 relative min-h-[340px] lg:min-h-[460px] bg-neutral-900 group overflow-hidden"
           >
             <img
               :src="suite.activeImage"

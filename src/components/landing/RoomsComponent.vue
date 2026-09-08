@@ -112,7 +112,7 @@
             </div>
 
             <h3
-              class="font-serif text-2xl sm:text-3xl font-medium text-[#1A1816]"
+              class="font-serif text-2xl sm:text-3xl font-medium text-[#1A1816] capitalize"
             >
               {{ featuredRoom.flat_name }}
             </h3>
@@ -237,7 +237,7 @@
                 </span>
               </div>
 
-              <h3 class="font-serif text-xl font-medium text-[#1A1816]">
+              <h3 class="font-serif text-xl font-medium text-[#1A1816] capitalize">
                 {{ room.flat_name }}
               </h3>
 
