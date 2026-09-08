@@ -1,256 +1,405 @@
 <template>
-  <section
-    class="flex flex-col lg:flex-row gap-8 px-6 sm:px-8 xl:px-16 py-16 lg:py-0"
-  >
-    <div
-      class="lg:w-[38%] lg:py-16 lg:pr-10 text-left relative lg:border-r border-[#a18463]/20"
-      v-animate-onscroll="'scale-in-center'"
-    >
-      <div class="mb-6 flex items-center justify-between gap-x-6">
-        <h2 class="text-4xl sm:text-6xl zendaya font-bold sm:max-w-[250px]">
-          Rooms & <span class="text-[#2d5c1f]">Apartments</span>
-        </h2>
-        <div class="flex items-center gap-x-4">
-          <button
-            type="button"
-            @click="handlePrev()"
-            class="border rounded-sm p-1 text-[#2d5c1f] border-[#2d5c1f] cursor-pointer"
+  <section class="py-14 sm:py-20 lg:py-28 border-b border-[#9B7846]/15 bg-[#FAF8F5]">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-10 lg:px-16">
+      <!-- Section Title & Filter Tabs -->
+      <div
+        class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 gap-6"
+      >
+        <div class="text-left space-y-3">
+          <span
+            class="text-xs uppercase tracking-widest font-semibold text-[#9B7846] block"
           >
-            <ArrowLeftIcon class="w-4 h-4" />
-          </button>
-          <button
-            type="button"
-            @click="handleNext"
-            class="bg-[#2d5c1f] text-white p-1 rounded-sm border border-[#2d5c1f] cursor-pointer"
+            Exclusive Accommodations
+          </span>
+          <h2
+            class="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1A1816] font-normal leading-tight"
           >
-            <ArrowRightIcon class="w-4 h-4" />
+            Suites &
+            <span class="italic text-[#243821] font-serif">Apartments</span>
+          </h2>
+          <p class="text-sm text-gray-600 max-w-lg font-sans">
+            Choose from our bespoke collection of hotel suites and expansive
+            multi-bedroom serviced apartments.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2">
+          <button
+            v-for="tab in filterTabs"
+            :key="tab.value"
+            @click="activeFilter = tab.value"
+            :class="[
+              activeFilter === tab.value
+                ? 'bg-[#243821] text-white shadow-md'
+                : 'bg-white text-gray-700 hover:bg-[#9B7846]/10 border border-[#9B7846]/20',
+              'px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer',
+            ]"
+          >
+            {{ tab.label }}
           </button>
         </div>
       </div>
 
+      <!-- Featured Room Showcase Banner -->
       <div
-        class="w-full h-[400px] mb-10 hidden lg:inline-block overflow-hidden"
+        v-if="featuredRoom"
+        class="mb-12 sm:mb-16 bg-white rounded-3xl overflow-hidden border border-[#9B7846]/20 shadow-lg grid grid-cols-1 lg:grid-cols-12 text-left"
       >
-        <img
-          src="@/assets/images/rooms/nigh1.jpg"
-          class="w-full h-full transition-all duration-1000 hover:scale-105 rounded-lg object-cover"
-        />
-      </div>
-      <span
-        class="bg-[#f6f3e9] px-4 py-1 absolute top-32 -right-[90px] rotate-90 text-xs hidden lg:inline"
-        >Vamble Apartment & Suites</span
-      >
-    </div>
-    <div class="flex-1 lg:max-w-[60%]">
-      <carousel
-        :modelValue="slideIndex"
-        :items-to-show="1"
-        ref="sideSlide"
-        wrapAround
-      >
-        <slide class="justify-start" v-for="(slide, idx) in rooms" :key="idx">
-          <div class="lg:pt-16 relative">
-            <div class="w-full grid grid-cols-2 gap-3 md:gap-12 mb-6 md:mb-0">
-              <div
-                v-for="n in slide.images"
-                :key="n"
-                class="overflow-hidden h-full w-full"
+        <!-- Gallery Images Column -->
+        <div
+          class="lg:col-span-7 p-4 sm:p-8 flex flex-col justify-between space-y-3 sm:space-y-4"
+        >
+          <div
+            class="relative rounded-2xl overflow-hidden aspect-[16/10] bg-gray-100 shadow-inner"
+          >
+            <img
+              :src="currentMainImage"
+              :alt="featuredRoom.flat_name"
+              class="w-full h-full object-cover transition-all duration-500"
+            />
+            <span
+              class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-[#243821] text-white px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider shadow"
+            >
+              Featured Suite
+            </span>
+          </div>
+
+          <!-- Thumbnails Row -->
+          <div class="grid grid-cols-4 gap-2 sm:gap-3">
+            <button
+              v-for="(thumb, idx) in previewThumbnails"
+              :key="idx"
+              @click="currentMainImage = thumb"
+              :class="[
+                currentMainImage === thumb
+                  ? 'ring-2 ring-[#243821] opacity-100'
+                  : 'opacity-70 hover:opacity-100',
+                'rounded-xl overflow-hidden aspect-[4/3] transition-all',
+              ]"
+            >
+              <img
+                :src="thumb"
+                class="w-full h-full object-cover"
+                alt="Room preview"
+              />
+            </button>
+          </div>
+        </div>
+
+        <!-- Room Specs & Booking Action Column -->
+        <div
+          class="lg:col-span-5 p-6 sm:p-10 lg:border-l border-[#9B7846]/15 flex flex-col justify-between bg-[#FAF8F5]/40 space-y-6"
+        >
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span
+                class="text-xs uppercase tracking-widest font-semibold text-[#9B7846]"
               >
-                <img
-                  :src="n"
-                  v-animate-onscroll="'scale-in-center'"
-                  class="object-cover transition-all duration-1000 h-full w-full hover:[kenburns-top] rounded"
-                />
+                {{
+                  featuredRoom.flat_type === "apartment"
+                    ? "Serviced Residence"
+                    : "Private Suite"
+                }}
+              </span>
+              <div class="flex text-amber-500 text-xs">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
               </div>
             </div>
-            <div
-              class="md:w-[320px] h-[320px] md:absolute md:top-1/2 md:left-1/2 md:translate-x-[-50%] md:translate-y-[-50%] text-center bg-white md:shadow-lg p-3 md:rounded-full flex items-center justify-center"
-            >
-              <div>
-                <h5 class="font-bold text-lg text-[#2d5c1f]">
-                  {{ slide.title }}
-                </h5>
-                <p class="font-bold text-sm lg:text-xl mb-3">
-                  {{ slide.price }}
-                </p>
-                <p
-                  class="text-base mb-6 lg:text-xs"
-                  data-aos="fade-up"
-                  data-aos-once="true"
-                >
-                  {{ slide.description }}
-                </p>
 
-                <router-link to="/rooms">
-                  <button
-                    type="button"
-                    class="bg-[#2d5c1f] text-white px-4 py-2 text-sm rounded hover:opacity-80 active:scale-95 shadow"
-                    data-aos="fade-up"
-                    data-aos-once="true"
-                  >
-                    View Rooms
-                  </button>
-                </router-link>
+            <h3
+              class="font-serif text-2xl sm:text-3xl font-medium text-[#1A1816]"
+            >
+              {{ featuredRoom.flat_name }}
+            </h3>
+
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              {{ featuredRoom.description }}
+            </p>
+
+            <!-- Amenities Badges -->
+            <div class="pt-2">
+              <span
+                class="text-[11px] uppercase tracking-wider font-semibold text-gray-500 block mb-2.5"
+              >
+                Included Comforts
+              </span>
+              <div class="grid grid-cols-2 gap-2 text-xs text-[#1A1816]">
+                <div class="flex items-center gap-2">
+                  <i class="fa fa-bed text-[#9B7846]"></i>
+                  <span>King Size Bed</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa fa-users text-[#9B7846]"></i>
+                  <span>Up to {{ featuredRoom.max_occupancy }} Guests</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa fa-wifi text-[#9B7846]"></i>
+                  <span>High-Speed Wi-Fi</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa fa-tv text-[#9B7846]"></i>
+                  <span>Smart 4K Cinema TV</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa fa-snowflake-o text-[#9B7846]"></i>
+                  <span>Air Conditioning</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i class="fa fa-bath text-[#9B7846]"></i>
+                  <span>En-suite Bathroom</span>
+                </div>
               </div>
             </div>
           </div>
-        </slide>
-      </carousel>
+
+          <!-- Price & Reserve CTA -->
+          <div
+            class="pt-6 border-t border-[#9B7846]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          >
+            <div>
+              <p
+                class="text-[11px] uppercase tracking-wider text-gray-500 font-semibold"
+              >
+                Starting From
+              </p>
+              <p
+                class="font-serif text-2xl sm:text-3xl font-semibold text-[#243821]"
+              >
+                {{ currencyFormat(featuredRoom.price) }}
+                <span class="text-xs font-sans font-normal text-gray-500"
+                  >/ night</span
+                >
+              </p>
+            </div>
+
+            <router-link
+              :to="{
+                path: '/booking',
+                query: {
+                  category: featuredRoom.flat_type,
+                  type: featuredRoom.flat_name,
+                },
+              }"
+            >
+              <button
+                type="button"
+                class="w-full sm:w-auto bg-[#243821] hover:bg-[#182716] text-white px-8 py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold shadow-md active:scale-95 transition-all"
+              >
+                Reserve Suite
+              </button>
+            </router-link>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Accommodations Grid -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left"
+      >
+        <div
+          v-for="room in filteredRooms"
+          :key="room.id || room.room_name"
+          class="bg-white rounded-2xl overflow-hidden border border-[#9B7846]/20 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+        >
+          <div>
+            <div class="aspect-[16/10] overflow-hidden relative bg-gray-100">
+              <img
+                :src="getRoomImage(room)"
+                :alt="room.flat_name"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <span
+                class="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#243821] shadow"
+              >
+                {{ currencyFormat(room.price) }} / night
+              </span>
+            </div>
+
+            <div class="p-6 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-[11px] uppercase tracking-widest font-semibold text-[#9B7846]"
+                >
+                  {{
+                    room.flat_type === "apartment"
+                      ? "Apartment"
+                      : "Executive Suite"
+                  }}
+                </span>
+                <span class="text-xs text-gray-500 flex items-center gap-1">
+                  <i class="fa fa-user text-[10px]"></i>
+                  {{ room.max_occupancy }} Guests
+                </span>
+              </div>
+
+              <h3 class="font-serif text-xl font-medium text-[#1A1816]">
+                {{ room.flat_name }}
+              </h3>
+
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                {{ room.description }}
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 pt-0">
+            <router-link
+              :to="{
+                path: '/booking',
+                query: {
+                  category: room.flat_type,
+                  type: room.flat_name,
+                },
+              }"
+            >
+              <button
+                type="button"
+                class="w-full border border-[#243821] hover:bg-[#243821] text-[#243821] hover:text-white py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-all"
+              >
+                Select & Book
+              </button>
+            </router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/24/outline";
-import { Carousel, Slide } from "vue3-carousel";
-import { ref } from "vue";
+import { ref, computed, onMounted, inject } from "vue";
+import { getRoomTypes } from "@/services/roomservice";
 
-const sideSlide = ref(null);
-const slideIndex = ref(0);
-function handleNext() {
-  sideSlide.value.next();
-}
-function handlePrev() {
-  sideSlide.value.prev();
-}
+const currencyFormat = inject(
+  "currencyFormat",
+  (val) => `₦${Number(val || 0).toLocaleString()}`
+);
 
-const rooms = [
+// Default Fallback Rooms matching database seed
+const fallbackRooms = [
   {
-    title: "Standard Room",
-    price: "₦30,000 per night",
+    id: 1,
+    flat_type: "room",
+    flat_name: "Standard Room",
+    room_name: "Room 101",
+    price: 65000,
+    max_occupancy: 2,
     description:
-      "Get comfy in our fully air-conditioned rooms, setup to give you the perfect feel of a standard bedroom. Spacious and cozy with your own TV,free wifi, refrigerator, bathroom and so much more.",
-
-    images: [
-      require("@/assets/images/rooms/bed11.jpg"),
-      require("@/assets/images/rooms/bed5.jpg"),
-      require("@/assets/images/rooms/broom3.jpg"),
-      require("@/assets/images/rooms/bed10.jpg"),
-    ],
-    tags: [
-      " Family size beds",
-      "Air conditioning",
-      "Complementary breakfast",
-      "Free toiletries",
-      "Temperature sensored showers",
-      " Desk Seating Area",
-      "Smart TV",
-      " 24 hours Laundry service",
-      "24 hours bar service",
-      "Refrigerator",
-      "Satellite channels",
-      "Wireless Internet",
-    ],
+      "Elegantly furnished luxury standard room featuring a plush king-size bed, ensuite bathroom, smart HD TV, climate control, and high-speed Wi-Fi.",
   },
   {
-    title: "Executive Room",
-    price: "₦45,000 per night",
+    id: 2,
+    flat_type: "room",
+    flat_name: "Executive Suite",
+    room_name: "Suite 201",
+    price: 95000,
+    max_occupancy: 2,
     description:
-      "We strive to provide a hospitable surrounding with our executive masters bedroom. You get free wifi, TV, a refrigerator, massive bedroom space, a shared grand sitting room and so much more to accommodate you wholesomely. Let Vamble Apartments and Suites be your home aw....",
-
-    images: [
-      require("@/assets/images/rooms/bed5.jpg"),
-      require("@/assets/images/rooms/bed11.jpg"),
-      require("@/assets/images/rooms/bed7.jpg"),
-      require("@/assets/images/rooms/bed10.jpg"),
-    ],
-    tags: [
-      " Family size beds",
-      "Air conditioning",
-      "Complementary breakfast",
-      "Free toiletries",
-      "Temperature sensored showers",
-      " Desk Seating Area",
-      "Smart TV",
-      " 24 hours Laundry service",
-      "24 hours bar service",
-      "Refrigerator",
-      "Satellite channels",
-      "Wireless Internet",
-    ],
+      "Spacious executive suite offering a refined sitting lounge, private balcony, king bed, workstation, premium minibar, and 24/7 dedicated room service.",
   },
   {
-    title: "Standard Apartment",
+    id: 3,
+    flat_type: "apartment",
+    flat_name: "Luxury 1-Bedroom Apartment",
+    room_name: "Apt 301",
+    price: 135000,
+    max_occupancy: 3,
     description:
-      "Our Standard Apartments are modern and stylish, equipped with a fully furnished air-conditioned rooms , 75inch flat-screen television, a magnificent sitting room and so many other amenities that will make your stay very pleasurable. Fully equipped with state of the art furni...",
-    price: "₦110,000 per night",
-
-    images: [
-      require("@/assets/images/rooms/sitting16.jpg"),
-      require("@/assets/images/rooms/bed9.jpg"),
-      require("@/assets/images/rooms/broom.jpg"),
-      require("@/assets/images/rooms/sitting7.jpg"),
-    ],
-    tags: [
-      " Family size beds",
-      "Air conditioning",
-      "Complementary breakfast",
-      "Free toiletries",
-      "Temperature sensored showers",
-      " Desk Seating Area",
-      "Smart TV",
-      " 24 hours Laundry service",
-      "24 hours bar service",
-      "Refrigerator",
-      "Satellite channels",
-      "Wireless Internet",
-    ],
+      "Fully serviced luxury 1-bedroom apartment featuring a private living room, fully equipped gourmet kitchen, dining area, laundry facilities, and deluxe amenities.",
   },
   {
-    title: "Executive Apartment",
-    price: "₦120,000 per night",
+    id: 4,
+    flat_type: "apartment",
+    flat_name: "Royal 2-Bedroom Apartment",
+    room_name: "Apt 401",
+    price: 185000,
+    max_occupancy: 4,
     description:
-      "Our executive Apartment welcomes you with a gorgeously-appointed classical interior, separate bedroom and living room, extra-spacious bathroom and a balcony overlooking the fancy estate. With a classy debonair appearance to make your stay memorable. Fully equipped with state of the ...",
-
-    images: [
-      require("@/assets/images/rooms/living3.jpg"),
-      require("@/assets/images/rooms/sitting7.jpg"),
-      require("@/assets/images/rooms/bed2.jpg"),
-      require("@/assets/images/rooms/kitchen.jpg"),
-    ],
-    tags: [
-      "Family size beds",
-      "Air conditioning",
-      "Kitchen",
-      "Complementary breakfast",
-      "Free toiletries",
-      "Temperature sensored showers",
-      " Desk Seating Area",
-      "Smart TV",
-      " 24 hours Laundry service",
-      "24 hours bar service",
-      "Refrigerator",
-      "Satellite channels",
-      "Wireless Internet",
-    ],
+      "Exquisite 2-bedroom serviced apartment with two private ensuite bedrooms, expansive living area, modern kitchen, and stunning panoramic views of Abuja.",
   },
   {
-    title: "Platinum Apartment",
-    price: "₦150,000 per night",
+    id: 5,
+    flat_type: "apartment",
+    flat_name: "Presidential Penthouse Suite",
+    room_name: "Penthouse 501",
+    price: 280000,
+    max_occupancy: 6,
     description:
-      "Our Platinum Apartments will leave you enthralled in its grandeur and luxury. Its interior is classy and fully equipped from the grand sitting room to the magnificent bedrooms and standardized kitchen, accompanied by cable tv and free WiFi...",
-
-    images: [
-      require("@/assets/images/rooms/sitting7.jpg"),
-      require("@/assets/images/rooms/bed5.jpg"),
-      require("@/assets/images/rooms/kitchen2.jpg"),
-      require("@/assets/images/rooms/sitting13.jpg"),
-    ],
-    tags: [
-      "Family size beds",
-      "Air conditioning",
-      "Kitchen",
-      "Complementary breakfast",
-      "Free toiletries",
-      "Temperature sensored showers",
-      " Desk Seating Area",
-      "Smart TV",
-      " 24 hours Laundry service",
-      "24 hours bar service",
-      "Refrigerator",
-      "Satellite channels",
-      "Wireless Internet",
-    ],
+      "The pinnacle of discretion and luxury. Complete private penthouse floor with bespoke concierge, private chef service, expansive terrace, and ultra-high-speed fiber network.",
   },
 ];
+
+const roomsList = ref(fallbackRooms);
+const activeFilter = ref("all");
+
+const filterTabs = [
+  { label: "All Accommodations", value: "all" },
+  { label: "Suites & Rooms", value: "room" },
+  { label: "Serviced Apartments", value: "apartment" },
+];
+
+onMounted(async () => {
+  try {
+    const res = await getRoomTypes();
+    if (res.status === 200 && Array.isArray(res.data) && res.data.length > 0) {
+      roomsList.value = res.data;
+    }
+  } catch (err) {
+    console.warn("Using fallback room types", err);
+  }
+});
+
+const filteredRooms = computed(() => {
+  if (activeFilter.value === "all") {
+    return roomsList.value;
+  }
+  return roomsList.value.filter((r) => r.flat_type === activeFilter.value);
+});
+
+const featuredRoom = computed(() => {
+  return roomsList.value[1] || roomsList.value[0];
+});
+
+// Image previews for featured room
+const previewThumbnails = [
+  require("@/assets/images/rooms/bed1.jpg"),
+  require("@/assets/images/rooms/living.jpg"),
+  require("@/assets/images/rooms/toilet.jpg"),
+  require("@/assets/images/rooms/nigh.jpg"),
+];
+
+const currentMainImage = ref(previewThumbnails[0]);
+
+function getRoomImage(room) {
+  if (
+    room.flat_name?.toLowerCase().includes("executive") ||
+    room.room_name?.includes("201")
+  ) {
+    return require("@/assets/images/rooms/bed6.jpg");
+  }
+  if (
+    room.flat_name?.toLowerCase().includes("1-bedroom") ||
+    room.room_name?.includes("301")
+  ) {
+    return require("@/assets/images/rooms/living1.jpg");
+  }
+  if (
+    room.flat_name?.toLowerCase().includes("2-bedroom") ||
+    room.room_name?.includes("401")
+  ) {
+    return require("@/assets/images/rooms/sitting7.jpg");
+  }
+  if (
+    room.flat_name?.toLowerCase().includes("penthouse") ||
+    room.room_name?.includes("501")
+  ) {
+    return require("@/assets/images/rooms/sitting16.jpg");
+  }
+  return require("@/assets/images/rooms/bed2.jpg");
+}
 </script>

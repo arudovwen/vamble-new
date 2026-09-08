@@ -9,7 +9,7 @@ import store from "../store";
 const axios = setupCache(Axios);
 
 //apply base url for axios
-const API_URL = process.env.VUE_APP_API_URL;
+const API_URL = process.env.VUE_APP_API_URL || "http://localhost:8000";
 const toast = useToast();
 const route = useRoute();
 const axiosApi = axios.create({
@@ -17,11 +17,18 @@ const axiosApi = axios.create({
 });
 
 axiosApi.defaults.withCredentials = true;
-if (store.getters.token) {
-  axiosApi.defaults.headers.common[
-    "Authorization"
-  ] = `Bearer ${store.getters.token}`;
-}
+
+axiosApi.interceptors.request.use(
+  (config) => {
+    const token = store.getters.token;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    config.headers.Accept = "application/json";
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 axiosApi.interceptors.response.use(
   (response) => response,

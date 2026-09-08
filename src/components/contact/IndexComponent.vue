@@ -1,127 +1,153 @@
 <template>
-  <section class="relative pb-16">
-    <div class="flex z-[2] w-full border-b border-[#a18463]/20 mb-10 sm:mb-20">
+  <section class="relative pb-16 bg-[#FAF8F5] text-[#1A1816] font-sans">
+    <!-- Hero Header Banner -->
+    <div class="flex flex-col md:flex-row z-[2] w-full border-b border-[#9B7846]/20 mb-8 sm:mb-16 bg-white">
       <div
-        class="w-[80%] sm:w-[70%] lg:w-[600px] pt-40 pb-10 text-left px-6 sm:px-8 lg:px-16"
+        class="w-full md:w-[60%] lg:w-[600px] pt-28 sm:pt-36 lg:pt-40 pb-10 text-left px-5 sm:px-8 lg:px-16 flex flex-col justify-center"
       >
-        <div class="mb-4">
-          <h1
-            class="text-[#2d5c1f] mb-3 lg:mb-6 zendaya text-5xl xl:text-6xl font-bold"
-          >
-            Contact us today
+        <div class="space-y-4">
+          <span class="text-xs uppercase tracking-widest font-semibold text-[#9B7846] block">
+            Guest Concierge & Inquiries
+          </span>
+          <h1 class="text-[#243821] font-serif text-3xl sm:text-5xl xl:text-6xl font-normal leading-tight">
+            Contact Us Today
           </h1>
-          <ul>
-            <li class="text-base xl:text-lg text-left mb-1">
-              Phone :
-              <a class="text-[#3d3126] font-semibold" href="tel:+2349064645461"
-                >+2349064645461</a
-              >
+          <ul class="space-y-2 text-xs sm:text-sm text-gray-700 pt-1">
+            <li class="flex items-center gap-2">
+              <i class="fa fa-phone text-[#9B7846]"></i>
+              <span>Phone:</span>
+              <a class="text-[#243821] font-semibold hover:underline" href="tel:+2349064645461">+234 906 464 5461</a>
             </li>
-            <li class="text-base xl:text-lg text-left mb-1">
-              Address :
+            <li class="flex items-start gap-2">
+              <i class="fa fa-map-marker text-[#9B7846] mt-0.5"></i>
+              <span>Address:</span>
               <a
-                class="text-[#3d3126] font-semibold"
+                class="text-[#243821] font-semibold hover:underline"
                 href="https://goo.gl/maps/myfbJDfZEmgXgBpJ6"
-                >Plot 790, sector center, Cadastral zone. Jahi. Abuja</a
+                target="_blank"
+                rel="noopener"
               >
+                Plot 790, Sector Centre, Cadastral Zone B08, Jahi, Abuja
+              </a>
             </li>
-            <li class="text-base xl:text-lg text-left">
-              Email :
+            <li class="flex items-center gap-2">
+              <i class="fa fa-envelope text-[#9B7846]"></i>
+              <span>Email:</span>
               <a
-                class="text-[#3d3126] font-semibold"
+                class="text-[#243821] font-semibold hover:underline truncate"
                 href="mailto:reservation@vambleapartments.com"
-                >reservation@vambleapartments.com</a
               >
+                reservation@vambleapartments.com
+              </a>
             </li>
           </ul>
         </div>
       </div>
 
       <div
-        class="flex-1 overflow-hidden bg-[url('@/assets/images/rooms/front.jpg')] bg-cover bg-center"
+        class="h-56 md:h-auto flex-1 overflow-hidden bg-[url('@/assets/images/rooms/front.jpg')] bg-cover bg-center min-h-[200px]"
       >
         <div
-          class="w-full h-full flex justify-start items-center bg-gray-500/20 backdrop-brightness-50"
+          class="w-full h-full flex justify-start items-center bg-black/30 backdrop-brightness-75"
         ></div>
       </div>
     </div>
-    <div
-      class="w-full lg:w-[500px] lg:border border-[#a18463]/20 p-6 sm:p-8 mx-auto rounded-lg mb-10 shadow bg-white"
-    >
-      <h2 class="text-4xl sm:text-5xl font-semibold mb-6 text-left zendaya">
-        Feel free to write to us
-      </h2>
-      <form @submit.prevent="handleSubmit">
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">Full name</label>
-          <input
-            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-            placeholder="Provide your full name"
-            v-model="form.name"
-            required
-          />
+
+    <!-- Contact Form Card -->
+    <div class="max-w-xl mx-auto px-4 sm:px-6 mb-12">
+      <div
+        class="w-full border border-[#9B7846]/20 p-6 sm:p-10 rounded-3xl shadow-sm bg-white text-left"
+      >
+        <div class="mb-6">
+          <span class="text-[10px] uppercase font-bold tracking-widest text-[#9B7846] block">
+            Direct Concierge Dispatch
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-serif font-normal text-[#1A1816] mt-1">
+            Send an Inquiry
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">
+            Our guest relations desk responds within minutes for bookings, corporate accounts, or special requests.
+          </p>
         </div>
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">E-mail</label>
-          <input
-            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-            placeholder="Provide your email address"
-            v-model="form.email"
-            required
-            type="email"
-          />
-        </div>
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">Message</label>
-          <textarea
-            v-model="form.body"
-            rows="4"
-            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-            placeholder="Provide your full name"
-            required
-          ></textarea>
-        </div>
-        <div>
-          <button
-            :disabled="isLoading"
-            type="submit"
-            class="gap-x-1 bg-[#2d5c1f] disabled:opacity-60 text-white px-10 w-full font-medium hover:opacity-80 rounded-lg active:scale-95 py-4 text-sm sm:text-base"
-          >
-            Send message
-            <i
-              class="fa fa-refresh fa-spin"
-              v-if="isLoading"
-              aria-hidden="true"
-            ></i>
-          </button>
-        </div>
-      </form>
+
+        <form @submit.prevent="handleSubmit" class="space-y-4 text-xs font-sans">
+          <div>
+            <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Full Name *</label>
+            <input
+              class="border border-gray-300 focus:border-[#9B7846] px-3.5 py-3 rounded-xl w-full outline-none text-xs bg-[#FAF8F5]/50 transition-colors"
+              placeholder="e.g. Adebayo Adeleke"
+              v-model="form.name"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Email Address *</label>
+            <input
+              class="border border-gray-300 focus:border-[#9B7846] px-3.5 py-3 rounded-xl w-full outline-none text-xs bg-[#FAF8F5]/50 transition-colors"
+              placeholder="e.g. name@example.com"
+              v-model="form.email"
+              required
+              type="email"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Your Message *</label>
+            <textarea
+              v-model="form.body"
+              rows="4"
+              class="border border-gray-300 focus:border-[#9B7846] p-3.5 rounded-xl w-full outline-none text-xs bg-[#FAF8F5]/50 transition-colors"
+              placeholder="Detail your reservation dates, suite preferences, or specific inquiries..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="pt-2">
+            <button
+              :disabled="isLoading"
+              type="submit"
+              class="w-full bg-[#243821] hover:bg-[#182716] disabled:opacity-60 text-white py-3.5 rounded-xl font-semibold text-xs uppercase tracking-wider shadow-md active:scale-95 transition-all flex items-center justify-center gap-2 min-h-[44px]"
+            >
+              <i
+                class="fa fa-spinner fa-spin"
+                v-if="isLoading"
+                aria-hidden="true"
+              ></i>
+              <i v-else class="fa fa-paper-plane"></i>
+              <span>{{ isLoading ? "Dispatching..." : "Send Message" }}</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <div class="">
-      <div class="p-6 sm:p-8 lg:p-16 flex items-center justify-center flex-col">
-        <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-semibold lg:mb-1 text-left zendaya"
+    <!-- Social Connect -->
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h3 class="text-xl sm:text-2xl font-serif font-normal text-[#1A1816]">
+        Direct Channels
+      </h3>
+      <p class="text-xs text-gray-500 mt-1 mb-5">
+        Prefer direct instant messaging? Reach out to our social desks:
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          v-for="i in socials"
+          :key="i.icon"
+          :href="i.url"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-[#9B7846]/20 shadow-xs hover:border-[#243821] text-xs font-semibold text-gray-700 hover:text-[#243821] transition-all min-h-[40px]"
         >
-          Social Connect
-        </h2>
-        <p class="text-base xl:text-lg text-left mb-6">
-          Also write us on one of our social handles
-        </p>
-        <div class="p-3 flex justify-center gap-x-4">
-          <a v-for="i in socials" :key="i.icon" :href="i.url" target="_blank">
-            <div class="hover:text-blue-900">
-              <i :class="i.icon" aria-hidden="true"></i> <br />
-              <small>
-                {{ i.title }}
-              </small>
-            </div>
-          </a>
-        </div>
+          <i :class="i.icon" class="text-sm text-[#9B7846]"></i>
+          <span>{{ i.title }}</span>
+        </a>
       </div>
     </div>
   </section>
 </template>
+
 <script setup>
 import { reactive, ref } from "vue";
 import { sendMessage } from "@/services/authservices";
@@ -136,18 +162,18 @@ const form = reactive({
 
 const socials = [
   {
-    title: "@vambleapartments",
-    icon: "fab fa-instagram fa-2x",
+    title: "Instagram",
+    icon: "fab fa-instagram",
     url: "https://instagram.com/vambleapartments",
   },
   {
-    title: "vambleapartments",
-    icon: "fab fa-whatsapp fa-2x",
+    title: "WhatsApp Chat",
+    icon: "fab fa-whatsapp",
     url: "https://wa.me/2349064645461",
   },
   {
-    title: "@vambleapartments",
-    icon: "fab fa-twitter fa-2x",
+    title: "Twitter / X",
+    icon: "fab fa-twitter",
     url: "https://twitter.com/vambleapartments",
   },
 ];
@@ -158,13 +184,13 @@ async function handleSubmit() {
   sendMessage(form)
     .then((res) => {
       if (res.status === 200) {
-        toast.success("Message sent!");
+        toast.success("Message dispatched to concierge!");
         form.name = form.email = form.body = "";
         isLoading.value = false;
       }
     })
     .catch((err) => {
-      toast.error(err.response.data.message);
+      toast.error(err?.response?.data?.message || "Failed to dispatch message");
       isLoading.value = false;
     });
 }

@@ -1,144 +1,159 @@
 <template>
-  <section class="relative">
-    <div
-      class="grid grid-cols-1 lg:grid-cols-2 px-6 sm:px-8 lg:px-16 border-t border-b border-[#a18463]/20 mb-10 mt-20 py-16 lg:py-0"
-    >
-      <div class="relative lg:border-r border-[#a18463]/20 mb-4 lg:mb-0">
-        <carousel
-          :autoplay="4000"
-          :modelValue="slideIndex"
-          :items-to-show="1"
-          ref="mainSlide"
-          wrapAround
-        >
-          <slide
-            class="flex flex-col text-left items-start"
-            v-for="(slide, i) in testimonials"
-            :key="i"
+  <section class="py-20 lg:py-28 border-b border-[#9B7846]/15 bg-[#FAF8F5]">
+    <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+      >
+        <!-- Left Column: Section Title & Star Rating Summary -->
+        <div class="lg:col-span-5 text-left space-y-5">
+          <span
+            class="text-xs uppercase tracking-widest font-semibold text-[#9B7846] block"
           >
-            <div
-              class="w-full h-[500px] py-10 pr-10 hidden lg:block overflow-hidden"
-              v-animate-onscroll="'scale-in-center'"
-            >
-              <img :src="slide.img" class="w-full h-full object-contain" />
-            </div>
-          </slide>
-        </carousel>
-        <span
-          class="bg-[#f6f3e9] px-4 py-1 lg:absolute font-bold -top-4 -left-4 text-4xl lg:text-3xl zendaya"
-          >TESTIMONIALS</span
-        >
-      </div>
+            Guest Endorsements
+          </span>
+          <h2
+            class="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1A1816] font-normal leading-tight"
+          >
+            Voices of
+            <span class="italic text-[#243821] font-serif">Discretion</span>
+          </h2>
+          <p class="text-sm text-gray-600 leading-relaxed font-sans">
+            Hear from corporate executives, diplomats, and international
+            travelers who choose Vamble Apartments & Suites for unmatched
+            comfort and uncompromising discretion in Abuja.
+          </p>
 
-      <div class="pl-8 p-6 lg:p-10 relative flex flex-col justify-center">
-        <span class="absolute z-[1] top-4 left-6 opacity-10">
-          <i class="fa fa-quote-left fa-5x quote" aria-hidden="true"></i
-        ></span>
-        <span class="absolute z-[1] bottom-4 right-6 opacity-10">
-          <i class="fa fa-quote-right fa-5x quote" aria-hidden="true"></i
-        ></span>
-        <carousel
-          :autoplay="4000"
-          :modelValue="slideIndex"
-          :items-to-show="1"
-          ref="sideSlide"
-          wrapAround
-        >
-          <slide
-            class="justify-start"
-            v-for="(slide, i) in testimonials"
-            :key="i"
-          >
-            <div class="text-left z-[2] relative">
-              <p
-                class="text-base lg:text-xl font-semibold mb-6"
-                data-aos="fade-up"
-                data-aos-once="true"
-              >
-                {{ slide.text }}
-              </p>
-              <p
-                class="text-sm lg:text-lg font-medium"
-                data-aos="fade-up"
-                data-aos-once="true"
-              >
-                {{ slide.title }}
-              </p>
-              <div
-                class="w-[100px] my-1 sm:my-2 border"
-                data-aos="fade-up"
-                data-aos-once="true"
-              />
-              <p
-                class="text-xs lg:text-sm text-green-700 font-medium"
-                data-aos="fade-up"
-                data-aos-once="true"
-              >
-                {{ slide.date }}
-              </p>
+          <!-- Rating Stars & Badge -->
+          <div class="pt-4 flex items-center gap-4">
+            <div class="flex text-amber-500 text-lg">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
             </div>
-          </slide>
-        </carousel>
-        <div
-          class="bg-[#f6f3e9] px-6 py-1 mb-6 flex items-center justify-between absolute font-bold -bottom-10 left-0"
-        >
-          <div class="flex items-center gap-x-4">
-            <span
-              @click="handlePrev()"
-              class="border rounded-sm p-1 text-[#2d5c1f] border-[#2d5c1f] cursor-pointer"
-              ><ArrowLeftIcon class="w-4 h-4"
-            /></span>
-            <span
-              @click="handleNext()"
-              class="bg-[#2d5c1f] text-white p-1 rounded-sm border border-[#2d5c1f] cursor-pointer"
-              ><ArrowRightIcon class="w-4 h-4"
-            /></span>
+            <div class="border-l border-gray-300 pl-4">
+              <p class="text-xs font-bold text-[#1A1816]">5.0 / 5.0 Rating</p>
+              <p class="text-[11px] text-gray-500">From 120+ Verified Stays</p>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="flex items-center gap-3 pt-4">
+            <button
+              @click="prevTestimonial"
+              class="w-10 h-10 rounded-full border border-[#9B7846]/30 hover:border-[#243821] hover:bg-[#243821] hover:text-white text-[#1A1816] flex items-center justify-center transition-all cursor-pointer"
+              aria-label="Previous Review"
+            >
+              <i class="fa fa-angle-left text-base"></i>
+            </button>
+            <button
+              @click="nextTestimonial"
+              class="w-10 h-10 rounded-full border border-[#9B7846]/30 hover:border-[#243821] hover:bg-[#243821] hover:text-white text-[#1A1816] flex items-center justify-center transition-all cursor-pointer"
+              aria-label="Next Review"
+            >
+              <i class="fa fa-angle-right text-base"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Testimonial Card with Quote Mark -->
+        <div class="lg:col-span-7">
+          <div
+            class="relative bg-white rounded-3xl p-8 sm:p-12 border border-[#9B7846]/20 shadow-lg text-left"
+          >
+            <!-- Large Decorative Quotation Mark -->
+            <div
+              class="text-[#9B7846]/20 font-serif text-8xl absolute top-4 right-8 select-none pointer-events-none leading-none"
+            >
+              ”
+            </div>
+
+            <div class="relative z-10 space-y-6">
+              <!-- Star Rating -->
+              <div class="flex text-amber-500 text-sm">
+                <i
+                  v-for="s in currentReview.rating"
+                  :key="s"
+                  class="fa fa-star"
+                ></i>
+              </div>
+
+              <!-- Review Text -->
+              <blockquote
+                class="font-serif text-lg sm:text-2xl text-[#1A1816] leading-relaxed font-normal italic"
+              >
+                "{{ currentReview.text }}"
+              </blockquote>
+
+              <!-- Author Info -->
+              <div
+                class="flex items-center gap-4 pt-4 border-t border-gray-100"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-[#243821] text-white flex items-center justify-center font-serif text-base font-semibold"
+                >
+                  {{ currentReview.author.charAt(0) }}
+                </div>
+                <div>
+                  <h4 class="font-serif font-medium text-[#1A1816] text-base">
+                    {{ currentReview.author }}
+                  </h4>
+                  <p class="text-xs text-gray-500">
+                    {{ currentReview.role }} • {{ currentReview.location }}
+                  </p>
+                </div>
+                <div
+                  class="ml-auto hidden sm:flex items-center gap-1.5 text-[11px] text-[#243821] bg-[#243821]/10 px-3 py-1 rounded-full font-semibold"
+                >
+                  <i class="fa fa-check-circle"></i> Verified Stay
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
-<script setup>
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/24/outline";
-import { Carousel, Slide } from "vue3-carousel";
-import { ref } from "vue";
 
-const mainSlide = ref(null);
-const sideSlide = ref(null);
-const slideIndex = ref(0);
+<script setup>
+import { ref, computed } from "vue";
+
+const currentIndex = ref(0);
+
 const testimonials = [
   {
-    title: "Zinny Michael",
-    text: "You glow differently when relaxing in the right location pampered with vamble staff",
-    img: require("@/assets/images/testimonial.jpg"),
-    date: "May 21",
+    author: "Mr. Emeka Okonkwo",
+    role: "Managing Director",
+    location: "Lagos / Abuja",
+    rating: 5,
+    text: "We had the best time at Vamble, enjoying our stay in Abuja. The apartment is everything it said and more. Quiet, pristine, high-speed internet that never blinked, and security was top notch. We couldn't have asked for a better place!",
   },
   {
-    title: "Sadiq Nuhu",
-    text: "My stay was comfortable throughout the two weeks I spent. I would definitely patronize Vamble Apartments and Suites the next time I come to Nigeria.",
-    img: require("@/assets/images/testi1.jpg"),
-    date: "Dec 18",
+    author: "Dr. Fatima Bello",
+    role: "Senior Policy Advisor",
+    location: "Abuja",
+    rating: 5,
+    text: "The serenity of Jahi coupled with the luxury fittings of Vamble make it my go-to choice when hosting visiting diplomatic colleagues. The 24/7 power and swift concierge response are truly exceptional.",
   },
   {
-    title: "Obinna & Kate Nwachukwu",
-    text: "We had the best time of our lives enjoying our honeymoon at the Luxury apartment. It was like our first home as a couple. The environment is secure and we had every single thing we needed from the living room to the kitchen.",
-    img: require("@/assets/images/testi.jpg"),
-    date: "Sept 18",
-  },
-  {
-    title: "Courtney Uche",
-    text: "My bridal shower was absolutely fantastic. From the moment we arrived, the staff went above and beyond to ensure our comfort and satisfaction. The elegant decor, impeccable service, and delightful amenities provided an unforgettable experience for everyone in attendance.",
-    img: require("@/assets/images/testi2.jpg"),
-    date: "Nov 04",
+    author: "David & Sarah Hughes",
+    role: "International Consultants",
+    location: "United Kingdom",
+    rating: 5,
+    text: "Spotlessly clean, expansive gourmet kitchen, and plush king bed. Coming home to Vamble after busy meetings in the Central District felt like having a true private sanctuary in Abuja.",
   },
 ];
-function handleNext() {
-  mainSlide.value.next();
-  sideSlide.value.next();
+
+const currentReview = computed(() => testimonials[currentIndex.value]);
+
+function nextTestimonial() {
+  currentIndex.value = (currentIndex.value + 1) % testimonials.length;
 }
-function handlePrev() {
-  mainSlide.value.prev();
-  sideSlide.value.prev();
+
+function prevTestimonial() {
+  currentIndex.value =
+    (currentIndex.value - 1 + testimonials.length) % testimonials.length;
 }
 </script>

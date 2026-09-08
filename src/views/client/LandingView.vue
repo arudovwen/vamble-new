@@ -3,8 +3,8 @@
     <template #content>
       <BannerComponent />
       <LocalTalents />
-      <KnowMore />
       <RoomsComponent />
+      <KnowMore />
       <ReadMore />
       <TestimonialComponent />
       <GalleryComponent />

@@ -2,7 +2,7 @@
   <AuthLayout>
     <template #content>
       <div
-        class="text-left p-8 w-[95%] sm:w-[380px] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 bg-black shadow-[rgba(0,0,0,0.35)_0px_5px_15px]"
+        class="text-left p-6 sm:p-8 w-[92%] sm:w-[400px] max-w-sm rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-50 bg-black/80 shadow-2xl border border-white/10"
       >
         <form @submit.prevent="handleSubmit">
           <legend class="text-lg lg:text-2xl mb-7 font-semibold text-white">

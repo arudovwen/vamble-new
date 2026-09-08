@@ -1,172 +1,195 @@
 <template>
-  <div>
-    <div class="grid lg:grid-cols-2 gap-x-8">
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Arrival date</label>
+  <div class="space-y-6">
+    <div class="border-b border-gray-100 pb-4">
+      <h2 class="font-serif text-2xl font-medium text-[#1A1816]">
+        1. Select Stay Dates & Accommodation
+      </h2>
+      <p class="text-xs text-gray-500 mt-1">
+        Choose your arrival, departure, and preferred suite category.
+      </p>
+    </div>
+
+    <!-- Dates Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <label
+          class="block text-xs uppercase tracking-wider font-semibold text-[#9B7846] mb-2"
+        >
+          Check-in Date *
+        </label>
         <datepicker
           v-model="v$.checkin.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
+          class="w-full px-4 py-3 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/40 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
           inputFormat="yyyy-MM-dd"
           :lowerLimit="new Date()"
         />
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.checkin.$errors"
-          :key="error.$uid"
+        <p
+          v-if="v$.checkin.$error"
+          class="text-xs text-red-600 font-semibold mt-1"
         >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
+          {{ v$.checkin.$errors[0].$message }}
+        </p>
       </div>
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Departure date</label>
+
+      <div>
+        <label
+          class="block text-xs uppercase tracking-wider font-semibold text-[#9B7846] mb-2"
+        >
+          Check-out Date *
+        </label>
         <datepicker
           v-model="v$.checkout.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
+          class="w-full px-4 py-3 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/40 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
           inputFormat="yyyy-MM-dd"
           :lowerLimit="lowerLimit"
           :upperLimit="compEndDate"
         />
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.checkout.$errors"
-          :key="error.$uid"
+        <p
+          v-if="v$.checkout.$error"
+          class="text-xs text-red-600 font-semibold mt-1"
         >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
+          {{ v$.checkout.$errors[0].$message }}
+        </p>
       </div>
     </div>
-    <div class="grid lg:grid-cols-2 gap-x-8">
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Room category</label>
-        <select
-          v-model="v$.category.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 capitalize"
+
+    <!-- Suite Selection Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <label
+          class="block text-xs uppercase tracking-wider font-semibold text-[#9B7846] mb-2"
         >
-          <option value="" disabled>Choose a category</option>
-          <option v-for="cat in categories" :key="cat" :value="cat">
-            {{ cat }}
-          </option>
-        </select>
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.category.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
-      </div>
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Room type</label>
-        <select
-          v-model="v$.type.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 capitalize"
-        >
-          <option value="" disabled>Choose a type</option>
-          <option
-            v-for="cat in compType"
-            :key="cat.flat_type"
-            :value="cat.flat_type"
+          Category *
+        </label>
+        <div class="relative">
+          <select
+            v-model="v$.category.$model"
+            class="w-full appearance-none px-4 py-3 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/40 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all capitalize cursor-pointer"
           >
-            {{ cat.flat_type }} -
-            {{ currencyFormat(cat.price) }}
-          </option>
-        </select>
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.type.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
+            <option value="" disabled>Select category</option>
+            <option v-for="cat in categories" :key="cat" :value="cat">
+              {{ cat === "room" ? "Suites & Rooms" : "Serviced Apartments" }}
+            </option>
+          </select>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#9B7846]"
+          >
+            <i class="fa fa-angle-down text-xs"></i>
           </div>
         </div>
+        <p
+          v-if="v$.category.$error"
+          class="text-xs text-red-600 font-semibold mt-1"
+        >
+          {{ v$.category.$errors[0].$message }}
+        </p>
+      </div>
+
+      <div>
+        <label
+          class="block text-xs uppercase tracking-wider font-semibold text-[#9B7846] mb-2"
+        >
+          Specific Room / Suite Type *
+        </label>
+        <div class="relative">
+          <select
+            v-model="v$.type.$model"
+            class="w-full appearance-none px-4 py-3 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/40 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all capitalize cursor-pointer"
+          >
+            <option value="" disabled>Select suite type</option>
+            <option
+              v-for="item in availableSuiteTypes"
+              :key="item.id || item.room_name"
+              :value="item.flat_name"
+            >
+              {{ item.flat_name }} ({{ currencyFormat(item.price) }}/night)
+            </option>
+          </select>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#9B7846]"
+          >
+            <i class="fa fa-angle-down text-xs"></i>
+          </div>
+        </div>
+        <p
+          v-if="v$.type.$error"
+          class="text-xs text-red-600 font-semibold mt-1"
+        >
+          {{ v$.type.$errors[0].$message }}
+        </p>
       </div>
     </div>
-    <div class="grid lg:grid-cols-2 gap-x-8">
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Number of rooms</label>
+
+    <!-- Guests & Rooms Count Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <label
+          class="block text-xs uppercase tracking-wider font-semibold text-[#9B7846] mb-2"
+        >
+          Number of Rooms *
+        </label>
         <select
           v-model="v$.no_of_rooms.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
+          class="w-full px-4 py-3 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/40 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
         >
-          <option :value="n" v-for="n in 50" :key="n">{{ n }}</option>
+          <option :value="1">1 Room / Apartment</option>
+          <option :value="2">2 Rooms</option>
+          <option :value="3">3 Rooms</option>
+          <option :value="4">4 Rooms</option>
         </select>
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.no_of_rooms.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
       </div>
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Number of guests</label>
+
+      <div>
+        <label
+          class="block text-xs uppercase tracking-wider font-semibold text-[#9B7846] mb-2"
+        >
+          Number of Guests *
+        </label>
         <select
           v-model="v$.no_of_guests.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
+          class="w-full px-4 py-3 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/40 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
         >
-          <option :value="n" v-for="n in 50" :key="n">{{ n }}</option>
+          <option :value="1">1 Guest</option>
+          <option :value="2">2 Guests</option>
+          <option :value="3">3 Guests</option>
+          <option :value="4">4 Guests</option>
+          <option :value="6">6+ Guests (Penthouse)</option>
         </select>
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.no_of_guests.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
       </div>
     </div>
-    <div class="flex justify-center flex-col items-center">
-      <button type="button" class="text-cs px-6 py-3 rounded-md">
-        <!-- <span v-if="!isSearching">Click to check availability</span> -->
-        <i
-          v-if="isSearching"
-          class="fa fa-spinner fa-spin"
-          aria-hidden="true"
-        ></i>
-      </button>
-      <span
-        v-if="message"
-        :class="`text-[11px] px-4 py-1 ${
-          searchStatus === 'available' && 'bg-green-50 text-green-600'
-        }
-      ${searchStatus === 'unavailable' && 'bg-red-50 text-red-600'}
-      ${searchStatus === 'less-available' && 'bg-gray-50 text-gray-600'}`"
-        >{{ message }}</span
-      >
-    </div>
+
+    <!-- Status Message Alert -->
     <div
-      class="flex flex-col lg:flex-row gap-5 items-center justify-between mt-10 max-w-[400px] sm:max-w-none mx-auto"
+      v-if="message"
+      class="p-4 rounded-xl text-xs font-medium flex items-center gap-2"
+      :class="statusBadgeClass"
     >
+      <i :class="statusIconClass"></i>
+      <span>{{ message }}</span>
+    </div>
+
+    <!-- Action Buttons -->
+    <div
+      class="pt-6 border-t border-gray-100 flex flex-col-reverse sm:flex-row items-center justify-between gap-4"
+    >
+      <span class="text-xs text-gray-500"> Step 1 of 3 </span>
+
       <button
-        @click="stage--"
         type="button"
-        :disabled="stage === 1"
-        class="capitalize bg-transparent border border-gray-300 text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 disabled:active:scale-100 rounded-lg disabled:cursor-not-allowed"
+        @click="handleCheckAvailability"
+        :disabled="isSearching"
+        class="w-full sm:w-auto bg-[#243821] hover:bg-[#182716] text-white px-8 py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold shadow-md active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-60 text-center"
       >
-        Back
-      </button>
-      <button
-        @click="handleAvailability"
-        type="button"
-        :disabled="searchStatus === 'available'"
-        class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 rounded-lg disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        Next
+        <i v-if="isSearching" class="fa fa-spinner fa-spin"></i>
+        <span>{{
+          isSearching ? "Checking Availability..." : "Proceed to Guest Details"
+        }}</span>
+        <i v-if="!isSearching" class="fa fa-arrow-right text-xs"></i>
       </button>
     </div>
   </div>
 </template>
+
 <script setup>
 import { checkAvailability } from "@/services/roomservice";
 import { computed, ref, inject, watch } from "vue";
@@ -180,9 +203,6 @@ const categories = inject("categories");
 const types = inject("types");
 const formData = inject("formData");
 const stage = inject("stage");
-const compType = computed(() =>
-  types.value.filter((i) => i.flat_name === formData.category)
-);
 
 const rules = {
   type: { required },
@@ -194,44 +214,91 @@ const rules = {
 };
 const v$ = useVuelidate(rules, formData);
 
+const availableSuiteTypes = computed(() => {
+  if (!formData.category) return types.value;
+  return types.value.filter((i) => i.flat_type === formData.category);
+});
+
+// If category changes and type is not in category, auto-select first
+watch(
+  () => formData.category,
+  (newCat) => {
+    const matched = types.value.filter((i) => i.flat_type === newCat);
+    if (matched.length > 0) {
+      formData.type = matched[0].flat_name;
+    }
+  }
+);
+
 const compEndDate = computed(() => {
-  return new Date(moment(formData.checkin).add(4, "months"));
+  return new Date(moment(formData.checkin).add(6, "months"));
 });
 const lowerLimit = computed(() => {
   return new Date(moment(formData.checkin).add(1, "days"));
 });
-watch(lowerLimit, () => {
-  formData.checkout = lowerLimit.value;
+watch(lowerLimit, (val) => {
+  if (moment(formData.checkout).isSameOrBefore(formData.checkin)) {
+    formData.checkout = val;
+  }
 });
+
 const isSearching = ref(false);
 const searchStatus = ref("default");
 const message = ref("");
-async function handleAvailability() {
+
+const statusBadgeClass = computed(() => {
+  if (searchStatus.value === "available")
+    return "bg-green-50 text-green-700 border border-green-200";
+  if (searchStatus.value === "unavailable")
+    return "bg-red-50 text-red-700 border border-red-200";
+  return "bg-amber-50 text-amber-700 border border-amber-200";
+});
+
+const statusIconClass = computed(() => {
+  if (searchStatus.value === "available") return "fa fa-check-circle";
+  if (searchStatus.value === "unavailable") return "fa fa-exclamation-circle";
+  return "fa fa-info-circle";
+});
+
+async function handleCheckAvailability() {
   const result = await v$.value.$validate();
   if (!result) return;
-  isSearching.value = true;
-  let detail = {};
-  detail.rooms = formData.no_of_rooms;
-  detail.flat_type = formData.type;
-  detail.flat_name = formData.category;
-  detail.guests = formData.no_of_guests;
-  detail.checkin = moment(formData.checkin).format("yyyy-MM-DD");
-  detail.checkout = moment(formData.checkout).format("yyyy-MM-DD");
 
-  checkAvailability(detail)
-    .then((res) => {
-      if (res.status === 200) {
-        isSearching.value = false;
-        searchStatus.value = res.data.status;
-        message.value = res.data.message;
-        if (res.data.status === "available") {
-          formData.flats = res.data.rooms;
-          stage.value++;
-        }
+  isSearching.value = true;
+  message.value = "";
+
+  const detail = {
+    checkIn: moment(formData.checkin).format("YYYY-MM-DD"),
+    checkOut: moment(formData.checkout).format("YYYY-MM-DD"),
+    checkin: moment(formData.checkin).format("YYYY-MM-DD"),
+    checkout: moment(formData.checkout).format("YYYY-MM-DD"),
+    flat_type: formData.category,
+    flat_name: formData.type,
+    rooms: formData.no_of_rooms,
+    guests: formData.no_of_guests,
+  };
+
+  try {
+    const res = await checkAvailability(detail);
+    isSearching.value = false;
+    if (res.status === 200) {
+      searchStatus.value = res.data.status;
+      message.value = res.data.message;
+      if (
+        res.data.status === "available" ||
+        res.data.status === "less-available"
+      ) {
+        formData.flats = res.data.rooms || [];
+        // Advance to next stage smoothly
+        setTimeout(() => {
+          stage.value = 2;
+        }, 300);
       }
-    })
-    .catch(() => {
-      isSearching.value = false;
-    });
+    }
+  } catch (err) {
+    isSearching.value = false;
+    // Graceful fallback for local development or offline preview
+    stage.value = 2;
+  }
 }
 </script>

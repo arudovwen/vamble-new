@@ -1,77 +1,121 @@
 <template>
-  <section
-    class="px-6 sm:px-8 xl:px-16 py-20 border-b border-[#a18463]/20 text-center"
-  >
-    <div class="w-full h-[600px] md:h-[300px] mb-10 grid md:grid-cols-3 gap-3">
-      <div
-        v-for="(item, idx) in content"
-        :key="idx"
-        class="group h-full overflow-hidden"
-      >
-        <div
-          :class="`flex-1 overflow-hidden relative bg-cover bg-center h-full rounded`"
-          data-aos="fade-up"
-          data-aos-once="true"
+  <section class="py-20 lg:py-28 border-b border-[#9B7846]/15 bg-white">
+    <div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 text-center">
+      <!-- Section Header -->
+      <div class="max-w-2xl mx-auto space-y-4 mb-16">
+        <span
+          class="text-xs uppercase tracking-widest font-semibold text-[#9B7846] block"
         >
-          <img :src="item.img" class="w-full h-full object-cover rounded" />
-          <div
-            class="absolute bottom-0 right-0 w-full transition-all ease-in-out duration-500 h-[85px] group-hover:h-full flex justify-start items-start bg-gray-900/60 p-6 md:p-6 font-bold text-center"
-          >
-            <div>
-              <span
-                class="mb-6 w-full text-left block border-b pb-2 text-lg xl:text-2xl font-bold text-[#f2f7f0] border-[#d0decd]"
-                >{{ item.text }}</span
-              >
-              <p class="text-[13px] text-white text-left font-normal">
-                {{ item.desc }}
-              </p>
-            </div>
+          Curated Excellence
+        </span>
+        <h2
+          class="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1A1816] font-normal leading-tight"
+        >
+          The Vamble Living
+          <span class="italic text-[#243821] font-serif">Standard</span>
+        </h2>
+        <p class="text-sm sm:text-base text-gray-600 font-sans leading-relaxed">
+          Every stay is carefully designed with exceptional attention to detail,
+          tranquil aesthetics, and uncompromising personal privacy.
+        </p>
+      </div>
+
+      <!-- 3-Column Luxury Feature Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <!-- Card 1 -->
+        <div
+          class="group rounded-2xl overflow-hidden border border-[#9B7846]/20 bg-[#FAF8F5] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img
+              src="@/assets/images/rooms/sitting16.jpg"
+              alt="World-Class Amenities"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+            ></div>
+          </div>
+          <div class="p-6 sm:p-8 space-y-3">
+            <span
+              class="text-[11px] uppercase tracking-wider font-semibold text-[#9B7846]"
+              >Living & Lounge</span
+            >
+            <h3 class="font-serif text-xl font-medium text-[#1A1816]">
+              World-Class Living Areas
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Expansive, thoughtfully furnished living lounges fitted with
+              imported Italian sofas, ambient mood lighting, and high-definition
+              smart cinema screens.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="group rounded-2xl overflow-hidden border border-[#9B7846]/20 bg-[#FAF8F5] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img
+              src="@/assets/images/rooms/bed5.jpg"
+              alt="Soundproofed Sanctuaries"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+            ></div>
+          </div>
+          <div class="p-6 sm:p-8 space-y-3">
+            <span
+              class="text-[11px] uppercase tracking-wider font-semibold text-[#9B7846]"
+              >Bedrooms & Suites</span
+            >
+            <h3 class="font-serif text-xl font-medium text-[#1A1816]">
+              Soundproofed Sanctuaries
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Acoustically insulated walls and double-glazed windows ensure
+              restful quiet, matched with bespoke orthopedic king mattresses and
+              500-thread-count Egyptian cotton linens.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="group rounded-2xl overflow-hidden border border-[#9B7846]/20 bg-[#FAF8F5] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img
+              src="@/assets/images/rooms/kitchen2.jpg"
+              alt="Fully Equipped Kitchens"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+            ></div>
+          </div>
+          <div class="p-6 sm:p-8 space-y-3">
+            <span
+              class="text-[11px] uppercase tracking-wider font-semibold text-[#9B7846]"
+              >Culinary Independence</span
+            >
+            <h3 class="font-serif text-xl font-medium text-[#1A1816]">
+              Fully Equipped Kitchens
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Gourmet designer kitchens complete with induction hobs,
+              microwaves, large double-door refrigerators, full cookware sets,
+              and dining tableware.
+            </p>
           </div>
         </div>
       </div>
     </div>
-
-    <div>
-      <p
-        class="max-w-lg mb-6 mx-auto text-base sm:text-xl"
-        data-aos="fade-up"
-        data-aos-once="true"
-      >
-        Located in a Serene and Hospitable environment, with 24 hours security
-        system, Well equipped and mannered security guards, 24 hours power
-        supply as well as uninterrupted internet connection.
-      </p>
-      <router-link to="/about">
-        <button
-          type="button"
-          data-aos="fade-up"
-          data-aos-once="true"
-          data-aos-easing="linear"
-          data-aos-duration="500"
-          class="bg-[#2d5c1f]/90 text-white px-10 font-medium hover:opacity-80 active:scale-95 py-3 text-sm sm:text-base"
-        >
-          Know more
-        </button>
-      </router-link>
-    </div>
   </section>
 </template>
+
 <script setup>
-const content = [
-  {
-    img: require("@/assets/images/rooms/sitting13.jpg"),
-    text: "World Class Sitting Room",
-    desc: "Experience the pinnacle of luxury in the World Class Sitting Room. Immerse yourself in opulence and elegance, where every detail exudes sophistication. Relax on plush sofas, indulge in state-of-the-art entertainment, and bask in the exquisite ambiance of this extraordinary space.",
-  },
-  {
-    img: require("@/assets/images/rooms/bed5.jpg"),
-    text: "Executive Bedrooms",
-    desc: "Experience the epitome of luxury with our executive bedrooms. Immerse yourself in refined elegance, state-of-the-art technology, and a tranquil ambiance. Enjoy exclusive access to our executive lounge and personalized service. Indulge in a haven of opulence during your stay with us.",
-  },
-  {
-    img: require("@/assets/images/rooms/kitchen2.jpg"),
-    text: "Fully Equipped Kitchen",
-    desc: "Welcome to our fully equipped kitchen, where culinary possibilities are endless! With top-of-the-line appliances, a comprehensive selection of cookware, and ample counter space, you'll have everything you need to unleash your culinary creativity and prepare delicious meals. Happy cooking!",
-  },
-];
+// Pure presentation component
 </script>

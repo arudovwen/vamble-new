@@ -1,10 +1,10 @@
 <template>
   <div
-    class="2xl:container relative min-h-screen border-l border-r border-[#a18463]/20"
+    class="max-w-[1536px] mx-auto relative min-h-screen border-l border-r border-[#9B7846]/15 bg-[#FAF8F5] shadow-sm font-sans"
   >
     <!-- Page here -->
     <div
-      class="content bg-[#f6f3e9] relative h-full min-h-screen flex flex-col"
+      class="content bg-[#FAF8F5] relative h-full min-h-screen flex flex-col text-[#1A1816]"
     >
       <!-- Navigation here  -->
       <AppHeader />

@@ -2,7 +2,7 @@
   <AuthLayout>
     <template #content>
       <div
-        class="text-left p-8 w-[95%] sm:w-[380px] rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 bg-black shadow-[rgba(0,0,0,0.35)_0px_5px_15px]"
+        class="text-left p-6 sm:p-8 w-[92%] sm:w-[400px] max-w-sm rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-50 bg-black/80 shadow-2xl border border-white/10"
       >
         <form @submit.prevent="handleSubmit">
           <legend class="text-lg lg:text-2xl mb-7 font-semibold text-white">
@@ -11,10 +11,10 @@
           <div class="text-left mb-6">
             <label class="block mb-2 text-xs text-white">E-mail</label>
             <input
-              v-model="v$.email.$model"
+              v-model="form.email"
               type="email"
-              class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 text-sm"
-              placeholder="Provide your password"
+              class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 text-sm text-gray-900 bg-white"
+              placeholder="name@example.com"
             />
             <div
               class="text-red-500 mt-1"
@@ -29,9 +29,9 @@
           <div class="text-left mb-6">
             <label class="block mb-2 text-xs text-white">Password</label>
             <input
-              v-model="v$.password.$model"
+              v-model="form.password"
               type="password"
-              class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
+              class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 text-sm text-gray-900 bg-white"
               placeholder="Provide your password"
             />
             <div
@@ -73,10 +73,12 @@ import AuthLayout from "@/components/layouts/authLayout.vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 import { reactive, ref } from "vue";
+import { useRoute } from "vue-router";
 import { loginUser } from "@/services/authservices";
 import { useToast } from "vue-toast-notification";
 import store from "@/store";
 
+const route = useRoute();
 const toast = useToast();
 const form = reactive({
   email: "",
@@ -84,7 +86,7 @@ const form = reactive({
 });
 const rules = {
   email: { required },
-  password: { required, minLength: minLength(8) },
+  password: { required, minLength: minLength(6) },
 };
 const v$ = useVuelidate(rules, form);
 const isLoading = ref(false);
@@ -98,13 +100,23 @@ async function handleSubmit() {
         store.commit("SET_TOKEN", res.data.token);
         store.commit("SET_USERINFO", res.data.user);
         toast.success("Login successful");
-        window.location.replace("/");
         isLoading.value = false;
+
+        const redirectedFrom = route.query.redirected_from;
+        if (redirectedFrom) {
+          window.location.href = redirectedFrom;
+        } else if (parseInt(res.data.user.role_id) === 1) {
+          window.location.href = "/admin/dashboard";
+        } else {
+          window.location.href = "/account";
+        }
       }
     })
     .catch((err) => {
       isLoading.value = false;
-      toast.error(err.response.data.message);
+      toast.error(
+        err?.response?.data?.message || "Invalid credentials provided"
+      );
     });
 }
 </script>

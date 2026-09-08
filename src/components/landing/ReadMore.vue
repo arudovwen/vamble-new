@@ -1,42 +1,52 @@
 <template>
-  <section class="overflow-hidden relative">
+  <section
+    class="py-24 lg:py-32 bg-[#243821] text-[#FAF8F5] relative overflow-hidden"
+  >
+    <!-- Subtle Background Glows -->
     <div
-      v-animate-onscroll.repeat="'kenburns-top'"
-      class="flex-1 overflow-hidden bg-[url('@/assets/images/testv.jpeg')] bg-cover bg-center absolute top-0 right-0 w-full h-full"
+      class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-white/5 blur-3xl pointer-events-none"
     ></div>
     <div
-      class="px-6 sm:px-8 lg:px-16 py-36 w-full h-full flex justify-center items-center bg-[#3d3126]/80 backdrop-brightness-50"
+      class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-[#9B7846]/20 blur-3xl pointer-events-none"
+    ></div>
+
+    <div
+      class="max-w-4xl mx-auto px-6 sm:px-10 text-center relative z-10 space-y-8"
     >
-      <div class="max-w-[650px] mx-auto">
-        <h2
-          class="text-[#d4dfd1] text-4xl lg:text-6xl font-semibold mb-4 zendaya"
-          data-aos="fade-up"
-          data-aos-once="true"
-        >
-          What we are about
-        </h2>
-        <p
-          class="text-white mb-8 lg:text-xl"
-          data-aos="fade-up"
-          data-aos-once="true"
-        >
-          We at Vamble Apartments & Suites are dedicated to making your every
-          stay a wonderful experience. We offer state of the art facilities,
-          world class interiors, comfortable and well furnished rooms. Our aim
-          is to provide a home away from home, located in serene and secured
-          environment.
-        </p>
-        <router-link to="/about">
+      <!-- Decorative Accent -->
+      <div class="flex items-center justify-center gap-3">
+        <span class="w-12 h-[1px] bg-[#9B7846]/40"></span>
+        <span class="text-[#9B7846] text-sm">✦ ✦ ✦</span>
+        <span class="w-12 h-[1px] bg-[#9B7846]/40"></span>
+      </div>
+
+      <!-- Quote in Serif Italic -->
+      <blockquote
+        class="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal italic leading-snug sm:leading-tight text-white/95 tracking-tight"
+      >
+        "Dedicated to making your everyday a wonderful experience in serene,
+        central Abuja luxury."
+      </blockquote>
+
+      <p class="text-xs uppercase tracking-widest text-[#9B7846] font-semibold">
+        The Vamble Apartments & Suites Promise
+      </p>
+
+      <!-- Action Button -->
+      <div class="pt-4">
+        <router-link to="/booking">
           <button
             type="button"
-            class="bg-[#2d5c1f] text-white px-10 py-3 text-[15px] font-medium hover:opacity-80 active:scale-95"
-            data-aos="fade-up"
-            data-aos-once="true"
+            class="bg-white hover:bg-[#FAF8F5] text-[#243821] px-9 py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold shadow-xl active:scale-95 transition-all"
           >
-            Read more
+            Check Available Dates
           </button>
         </router-link>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+// Presentation quote banner
+</script>

@@ -1,162 +1,170 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="p-4">
-    <legend class="text-xl font-bold mb-8 block">Add new room</legend>
-
-    <div class="grid grid-cols-2 gap-6">
-      <div class="">
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">Category</label>
-          <select
-            v-model="v$.flat_name.$model"
-            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 capitalize"
-          >
-            <option value="" disabled>Choose a category</option>
-            <option v-for="cat in categories" :key="cat" :value="cat">
-              {{ cat }}
-            </option>
-          </select>
-          <div
-            class="text-red-500 mt-1"
-            v-for="error of v$.flat_name.$errors"
-            :key="error.$uid"
-          >
-            <div class="error-msg text-error text-xs font-semibold">
-              {{ error.$message }}
-            </div>
-          </div>
+  <form @submit.prevent="handleSubmit" class="text-left font-sans flex flex-col">
+    <!-- Header -->
+    <div class="p-6 bg-[#132212] text-white flex items-start justify-between border-b border-white/10">
+      <div class="flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-2xl bg-[#9B7846] text-white flex items-center justify-center text-lg font-bold border border-white/20 shadow-md">
+          <i class="fa fa-bed"></i>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase tracking-widest text-[#c5a880] font-bold block">Catalogue Management</span>
+          <h3 class="font-serif text-xl font-normal text-white mt-0.5">Add New Suite / Room</h3>
         </div>
       </div>
-      <div class="">
-        <div class="text-left mb-6">
-          <label class="block mb-2 text-xs">Choose type</label>
+
+      <button
+        @click="isOpen = false"
+        type="button"
+        class="text-white/60 hover:text-white text-sm w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-colors"
+      >
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Body Fields -->
+    <div class="p-6 space-y-4 text-xs max-h-[70vh] overflow-y-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Category -->
+        <div>
+          <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Suite Category</label>
+          <div class="relative">
+            <select
+              v-model="v$.flat_name.$model"
+              class="w-full pl-3 pr-8 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white capitalize shadow-2xs transition-colors"
+            >
+              <option value="" disabled>Select category</option>
+              <option v-for="cat in categories" :key="cat" :value="cat">
+                {{ cat }}
+              </option>
+            </select>
+          </div>
+          <div v-for="error of v$.flat_name.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+            {{ error.$message }}
+          </div>
+        </div>
+
+        <!-- Flat Type -->
+        <div>
+          <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Residence Type</label>
           <select
             v-model="v$.flat_type.$model"
-            class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20 capitalize"
+            class="w-full px-3 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white capitalize shadow-2xs transition-colors"
           >
-            <option value="" disabled>Choose a type</option>
-            <option v-for="cat in types" :key="cat" :value="cat">
-              {{ cat }}
+            <option value="" disabled>Select type</option>
+            <option v-for="t in types" :key="t" :value="t">
+              {{ t }}
             </option>
           </select>
-          <div
-            class="text-red-500 mt-1"
-            v-for="error of v$.flat_type.$errors"
-            :key="error.$uid"
-          >
-            <div class="error-msg text-error text-xs font-semibold">
-              {{ error.$message }}
-            </div>
+          <div v-for="error of v$.flat_type.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+            {{ error.$message }}
+          </div>
+        </div>
+
+        <!-- Room Code -->
+        <div>
+          <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Room Code / Number</label>
+          <div class="relative">
+            <i class="fa fa-door-closed absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <input
+              v-model="v$.room_name.$model"
+              class="w-full pl-8 pr-3 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white shadow-2xs font-mono transition-colors"
+              placeholder="e.g. Suite 201 or Apt 401"
+            />
+          </div>
+          <div v-for="error of v$.room_name.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+            {{ error.$message }}
+          </div>
+        </div>
+
+        <!-- Nightly Rate -->
+        <div>
+          <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Nightly Rate (NGN)</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-bold text-xs">₦</span>
+            <input
+              v-model="v$.price.$model"
+              type="number"
+              class="w-full pl-7 pr-3 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white shadow-2xs font-mono font-semibold transition-colors"
+              placeholder="e.g. 95000"
+            />
+          </div>
+          <div v-for="error of v$.price.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+            {{ error.$message }}
+          </div>
+        </div>
+
+        <!-- Max Occupancy -->
+        <div>
+          <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Max Guest Occupancy</label>
+          <div class="relative">
+            <i class="fa fa-users absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <input
+              v-model="v$.max_occupancy.$model"
+              type="number"
+              class="w-full pl-8 pr-3 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white shadow-2xs font-mono transition-colors"
+              placeholder="e.g. 2"
+            />
+          </div>
+          <div v-for="error of v$.max_occupancy.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+            {{ error.$message }}
+          </div>
+        </div>
+
+        <!-- Floor -->
+        <div>
+          <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Building Floor Level</label>
+          <div class="relative">
+            <i class="fa fa-building absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <input
+              v-model="v$.floor.$model"
+              type="number"
+              class="w-full pl-8 pr-3 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white shadow-2xs font-mono transition-colors"
+              placeholder="e.g. 2"
+            />
+          </div>
+          <div v-for="error of v$.floor.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+            {{ error.$message }}
           </div>
         </div>
       </div>
 
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Room number</label>
-        <input
-          v-model="v$.room_name.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-          placeholder="Porivde a room number"
-        />
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.room_name.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
-      </div>
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Price</label>
-        <input
-          v-model="v$.price.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-          placeholder="What's the price?"
-          type="number"
-        />
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.price.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
-      </div>
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Max occupancy</label>
-        <input
-          v-model="v$.max_occupancy.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-          placeholder="What's the max occupancy"
-          type="number"
-        />
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.max_occupancy.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
-      </div>
-      <div class="text-left mb-6">
-        <label class="block mb-2 text-xs">Floor</label>
-        <input
-          v-model="v$.floor.$model"
-          class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-          placeholder="What floor is it located?"
-          type="number"
-        />
-        <div
-          class="text-red-500 mt-1"
-          v-for="error of v$.floor.$errors"
-          :key="error.$uid"
-        >
-          <div class="error-msg text-error text-xs font-semibold">
-            {{ error.$message }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-left mb-6">
-      <label class="block mb-2 text-xs">Description</label>
-      <textarea
-        v-model="v$.description.$model"
-        class="border px-3 py-3 rounded-lg w-full outline-none focus:border-[#2c3e50]/20"
-        placeholder="Provide a description"
-      ></textarea>
-      <div
-        class="text-red-500 mt-1"
-        v-for="error of v$.description.$errors"
-        :key="error.$uid"
-      >
-        <div class="error-msg text-error text-xs font-semibold">
+      <!-- Description -->
+      <div>
+        <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Suite Amenities & Description</label>
+        <textarea
+          v-model="v$.description.$model"
+          rows="3"
+          class="w-full p-3 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white shadow-2xs transition-colors"
+          placeholder="Detail key features (e.g. King Bed, Ensuite Bath, Starlink WiFi, Gourmet Kitchen)..."
+        ></textarea>
+        <div v-for="error of v$.description.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
           {{ error.$message }}
         </div>
       </div>
     </div>
-    <div class="flex justify-between mt-7">
+
+    <!-- Footer Actions -->
+    <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-end gap-3">
       <button
         @click="isOpen = false"
         type="button"
-        class="capitalize bg-transparent border border-gray-300 text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 disabled:active:scale-100 rounded-lg disabled:cursor-not-allowed"
+        class="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold text-xs transition-colors"
       >
         Cancel
       </button>
       <button
         type="submit"
         :disabled="isLoading"
-        class="capitalize bg-[#2d5c1f] text-white text-sm px-6 py-3 w-full lg:w-[150px] hover:opacity-80 active:scale-95 rounded-lg disabled:opacity-60 disabled:cursor-not-allowed"
+        class="inline-flex items-center gap-2 bg-[#243821] hover:bg-[#182716] text-white px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold shadow-md transition-all active:scale-95 disabled:opacity-60"
       >
-        Submit
+        <i v-if="isLoading" class="fa fa-spinner fa-spin"></i>
+        <i v-else class="fa fa-check"></i>
+        <span>{{ isLoading ? "Creating..." : "Save Suite" }}</span>
       </button>
     </div>
   </form>
 </template>
+
 <script setup>
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
@@ -203,12 +211,12 @@ async function handleSubmit() {
         isOpen.value = false;
         isAdd.value = false;
         getData();
-        toast.success("Creation success");
+        toast.success("Suite created successfully");
       }
     })
     .catch((err) => {
       isLoading.value = false;
-      toast.error(err.response.data.errors);
+      toast.error(err?.response?.data?.errors || "Error creating room");
     });
 }
 

@@ -181,24 +181,27 @@ export const routes = [
     },
   },
   {
-    path: "/bookings",
-    name: "bookings",
+    path: "/account",
+    name: "account",
     component: () =>
-      import(/* webpackChunkName: "bookings" */ "../views/client/BookingsView"),
+      import(
+        /* webpackChunkName: "account" */ "../views/client/AccountView.vue"
+      ),
     meta: {
-      title: "Bookings - Vamble Apartments & Suites",
+      title: "My Account & Reservations - Vamble Apartments & Suites",
       metaTags: [
         {
           name: "description",
-          content: "Bookings - Vamble Apartments & Suites",
-        },
-        {
-          property: "og:description",
-          content: "Bookings - Vamble Apartments & Suites",
+          content:
+            "View your personal profile, active bookings, digital room key passes, and payment transactions.",
         },
       ],
       isClient: true,
     },
+  },
+  {
+    path: "/bookings",
+    redirect: "/account",
   },
   {
     path: "/booking",

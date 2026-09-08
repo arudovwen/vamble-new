@@ -64,3 +64,11 @@ export async function deleteRoom(id) {
 export async function updateRoom(data) {
   return await put(`${urls.ROOM}/${data.id}`, data, config);
 }
+
+export {
+  getCoupons,
+  deleteCoupon,
+  addCoupon,
+  updateCoupon,
+} from "./userservices";
+

@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import AdminApp from "./AdminApp.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
@@ -20,8 +19,3 @@ createApp(App)
   .directive("tooltip", tooltip)
   .provide("currencyFormat", currencyFormat)
   .mount("#app");
-createApp(AdminApp)
-  .use(store)
-  .use(router)
-  .provide("currencyFormat", currencyFormat)
-  .mount("#adminapp");

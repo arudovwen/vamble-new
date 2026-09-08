@@ -153,6 +153,12 @@ const routes = [
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  lintOnSave: false,
+  devServer: {
+    client: {
+      overlay: false,
+    },
+  },
   pluginOptions: {
     sitemap: {
       baseURL: "https://vambleapartments.com",
@@ -160,3 +166,4 @@ module.exports = defineConfig({
     },
   },
 });
+

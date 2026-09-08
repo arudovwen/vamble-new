@@ -1,70 +1,131 @@
 <template>
-  <div
-    class="border-b border-[#a18463]/20 flex flex-col sm:flex-row py-16 sm:py-0 px-6 sm:px-0"
-  >
-    <div
-      class="sm:px-16 sm:py-16 sm:border-r sm:border-[#a18463]/20 sm:w-[38%] text-left lg:flex items-center"
-    >
-      <h2
-        class="text-4xl sm:text-6xl font-bold max-w-[400px] mb-6 sm:mb-0 zendaya"
-        data-aos="fade-up"
-        data-aos-once="true"
-      >
-        A Bit <span class="text-[#2d5c1f]">About Us</span>
-      </h2>
-    </div>
-    <div
-      class="sm:px-16 sm:py-16 flex justify-between flex-1 text-left sm:text-right"
-    >
+  <section id="about" class="py-14 sm:py-20 lg:py-28 border-b border-[#9B7846]/15 bg-[#FAF8F5]">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-10 lg:px-16">
       <div
-        class="p-3 hidden xl:grid grid-cols-2 items-center justify-center gap-6"
+        class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start"
       >
-        <a v-for="i in socials" :key="i.icon" :href="i.url" target="_blank">
+        <!-- Left Column: Editorial Headline & Narrative -->
+        <div class="lg:col-span-5 text-left space-y-5 sm:space-y-6">
           <div
-            v-tooltip
-            :title="`Visit ${i.title}`"
-            class="hover:text-blue-900 flex items-center justify-center"
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#9B7846]/10 text-[#9B7846] text-xs font-semibold uppercase tracking-wider"
           >
-            <i :class="i.icon" aria-hidden="true"></i> <br />
+            <span>Our Philosophy</span>
           </div>
-        </a>
+
+          <h2
+            class="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1A1816] font-normal leading-tight"
+          >
+            A Bit About
+            <span class="italic text-[#243821] font-serif">Vamble.</span>
+          </h2>
+
+          <p class="text-base text-[#1A1816]/75 font-sans leading-relaxed">
+            Vamble Apartments & Suites is an exclusive collection of luxury
+            serviced residences nestled in the serene district of Jahi, Abuja.
+            We bridge the privacy and freedom of a personal residence with the
+            flawless standard of a world-class boutique hotel.
+          </p>
+
+          <p class="text-sm text-[#1A1816]/70 leading-relaxed">
+            Whether for diplomatic visits, extended executive engagements, or
+            peaceful personal escapes, our suites are acoustically designed and
+            custom-furnished to elevate your everyday living.
+          </p>
+
+          <div class="pt-2">
+            <router-link to="/about">
+              <button
+                type="button"
+                class="inline-flex items-center gap-2.5 text-xs uppercase tracking-wider font-semibold text-[#243821] border-b-2 border-[#243821] pb-1 hover:text-[#9B7846] hover:border-[#9B7846] transition-colors"
+              >
+                <span>Discover Our Full Story</span>
+                <i class="fa fa-arrow-right text-xs"></i>
+              </button>
+            </router-link>
+          </div>
+        </div>
+
+        <!-- Right Column: 4-Item Feature Cards Grid -->
+        <div
+          class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 text-left"
+        >
+          <!-- Feature 1 -->
+          <div
+            class="p-6 rounded-2xl bg-white border border-[#9B7846]/20 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#243821]/10 text-[#243821] flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fa fa-bolt"></i>
+            </div>
+            <h3 class="font-serif text-lg font-medium text-[#1A1816] mb-2">
+              24/7 Uninterrupted Power
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Industrial dual generator redundancy combined with silent solar
+              inverters ensures constant electricity day and night.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            class="p-6 rounded-2xl bg-white border border-[#9B7846]/20 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#9B7846]/10 text-[#9B7846] flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fa fa-wifi"></i>
+            </div>
+            <h3 class="font-serif text-lg font-medium text-[#1A1816] mb-2">
+              High-Speed Fiber Wi-Fi
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Ultra-fast dedicated enterprise fiber bandwidth throughout all
+              rooms and communal areas, optimized for video calls and streaming.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            class="p-6 rounded-2xl bg-white border border-[#9B7846]/20 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#243821]/10 text-[#243821] flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fa fa-map-marker"></i>
+            </div>
+            <h3 class="font-serif text-lg font-medium text-[#1A1816] mb-2">
+              Prime Tranquil Location
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Quiet, secure enclave in Jahi, just 10 minutes to Jabi Lake Mall
+              and 15 minutes to Abuja's Central Business District.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div
+            class="p-6 rounded-2xl bg-white border border-[#9B7846]/20 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#9B7846]/10 text-[#9B7846] flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fa fa-shield"></i>
+            </div>
+            <h3 class="font-serif text-lg font-medium text-[#1A1816] mb-2">
+              Bespoke Concierge & Security
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Discreet 24-hour on-premise security, intelligent access control,
+              and a dedicated concierge catering to your every request.
+            </p>
+          </div>
+        </div>
       </div>
-      <p
-        class="text-base sm:text-lg sm:max-w-md ml-auto"
-        data-aos="fade-up"
-        data-aos-once="true"
-      >
-        <span class="font-semibold"> Vamble Apartments and Suites</span> Limited
-        is a collection of the finest independent
-        <span class="font-semibold">Luxury homes</span> in Abuja, Nigeria. Our
-        luxury suites are both impressive and flexible. Plush interior design,
-        and so much more.
-      </p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
-const socials = [
-  {
-    title: "@vambleapartments",
-    icon: "fab fa-instagram fa-2x",
-    url: "https://instagram.com/vambleapartments",
-  },
-  {
-    title: "vambleapartments",
-    icon: "fab fa-whatsapp fa-2x",
-    url: "https://wa.me/2349064645461",
-  },
-  {
-    title: "@vambleapartments",
-    icon: "fab fa-twitter fa-2x",
-    url: "https://twitter.com/vambleapartments",
-  },
-  {
-    title: "@vambleapartments",
-    icon: "fab fa-facebook fa-2x",
-    url: "https://facebook.com/vambleapartments",
-  },
-];
+// Pure presentation component with Vamble Apartments styling
 </script>
