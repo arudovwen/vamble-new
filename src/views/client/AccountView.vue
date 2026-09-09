@@ -334,7 +334,7 @@
                       >
                         #{{ b.booking_no }}
                       </td>
-                      <td class="px-6 py-4 font-medium text-[#1A1816]">
+                      <td class="px-6 py-4 font-medium text-[#1A1816] capitalize">
                         {{
                           b.room?.flat_name ||
                           b.room?.room_name ||
@@ -757,7 +757,7 @@
                       class="flex justify-between py-2 border-b border-gray-100"
                     >
                       <span class="text-gray-500">Suite Type</span>
-                      <span class="font-medium text-[#1A1816]">{{
+                      <span class="font-medium text-[#1A1816] capitalize">{{
                         selectedBooking.room?.flat_name ||
                         selectedBooking.room?.room_name
                       }}</span>

@@ -1,14 +1,16 @@
 <template>
-  <section class="relative pt-12 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+  <section class="relative pt-12 pb-16 lg:pt-16 lg:pb-24">
     <!-- Subtle Background Ambient Accents -->
-    <div
-      class="absolute top-0 right-0 w-96 h-96 bg-[#9B7846]/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"
-    ></div>
-    <div
-      class="absolute bottom-0 left-0 w-96 h-96 bg-[#243821]/5 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"
-    ></div>
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-[#9B7846]/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-96 h-96 bg-[#243821]/5 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"
+      ></div>
+    </div>
 
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-10 lg:px-16">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-10 lg:px-16 relative z-10">
       <div
         class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center"
       >

@@ -106,7 +106,7 @@
               </div>
               <div>
                 <span
-                  class="text-[10px] uppercase tracking-widest text-[#9B7846] font-semibold"
+                  class="text-[10px] uppercase tracking-widest text-[#9B7846] font-semibold "
                 >
                   {{
                     activeSuite?.flat_type === "apartment"
@@ -114,7 +114,7 @@
                       : "Private Suite"
                   }}
                 </span>
-                <h4 class="font-serif text-lg font-medium text-[#1A1816]">
+                <h4 class="font-serif text-lg font-medium text-[#1A1816] capitalize">
                   {{
                     activeSuite?.flat_name ||
                     formData.type ||

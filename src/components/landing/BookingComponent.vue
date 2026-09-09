@@ -9,31 +9,34 @@
       <!-- Check-in Date -->
       <div class="text-left">
         <label
-          class="block text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
+          class=" text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
         >
           <i class="fa fa-calendar-o text-xs"></i> Check-in Date
         </label>
+        
         <datepicker
           v-model="formData.checkin"
-          class="w-full px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
+          class="custom-datepicker w-full px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
           inputFormat="yyyy-MM-dd"
           :lowerLimit="new Date()"
+          
         />
       </div>
 
       <!-- Check-out Date -->
-      <div class="text-left">
+      <div class="text-left ">
         <label
-          class="block text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
+          class=" text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
         >
           <i class="fa fa-calendar-check-o text-xs"></i> Check-out Date
         </label>
         <datepicker
           v-model="formData.checkout"
-          class="w-full px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
+          class="custom-datepicker w-full px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
           inputFormat="yyyy-MM-dd"
           :lowerLimit="lowerLimit"
           :upperLimit="compEndDate"
+          
         />
       </div>
 
@@ -170,3 +173,70 @@ function submitSearch() {
   });
 }
 </script>
+<style scoped>
+/* Wrapper styling */
+.datepicker-wrapper {
+  max-width: 320px;
+  margin: 40px auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  text-align: center;
+}
+
+/* Custom datepicker input */
+.custom-datepicker input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid var(--dp-border, #ccc);
+  border-radius: 8px;
+  background-color: var(--dp-bg, #fff);
+  color: var(--dp-text, #333);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.custom-datepicker input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+  outline: none;
+}
+
+/* Popup calendar styling */
+.custom-datepicker .datepicker-popup {
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+/* Calendar day cells */
+.custom-datepicker .cell {
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.custom-datepicker .cell:hover {
+  background: #f0f4ff;
+  color: #4a90e2;
+}
+
+.custom-datepicker .cell.selected {
+  background: #4a90e2;
+  color: #fff;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Selected date text */
+.selected-date {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #666;
+}
+</style>

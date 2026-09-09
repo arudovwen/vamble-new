@@ -29,7 +29,7 @@
           <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Suite Category</label>
           <div class="relative">
             <select
-              v-model="v$.flat_name.$model"
+              v-model="v$.flat_type.$model"
               class="w-full pl-3 pr-8 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white capitalize shadow-2xs transition-colors"
             >
               <option value="" disabled>Select category</option>
@@ -38,7 +38,7 @@
               </option>
             </select>
           </div>
-          <div v-for="error of v$.flat_name.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+          <div v-for="error of v$.flat_type.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
             {{ error.$message }}
           </div>
         </div>
@@ -47,7 +47,7 @@
         <div>
           <label class="block mb-1.5 font-bold uppercase text-[10px] text-gray-500">Residence Type</label>
           <select
-            v-model="v$.flat_type.$model"
+            v-model="v$.flat_name.$model"
             class="w-full px-3 py-2.5 rounded-xl border border-gray-300 focus:border-[#9B7846] outline-none text-xs bg-white capitalize shadow-2xs transition-colors"
           >
             <option value="" disabled>Select type</option>
@@ -55,7 +55,7 @@
               {{ t }}
             </option>
           </select>
-          <div v-for="error of v$.flat_type.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
+          <div v-for="error of v$.flat_name.$errors" :key="error.$uid" class="text-red-500 text-[10px] mt-1 font-semibold">
             {{ error.$message }}
           </div>
         </div>
