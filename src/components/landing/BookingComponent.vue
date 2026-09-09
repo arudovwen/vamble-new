@@ -1,104 +1,88 @@
 <template>
-  <div
-    class="w-full max-w-5xl mx-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-black/5 border border-[#9B7846]/20 p-4 sm:p-6 transition-all"
-  >
+  <div class="w-full max-w-5xl mx-auto bg-white rounded shadow-sm p-2 sm:p-3 transition-all">
     <form
       @submit.prevent="submitSearch"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 items-stretch"
     >
       <!-- Check-in Date -->
-      <div class="text-left">
-        <label
-          class=" text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
-        >
+      <div class="text-left bg-[#FCFBF9] p-3 sm:px-4 sm:py-3 h-full flex flex-col justify-center">
+        <label class="text-[10px] uppercase tracking-wider font-semibold text-[#8C6D41] mb-1 flex items-center gap-1.5">
           <i class="fa fa-calendar-o text-xs"></i> Check-in Date
         </label>
         
         <datepicker
           v-model="formData.checkin"
-          class="custom-datepicker w-full px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
-          inputFormat="yyyy-MM-dd"
+          class="custom-datepicker w-full bg-transparent text-sm font-medium text-[#1A1816] outline-none cursor-pointer"
+          inputFormat="MM/dd/yyyy"
           :lowerLimit="new Date()"
-          
         />
       </div>
 
       <!-- Check-out Date -->
-      <div class="text-left ">
-        <label
-          class=" text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
-        >
-          <i class="fa fa-calendar-check-o text-xs"></i> Check-out Date
+      <div class="text-left bg-[#FCFBF9] p-3 sm:px-4 sm:py-3 h-full flex flex-col justify-center">
+        <label class="text-[10px] uppercase tracking-wider font-semibold text-[#8C6D41] mb-1 flex items-center gap-1.5">
+          <i class="fa fa-calendar-o text-xs"></i> Check-out Date
         </label>
         <datepicker
           v-model="formData.checkout"
-          class="custom-datepicker w-full px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
-          inputFormat="yyyy-MM-dd"
+          class="custom-datepicker w-full bg-transparent text-sm font-medium text-[#1A1816] outline-none cursor-pointer"
+          inputFormat="MM/dd/yyyy"
           :lowerLimit="lowerLimit"
           :upperLimit="compEndDate"
-          
         />
       </div>
 
       <!-- Room Category -->
-      <div class="text-left">
-        <label
-          class="block text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
-        >
-          <i class="fa fa-bed text-xs"></i> Accommodation Type
+      <div class="text-left bg-[#FCFBF9] p-3 sm:px-4 sm:py-3 h-full flex flex-col justify-center">
+        <label class="block text-[10px] uppercase tracking-wider font-semibold text-[#8C6D41] mb-1 flex items-center gap-1.5">
+          <i class="fa fa-bed text-xs"></i> Category
         </label>
         <div class="relative">
           <select
             v-model="formData.category"
-            class="w-full appearance-none px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all capitalize cursor-pointer"
+            class="w-full appearance-none bg-transparent text-sm font-medium text-[#1A1816] outline-none capitalize cursor-pointer"
           >
-            <option value="">All Categories</option>
+            <option value="">Standard Room</option>
             <option v-for="cat in categories" :key="cat" :value="cat">
-              {{ cat === "room" ? "Suites & Rooms" : "Serviced Apartments" }}
+              {{ cat === "room" ? "Standard Room" : "Serviced Apartments" }}
             </option>
           </select>
-          <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#9B7846]"
-          >
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center text-[#1A1816]">
             <i class="fa fa-angle-down text-xs"></i>
           </div>
         </div>
       </div>
 
       <!-- Guests -->
-      <div class="text-left">
-        <label
-          class="block text-[11px] uppercase tracking-wider font-semibold text-[#9B7846] mb-1.5 flex items-center gap-1.5"
-        >
-          <i class="fa fa-user-o text-xs"></i> Guests
+      <div class="text-left bg-[#FCFBF9] p-3 sm:px-4 sm:py-3 h-full flex flex-col justify-center">
+        <label class="block text-[10px] uppercase tracking-wider font-semibold text-[#8C6D41] mb-1 flex items-center gap-1.5">
+          <i class="fa fa-users text-xs"></i> Residency
         </label>
         <div class="relative">
           <select
             v-model="formData.no_of_guests"
-            class="w-full appearance-none px-3.5 py-2.5 rounded-xl border border-[#9B7846]/25 bg-[#FAF8F5]/50 text-sm font-medium text-[#1A1816] outline-none focus:ring-2 focus:ring-[#243821]/20 focus:border-[#243821] transition-all cursor-pointer"
+            class="w-full appearance-none bg-transparent text-sm font-medium text-[#1A1816] outline-none cursor-pointer"
           >
             <option :value="1">1 Guest</option>
             <option :value="2">2 Guests</option>
             <option :value="3">3 Guests</option>
             <option :value="4">4 Guests</option>
-            <option :value="5">5+ Guests (Penthouse)</option>
+            <option :value="5">5+ Guests</option>
           </select>
-          <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#9B7846]"
-          >
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center text-[#1A1816]">
             <i class="fa fa-angle-down text-xs"></i>
           </div>
         </div>
       </div>
 
       <!-- Action Button -->
-      <div>
+      <div class="h-full">
         <button
           type="submit"
-          class="w-full bg-[#243821] hover:bg-[#182716] text-white py-3 px-5 rounded-xl text-xs uppercase tracking-wider font-semibold shadow-md shadow-[#243821]/20 hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+          class="w-full h-full bg-[#102411] hover:bg-[#0B1A0C] text-white py-3 px-5 text-sm tracking-wide font-medium transition-all active:scale-95 flex items-center justify-center gap-2"
         >
-          <span>Check Availability</span>
-          <i class="fa fa-arrow-right text-xs"></i>
+          <i class="fa fa-search text-sm"></i>
+          <span>Check Rates</span>
         </button>
       </div>
     </form>
@@ -183,26 +167,26 @@ function submitSearch() {
 }
 
 /* Custom datepicker input */
-.custom-datepicker input {
+:deep(.custom-datepicker input) {
   width: 100%;
-  padding: 10px 14px;
-  font-size: 15px;
-  border: 1px solid var(--dp-border, #ccc);
-  border-radius: 8px;
-  background-color: var(--dp-bg, #fff);
-  color: var(--dp-text, #333);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
+  padding: 0;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  color: #1A1816;
+  box-shadow: none;
+  font-weight: 500;
+  outline: none;
 }
 
-.custom-datepicker input:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+:deep(.custom-datepicker input:focus) {
+  border: none;
+  box-shadow: none;
   outline: none;
 }
 
 /* Popup calendar styling */
-.custom-datepicker .datepicker-popup {
+:deep(.custom-datepicker .datepicker-popup) {
   border-radius: 10px;
   border: 1px solid #e0e0e0;
   background: #fff;
@@ -212,17 +196,17 @@ function submitSearch() {
 }
 
 /* Calendar day cells */
-.custom-datepicker .cell {
+:deep(.custom-datepicker .cell) {
   border-radius: 6px;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.custom-datepicker .cell:hover {
+:deep(.custom-datepicker .cell:hover) {
   background: #f0f4ff;
   color: #4a90e2;
 }
 
-.custom-datepicker .cell.selected {
+:deep(.custom-datepicker .cell.selected) {
   background: #4a90e2;
   color: #fff;
 }
