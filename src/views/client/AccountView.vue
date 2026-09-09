@@ -15,7 +15,9 @@
             <div
               class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
             >
-              <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5"
+              >
                 <div
                   class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#9B7846] text-white flex items-center justify-center font-serif text-2xl sm:text-3xl font-bold shadow-lg border border-white/20 shrink-0"
                 >
@@ -201,11 +203,7 @@
                   <h3
                     class="font-serif text-xl sm:text-2xl text-[#1A1816] font-medium"
                   >
-                    {{
-                      booking.room?.flat_name ||
-                      booking.room?.room_name ||
-                      "Luxury Suite"
-                    }}
+                    {{ booking.room || "Luxury Suite" }}
                   </h3>
 
                   <div
@@ -334,7 +332,9 @@
                       >
                         #{{ b.booking_no }}
                       </td>
-                      <td class="px-6 py-4 font-medium text-[#1A1816] capitalize">
+                      <td
+                        class="px-6 py-4 font-medium text-[#1A1816] capitalize"
+                      >
                         {{
                           b.room?.flat_name ||
                           b.room?.room_name ||
