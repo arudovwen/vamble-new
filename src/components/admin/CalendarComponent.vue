@@ -242,7 +242,7 @@
               >
                 <span class="w-1.5 h-1.5 rounded-full shrink-0" :class="getSuiteDotColor(res.room)"></span>
                 <div class="truncate">
-                  <span class="font-bold text-[#1A1816] truncate block">{{ res.user?.name || 'Guest' }}</span>
+                  <span class="font-bold text-[#1A1816] truncate block capitalize">{{ res.user?.name || 'Guest' }}</span>
                   <span class="text-[9px] text-gray-500 truncate block">{{ getShortSuiteName(res.room) }}</span>
                 </div>
               </div>
@@ -319,7 +319,7 @@
                 >
                   <div class="flex items-center gap-1.5 truncate">
                     <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                    <span class="font-bold truncate text-[11px]">{{ res.user?.name || 'Guest' }}</span>
+                    <span class="font-bold truncate text-[11px] capitalize">{{ res.user?.name || 'Guest' }}</span>
                     <span class="text-[9px] opacity-80 font-mono hidden sm:inline">#{{ res.booking_no }}</span>
                   </div>
                   <span class="text-[10px] font-mono font-bold opacity-90 ml-2 shrink-0">
@@ -363,7 +363,7 @@
                 <!-- Header -->
                 <div class="p-6 bg-[#132212] text-white border-b border-white/10 flex items-start justify-between">
                   <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-2xl bg-[#9B7846] text-white flex items-center justify-center font-serif text-lg font-bold border border-white/20">
+                    <div class="w-12 h-12 rounded-2xl bg-[#9B7846] capitalize text-white flex items-center justify-center font-serif text-lg font-bold border border-white/20">
                       {{ (selectedReservation?.user?.name || 'G').slice(0, 2).toUpperCase() }}
                     </div>
                     <div>
@@ -373,7 +373,7 @@
                           #{{ selectedReservation?.booking_no }}
                         </span>
                       </div>
-                      <h3 class="font-serif text-xl font-normal text-white mt-0.5">
+                      <h3 class="font-serif text-xl font-normal text-white mt-0.5 capitalize">
                         {{ selectedReservation?.user?.name || 'Guest' }}
                       </h3>
                     </div>

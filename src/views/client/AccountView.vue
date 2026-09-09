@@ -36,7 +36,7 @@
                     </span>
                   </div>
                   <h1
-                    class="font-serif text-2xl sm:text-4xl font-normal text-white"
+                    class="font-serif text-2xl sm:text-4xl font-normal text-white capitalize"
                   >
                     {{ userInfo?.name || "Valued Guest" }}
                   </h1>
@@ -388,7 +388,7 @@
                     >Full Name</label
                   >
                   <div
-                    class="p-3 bg-[#FAF8F5] rounded-xl border border-gray-200 text-sm font-medium text-[#1A1816]"
+                    class="p-3 bg-[#FAF8F5] rounded-xl border border-gray-200 text-sm font-medium text-[#1A1816] capitalize"
                   >
                     {{ userInfo?.name }}
                   </div>
@@ -649,7 +649,7 @@
                     >
                       <div class="flex justify-between">
                         <span class="text-white/50">Primary Guest</span>
-                        <span class="font-medium text-white">{{
+                        <span class="font-medium text-white capitalize">{{
                           selectedBooking.user?.name || userInfo?.name
                         }}</span>
                       </div>

@@ -142,7 +142,7 @@
                           User #{{ selectedUser?.id }}
                         </span>
                       </div>
-                      <h3 class="font-serif text-2xl font-normal text-white mt-0.5">
+                      <h3 class="font-serif text-2xl font-normal text-white mt-0.5 capitalize">
                         {{ selectedUser?.name }}
                       </h3>
                       <p class="text-xs text-white/70 font-mono mt-0.5">
@@ -204,7 +204,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div class="p-3.5 bg-gray-50 rounded-xl border border-gray-100">
                         <span class="block text-gray-400 uppercase font-bold text-[10px]">Full Name</span>
-                        <span class="font-medium text-sm text-[#1A1816]">{{ selectedUser?.name }}</span>
+                        <span class="font-medium text-sm text-[#1A1816] capitalize">{{ selectedUser?.name }}</span>
                       </div>
                       <div class="p-3.5 bg-gray-50 rounded-xl border border-gray-100">
                         <span class="block text-gray-400 uppercase font-bold text-[10px]">Email Address</span>

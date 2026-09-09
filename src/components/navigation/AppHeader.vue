@@ -46,7 +46,7 @@
 
         <Menu as="div" v-else class="relative inline-block text-left">
           <MenuButton
-            class="flex items-center gap-x-2.5 px-4 py-2 rounded-full border border-[#9B7846]/30 text-xs font-semibold text-[#1A1816] hover:bg-[#9B7846]/10 transition-colors"
+            class="flex capitalize items-center gap-x-2.5 px-4 py-2 rounded-full border border-[#9B7846]/30 text-xs font-semibold text-[#1A1816] hover:bg-[#9B7846]/10 transition-colors"
           >
             <i class="fa fa-user-circle text-base text-[#243821]"></i>
             <span>{{ userInfo.name }}</span>

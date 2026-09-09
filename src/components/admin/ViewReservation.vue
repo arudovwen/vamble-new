@@ -43,7 +43,7 @@
         </div>
         <div>
           <span class="text-[10px] text-gray-400 uppercase font-bold block">Primary Guest</span>
-          <span class="font-medium text-sm text-[#1A1816]">{{ booking.user?.name || "Valued Guest" }}</span>
+          <span class="font-medium text-sm text-[#1A1816] capitalize">{{ booking.user?.name || "Valued Guest" }}</span>
         </div>
       </div>
 

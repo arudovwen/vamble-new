@@ -286,7 +286,7 @@
                     {{ (res.user?.name || "G").charAt(0).toUpperCase() }}
                   </div>
                   <div>
-                    <span class="font-medium text-[#1A1816] block">{{ res.user?.name || "Guest" }}</span>
+                    <span class="font-medium text-[#1A1816] block capitalize">{{ res.user?.name || "Guest" }}</span>
                     <span class="text-[10px] text-gray-400 block truncate max-w-[140px]">{{ res.user?.email || "—" }}</span>
                   </div>
                 </div>

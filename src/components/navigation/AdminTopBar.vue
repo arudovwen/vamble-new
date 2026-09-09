@@ -17,7 +17,7 @@
         >
           <span class="hidden sm:inline">Admin Console</span>
           <i class="fa fa-chevron-right text-[8px] opacity-60 hidden sm:inline"></i>
-          <span class="text-[#9B7846]">{{ pageTitle }}</span>
+          <span class="text-[#9B7846] capitalize">{{ pageTitle }}</span>
         </div>
         <h2
           class="font-serif text-lg sm:text-2xl font-bold text-[#1A1816] tracking-tight truncate max-w-[200px] sm:max-w-none"
@@ -63,7 +63,7 @@
           {{ adminInitials }}
         </div>
         <div class="hidden md:block text-left leading-tight">
-          <span class="block text-xs font-bold text-[#1A1816]">{{
+          <span class="block text-xs font-bold text-[#1A1816] capitalize">{{
             userInfo?.name || "Administrator"
           }}</span>
           <span class="block text-[10px] text-gray-400 font-medium"

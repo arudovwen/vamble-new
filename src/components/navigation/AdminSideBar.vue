@@ -94,7 +94,7 @@
             VA
           </div>
           <div class="text-left truncate">
-            <span class="block text-xs font-semibold text-white truncate">{{
+            <span class="block text-xs font-semibold text-white truncate capitalize">{{
               userInfo?.name || "Administrator"
             }}</span>
             <span

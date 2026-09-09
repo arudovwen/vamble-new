@@ -93,7 +93,7 @@
                   {{ (td.user?.name || "G").charAt(0).toUpperCase() }}
                 </div>
                 <div>
-                  <span class="font-medium text-[#1A1816] block">
+                  <span class="font-medium text-[#1A1816] block capitalize">
                     {{ td.user?.name || "Guest" }}
                   </span>
                   <span class="text-[11px] text-gray-400 block truncate max-w-[180px]">
